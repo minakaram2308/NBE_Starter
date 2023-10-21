@@ -13,17 +13,19 @@ export default styles = StyleSheet.create({
     padding: 10,
 
     // Fixed bottom navigation @KAY
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
   },
 
   activeNavBtn: {
     backgroundColor: '#007236',
-    height: 65,
-    width: 65,
-    borderRadius: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginEnd: 5,
+    // height: 65,
+    // width: 65,
+    // borderRadius: 10,
+    // justifyContent: 'center',
+    // alignItems: 'center',
+    // marginEnd: 5,
   },
 
   activeNavIcon: {
@@ -42,6 +44,7 @@ export default styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginEnd: 5,
+    borderRadius: 20
   },
 
   navIcon: {

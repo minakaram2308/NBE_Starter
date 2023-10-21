@@ -11,7 +11,7 @@ export const Navigator = ({ navigation }) => {
     <View style={styles.navigator}>
 
       <TouchableWithoutFeedback>
-        <View style={styles.activeNavBtn}>
+        <View style={[styles.navBtn, styles.activeNavBtn]}>
           <MaterialCommunityIcons
             name="home"
             style={styles.activeNavIcon}
