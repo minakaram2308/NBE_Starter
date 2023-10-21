@@ -11,6 +11,9 @@ export default styles = StyleSheet.create({
     alignItems: 'center',
     height: 80,
     padding: 10,
+
+    // Fixed bottom navigation @KAY
+    justifyContent: 'space-between'
   },
 
   activeNavBtn: {
