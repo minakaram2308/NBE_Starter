@@ -11,6 +11,7 @@ import { TopBar, Balance, Navigator } from './components'
 import { HomeScreen, AccountsScreen, CardsScreen, UtilsScreen, HistoryScreen } from './screens'
 
 import styles from './styles/App.style'
+import BeneficiaryMain from './screens/BeneficiaryMain';
 
 const Stack = createNativeStackNavigator();
 
@@ -24,6 +25,7 @@ export const App = () => {
 
         <Stack.Navigator initialRouteName="home">
           <Stack.Screen name="home" component={HomeScreen} options={{ headerShown: false }} />
+          {/* <Stack.Screen name="BeneficiaryMain" component={BeneficiaryMain} options={{ headerShown: false }} /> */}
           <Stack.Screen name="accounts" component={AccountsScreen} options={{ headerShown: false }} />
           <Stack.Screen name="cards" component={CardsScreen} options={{ headerShown: false }} />
           <Stack.Screen name="utils" component={UtilsScreen} options={{ headerShown: false }} />
