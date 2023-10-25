@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableWithoutFeedback } from 'react-native';
+import { View, Text, Pressable } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -10,7 +10,7 @@ export const Navigator = ({ navigation }) => {
   return (
     <View style={styles.navigator}>
 
-      <TouchableWithoutFeedback>
+      <Pressable>
         <View style={[styles.navBtn, styles.activeNavBtn]}>
           <MaterialCommunityIcons
             name="home"
@@ -19,9 +19,9 @@ export const Navigator = ({ navigation }) => {
           />
           <Text style={styles.activeNavText}>Home</Text>
         </View>
-      </TouchableWithoutFeedback>
+      </Pressable>
 
-      <TouchableWithoutFeedback>
+      <Pressable>
         <View style={styles.navBtn}>
           <MaterialCommunityIcons
             name="bank-transfer"
@@ -30,9 +30,9 @@ export const Navigator = ({ navigation }) => {
           />
           <Text style={styles.navText}>Transfer</Text>
         </View>
-      </TouchableWithoutFeedback>
+      </Pressable>
 
-      <TouchableWithoutFeedback>
+      <Pressable onPress={() => navigation.navigate("BeneficiaryMain")}>
         <View style={styles.navBtn}>
           <Icon
             name="people"
@@ -41,9 +41,9 @@ export const Navigator = ({ navigation }) => {
           />
           <Text style={styles.navText}>Benef.</Text>
         </View>
-      </TouchableWithoutFeedback>
+      </Pressable>
 
-      <TouchableWithoutFeedback>
+      <Pressable>
         <View style={styles.navBtn}>
           <MaterialCommunityIcons
             name="map-marker-outline"
@@ -52,9 +52,9 @@ export const Navigator = ({ navigation }) => {
           />
           <Text style={styles.navText}>ATMs</Text>
         </View>
-      </TouchableWithoutFeedback>
+      </Pressable>
 
-      <TouchableWithoutFeedback>
+      <Pressable>
         <View style={styles.navBtn}>
           <MaterialCommunityIcons
             name="cellphone-nfc"
@@ -63,7 +63,7 @@ export const Navigator = ({ navigation }) => {
           />
           <Text style={styles.navText}>Air Pay</Text>
         </View>
-      </TouchableWithoutFeedback>
+      </Pressable>
 
     </View>
   )
