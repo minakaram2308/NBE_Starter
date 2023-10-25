@@ -42,13 +42,14 @@ export default function BeneficiaryCard({ cardData, compact = true })
                 styles.container,
                 dStyles.container,
                 compact && styles.containerCompact,
-                { width: (windowWidth - spacers.screenPadding * 2 - cardsPerRow * colGap * 2) / cardsPerRow },
+                // { width: (windowWidth - spacers.screenPadding * 2 - cardsPerRow * colGap * 2) / cardsPerRow },
             ]}>
+
             <View style={[styles.imageWrapper]}>
                 {imageExist ? (
                     <Image
                         source={IMAGES[id]}
-                        resizeMode="contain"
+                        // resizeMode="contain"
                         style={[styles.profileImage]}
                     />
                 ) : (
@@ -57,7 +58,7 @@ export default function BeneficiaryCard({ cardData, compact = true })
                     </Text>
                 )}
             </View>
-            <Spacer vertical value={10} />
+            {/* <Spacer vertical value={10} /> */}
             <View style={[styles.bodyWrapper, compact && styles.bodyWrapperCompact]}>
                 <View style={[styles.headerWrapper, compact && styles.headerWrapperCompact]}>
                     <Text style={[styles.headingText]} numberOfLines={1}>
@@ -93,34 +94,40 @@ export default function BeneficiaryCard({ cardData, compact = true })
 
 const styles = StyleSheet.create({
     container: {
-        overflow: 'hidden',
+        flexDirection: 'row',
+        alignItems: 'stretch',
+        // alignSelf: 'flex-start',
+        // flex: 1,
+        // overflow: 'hidden',
+        
         backgroundColor: 'white',
         padding: 12,
         borderRadius: 10,
         elevation: 2,
-        marginBottom: 10,
-        flexDirection: 'row',
+        // marginBottom: 10,
         // alignItems: 'stretch',
-        height: 110,
+        // height: 110,
     },
     containerCompact: {
-        flexDirection: 'column',
-        // alignItems: 'stretch',
-        height: null,
+        // flexDirection: 'column',
+        // height: null,
     },
     imageWrapper: {
-        aspectRatio: 1,
-        overflow: 'hidden',
+        // aspectRatio: 1,
+        // overflow: 'hidden',
+        width: 10,
+        // height: '100%',
+
         backgroundColor: colors.bgLight,
         borderRadius: 10,
         elevation: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
+        backgroundColor: 'red',
         // flex: 1,
+        // alignSelf: 'stretch'
     },
     profileImage: {
         // width: 20
-        resizeMode: 'contain',
+        resizeMode: 'cover',
         width: '100%',
         height: '100%',
     },
@@ -143,10 +150,11 @@ const styles = StyleSheet.create({
     },
     bodyWrapper: {
         flexDirection: 'column',
-        marginLeft: 10
+        // marginLeft: 10,
+        flex: 1,
     },
     bodyWrapperCompact:{
-        marginLeft: 0
+        // marginLeft: 0
     },
     row:{
         flexDirection: 'row'
