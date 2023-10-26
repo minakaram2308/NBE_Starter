@@ -27,6 +27,7 @@ export const Navigator = ({ navigation }) => {
             name="bank-transfer"
             style={styles.navIcon}
             size={25}
+            
           />
           <Text style={styles.navText}>Transfer</Text>
         </View>
