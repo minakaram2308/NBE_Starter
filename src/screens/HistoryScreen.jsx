@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, Image, ScrollView } from 'react-native';
+import { View, Text, Image, ScrollView , StyleSheet} from 'react-native';
 
-import styles from './../styles/screens/HistoryScreen.style'
 
 // function wait(ms) {
 //   const start = new Date().getTime();
@@ -53,24 +52,85 @@ export const HistoryScreen = () => {
 
   
   return (
-    <View style={styles.accounts}>
-
-      <Text style={styles.title}>History</Text>
-
-      <ScrollView contentContainerStyle={styles.scrollArea}>
-        {
-          users.map((user, i) => {
-            return <View key={i} style={styles.userCard}>
-              <Image
-                style={styles.image}
-                source={user.image}
-              />
-              <Text style={styles.name}>{user.name}</Text>
+    <View style={styles.leafContainer}>
+    <ScrollView>
+      {users.map((user, i) => {
+        return (
+          <View key={i} style={styles.userContainer}>
+            <View style={styles.userCard}>
+              <Image style={styles.image} source={user.image} />
             </View>
-          })
-        }
-      </ScrollView>
-      
-    </View>
+            <View style={styles.userDetails}>
+              <View style={styles.nameDateContainer}>
+                <Text style={styles.name}>{user.name}</Text>
+                <Text style={styles.date}>15-12-2021</Text>
+              </View>
+              <View style={styles.priceContainer}>
+                <Text style={styles.price}>$250.21</Text>
+              </View>
+            </View>
+          </View>
+        );
+      })}
+    </ScrollView>
+  </View>
   )
 }
+
+const styles = StyleSheet.create({
+  
+  leafContainer: {
+    flex: 1,
+     marginEnd: 20,
+    },
+  image: {
+    width: 70,
+    height: 60,
+    borderRadius: 10,
+    marginBottom: 5,
+  },
+  userContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 10,
+  },
+  userCard: {
+    width: 79,
+    height: 80,
+    padding: 5,
+    borderRadius: 10,
+    margin: 3,
+  },
+  userDetails: {
+    flexDirection: 'row',
+    flex: 1,
+    justifyContent: 'space-between',
+    marginLeft: 10,
+  },
+  nameDateContainer: {
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    marginBottom: 20,
+  },
+  name: {
+    padding: 5,
+    color: 'black',
+    fontFamily: 'Roboto',
+    fontSize: 18,
+    fontWeight: '400',
+  },
+  date: {
+    color: '#767575',
+    fontFamily: 'Roboto',
+    fontSize: 14,
+    fontWeight: '400',
+  },
+  priceContainer: {},
+  price: {
+    color: '#767575',
+    fontFamily: 'Roboto',
+    fontSize: 14,
+    fontWeight: '400',
+  },
+
+})

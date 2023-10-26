@@ -6,40 +6,32 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {LoginScreen, SplashScreen} from './screens';
 
 import styles from './styles/App.style';
-import AppLoggedIn from './AppLoggedIn';
+import AppLoggedIn from './AppBeforeLogin';
 
 const Stack = createNativeStackNavigator();
 
 export const App = () => {
-  const [loading, setLoading] = useState(true);
-
   return (
-    <>
-      <Modal
-        visible={loading}
-        animationType="fade"
-        statusBarTranslucent={true}
-        transparent={true}>
-        <SplashScreen onAnimationFinish={setLoading.bind(null, false)} />
-      </Modal>
+    <View style={styles.app}>
+      <StatusBar
+        barStyle="dark-content"
+        backgroundColor={colors.background}
+        translucent={false}
+      />
+      <TopBar />
 
-      <NavigationContainer>
-        <View style={styles.app}>
-          <StatusBar
-            barStyle="light-content"
-            backgroundColor="transparent"
-            translucent={true}
-          />
+      <Stack.Navigator
+        initialRouteName="home"
+        screenOptions={{headerShown: false}}>
+        <Stack.Screen name="home" component={HomeScreen} />
+        <Stack.Screen name="accounts" component={AccountsScreen} />
+        <Stack.Screen name="cards" component={CardsScreen} />
+        <Stack.Screen name="utils" component={UtilsScreen} />
+        <Stack.Screen name="history" component={HistoryScreen} />
+      </Stack.Navigator>
 
-          <Stack.Navigator
-            initialRouteName="login"
-            screenOptions={{headerShown: false}}>
-            <Stack.Screen name="login" component={LoginScreen} />
-            <Stack.Screen name="app" component={AppLoggedIn} />
-          </Stack.Navigator>
-        </View>
-      </NavigationContainer>
-    </>
+      <Navigator navigation={navigator}></Navigator>
+    </View>
   );
 
   /**
