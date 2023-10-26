@@ -4,7 +4,13 @@ import { View, Image, Button, Text, Alert, TouchableOpacity } from 'react-native
 
 import styles from './../styles/components/TopBar.style'
 
-export const TopBar = () => {
+export const  TopBar = (props) => {
+
+  // console.log('<<>>>', props);
+  function openDrawerHandler() {
+    props.navigation.toggleDrawer();
+
+  }
   return (
     <View style={styles.topBar}>
 
@@ -12,7 +18,7 @@ export const TopBar = () => {
 
         <TouchableOpacity
           style={styles.menu}
-          onPress={() => Alert.alert('Notification clicked', 'This is a notification message')}>
+          onPress={openDrawerHandler}>
           <MaterialCommunityIcons
             name="menu"
             color='#333333'
