@@ -15,7 +15,7 @@ import {
         },
         modalOverlay: {
           flex: 1,
-          backgroundColor: 'rgba(0, 0, 0, 0.7)', 
+          backgroundColor: 'rgba(28, 36, 55, 0.77)',
           justifyContent: 'center',
           alignItems: 'center',
         },
