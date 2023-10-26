@@ -17,13 +17,14 @@ import { Spacer } from '../../components/commons/Spacer';
 import { beneficiaries } from '../../constants/data';
 import BeneficiaryCard from './BeneficiaryCard';
 import { EmptyScreenPlaceholder } from './EmptyScreenPlaceholder';
+import BenCardWrapper from './BenCardWrapper';
 
 export default function BeneficiaryMain({ navigator })
 {
     const { width, height } = useWindowDimensions();
 
     const [beneficiariesData, setBeneficiariesData] = React.useState([]);
-    const [compactView, setCompactView] = React.useState(true);
+    const [compactView, setCompactView] = React.useState(false);
     const cardsPerRow = compactView ? 3 : 1;
 
     React.useEffect(function ()
@@ -32,7 +33,7 @@ export default function BeneficiaryMain({ navigator })
         {
             // console.log('timeout');
             setBeneficiariesData(beneficiaries);
-        }, 2000);
+        }, 0);
 
         return () => clearTimeout(timeoutID);
     }, []);
@@ -57,12 +58,14 @@ export default function BeneficiaryMain({ navigator })
                         let key= ((e === null) ? crypto.randomUUID() : e.id)
                         return (
                             <React.Fragment key={key}>
-                                <BeneficiaryCard
-                                    cardData={e}
-                                    compact={compactView}
-                                    blank={e === null}
-                                    cardsPerRow={cardsPerRow}
-                                />
+                                <BenCardWrapper disabled={compactView}>
+                                    <BeneficiaryCard
+                                        cardData={e}
+                                        compact={compactView}
+                                        blank={e === null}
+                                        cardsPerRow={cardsPerRow}
+                                    />
+                                </BenCardWrapper>
 
                                 {i !== row.length - 1 && <Spacer horizontal value={Math.trunc(width * (0.2 / cardsPerRow) / (cardsPerRow))} />}
                             </React.Fragment>

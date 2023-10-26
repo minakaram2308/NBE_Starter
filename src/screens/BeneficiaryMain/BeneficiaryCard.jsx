@@ -42,7 +42,7 @@ export default function BeneficiaryCard({
     } = cardData ?? {};
 
     const padding = Math.trunc(Math.min(width * 0.2 / (cardsPerRow ** 2), 12 * cardsPerRow))
-    console.log(padding)
+    // console.log(padding)
 
     const imageExist = id in IMAGES;
     return (
