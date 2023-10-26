@@ -3,7 +3,8 @@ import
     {
         Image, StyleSheet,
         Text,
-        View
+        View,
+        useWindowDimensions
     } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { Spacer } from '../../components/commons/Spacer';
@@ -12,6 +13,7 @@ import { IMAGES } from '../../constants/images';
 
 export default function BeneficiaryCard({
     cardData,
+    cardsPerRow,
     compact = true,
     blank = false,
 })
@@ -29,6 +31,8 @@ export default function BeneficiaryCard({
         );
     }
 
+    const {width, height} = useWindowDimensions()
+
     const {
         id = '',
         firstName = 'firstname',
@@ -37,9 +41,12 @@ export default function BeneficiaryCard({
         email = 'email',
     } = cardData ?? {};
 
+    const padding = Math.trunc(Math.min(width * 0.2 / (cardsPerRow ** 2), 12 * cardsPerRow))
+    console.log(padding)
+
     const imageExist = id in IMAGES;
     return (
-        <View style={[styles.container, compact && styles.containerCompact]}>
+        <View style={[styles.container, compact && styles.containerCompact, {padding: padding}]}>
             <View style={[styles.imageWrapper]}>
                 {imageExist ? (
                     <Image source={IMAGES[id]} style={[styles.profileImage]} />

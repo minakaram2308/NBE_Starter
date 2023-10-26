@@ -61,9 +61,10 @@ export default function BeneficiaryMain({ navigator })
                                     cardData={e}
                                     compact={compactView}
                                     blank={e === null}
+                                    cardsPerRow={cardsPerRow}
                                 />
 
-                                {i !== row.length - 1 && <Spacer horizontal value={20} />}
+                                {i !== row.length - 1 && <Spacer horizontal value={Math.trunc(width * (0.2 / cardsPerRow) / (cardsPerRow))} />}
                             </React.Fragment>
                         );
                     })}
