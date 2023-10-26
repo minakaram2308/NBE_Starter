@@ -1,5 +1,5 @@
 apply plugin: "com.android.application"
-
+apply from: file("../../node_modules/react-native-vector-icons/fonts.gradle")
 import com.android.build.OutputFile
 import org.apache.tools.ant.taskdefs.condition.Os
 
@@ -9,7 +9,6 @@ project.ext.react = [
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
-apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
 
 def enableSeparateBuildPerCPUArchitecture = false
 def enableProguardInReleaseBuilds = false

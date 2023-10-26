@@ -19,7 +19,7 @@ export const App = () => {
   return (
     <NavigationContainer>
       <View style={styles.app}>
-        <TopBar />
+        {/* <TopBar /> */}
         <StatusBar barStyle='dark-content' backgroundColor='#F1F3FB' />
 
         <Stack.Navigator initialRouteName="home">
