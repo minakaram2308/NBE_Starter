@@ -266,5 +266,12 @@ import {
       fontSize: 16,
       fontWeight: "700",
       paddingTop:15
+    },
+    closeButton:{
+      backgroundColor: '#007236',
+      width: 80,
+      height: 40,
+      borderRadius: 10,
+      textAlign:'center'
     }
   });

@@ -41,11 +41,12 @@ export const VerificationScreen = ({ route, navigation}) => {
   const allInputsFilled = inputValues.every(value => value.length === maxLength);
 
   const openPopup = () => {
-    generateRandomNumberString();
+    setInputValues(['', '', '', '', ''])
     setPopupVisible(true);
   };
 
   const closePopup = () => {
+    generateRandomNumberString();
     setSeconds(initialSeconds);
     setPopupVisible(false);
     setReceive(true);
@@ -78,7 +79,7 @@ export const VerificationScreen = ({ route, navigation}) => {
       res += charset[randomIndex];
     }
     setResult(res)
-    
+    console.log("The verification code is: "+res);
   }
   
     useEffect(() => {
@@ -91,6 +92,7 @@ export const VerificationScreen = ({ route, navigation}) => {
   const handlePress = () => {
     // Your custom logic here
     navigation.navigate('password');
+    setInputValues(['', '', '', '', ''])
     console.log('TouchableOpacity pressed');
   };
 

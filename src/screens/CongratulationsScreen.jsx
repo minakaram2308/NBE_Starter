@@ -1,14 +1,9 @@
 import React from 'react';
-import { useState, useRef, useEffect } from 'react';
 import {  
   View,
   Image,
-  Button,
   TouchableOpacity,
   Text,
-  TextInput,
-  TouchableWithoutFeedback,
-  Keyboard,
   ImageBackground
 } from 'react-native';
 
@@ -22,7 +17,7 @@ export const CongratulationsScreen = ({ navigation }) => {
  <ImageBackground
     source={require('../signupImages/success.png')}
     style={{flex:1, paddingTop:11, paddingHorizontal:24, backgroundColor:"#007236"}}
-    imageStyle={{width:"95%", height:"95%", alignItems:"flex-start", justifyContent:"flex-start", resizeMode: 'contain'}}
+    imageStyle={{width:"85%", height:"85%", resizeMode: 'contain', position:"absolute", top:110, left:-14}}
     >
         
             <View style={styles.finishFirstContainer}>
@@ -41,6 +36,7 @@ export const CongratulationsScreen = ({ navigation }) => {
            <View>
            <TouchableOpacity 
              style={{ width: 345, height: 50, borderRadius: 10, backgroundColor: 'white', color:'green' }}
+             onPress={ () => navigation.navigate('home')}
              >
             <Text style={styles.finishButton}>Finish</Text>
             </TouchableOpacity>

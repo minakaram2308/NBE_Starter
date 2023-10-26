@@ -1,18 +1,20 @@
 import React from 'react';
 import { View, Text, Modal, TouchableOpacity, StyleSheet } from 'react-native';
+import stylesSheet from './../styles/screens/SignUpScreen.style'
 
 const Popup = (props) => {
   return (
     <Modal
       animationType="slide"
+      transparent={true}
       visible={props.visible}
     >
       <View style={styles.popupContainer}>
         <View style={styles.popupContent}>
           {/* Your pop-up content goes here */}
-          <Text>A new verification code was sent</Text>
-          <TouchableOpacity onPress={props.onClose}>
-            <Text>Close</Text>
+          <Text style = {{color:"#1C2437", fontWeight:"700", fontFamily: "Roboto", fontSize:20, paddingBottom:20}}>A new verification code was sent</Text>
+          <TouchableOpacity onPress={props.onClose} style={stylesSheet.closeButton} >
+            <Text style={{color:"white", fontSize:16, fontWeight:"700", fontFamily: "Roboto", textAlign:'center', paddingTop:9}}>Close</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -25,13 +27,15 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backdropFilter: "blur(17.760618209838867px)", 
-    backgroundColor: "rgba(0, 0, 0, 0.02)"
+    backgroundColor: 'rgba(28, 36, 55, 0.77)',
   },
   popupContent: {
-    width: 300,
-    padding: 20,
+    width: 280,
+    padding: 25,
     backgroundColor: 'white',
+    borderRadius:10,
+    justifyContent:"center",
+    alignItems:"center"
   },
 });
 

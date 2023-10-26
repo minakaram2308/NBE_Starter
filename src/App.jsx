@@ -31,11 +31,11 @@ export const App = () => {
           <Stack.Screen name="verification" component={VerificationScreen} options={{ headerShown: false}} />
           <Stack.Screen name="password" component={PasswordScreen} options={{ headerShown: false }} />
           <Stack.Screen name="congratulations" component={CongratulationsScreen} options={{ headerShown: false }} />
-          {/* <Stack.Screen name="home" component={HomeScreen} options={{ headerShown: false }} />
+           <Stack.Screen name="home" component={HomeScreen} options={{ headerShown: false }} />
           <Stack.Screen name="accounts" component={AccountsScreen} options={{ headerShown: false }} />
           <Stack.Screen name="cards" component={CardsScreen} options={{ headerShown: false }} />
           <Stack.Screen name="utils" component={UtilsScreen} options={{ headerShown: false }} />
-          <Stack.Screen name="history" component={HistoryScreen} options={{ headerShown: false }} />  */}
+          <Stack.Screen name="history" component={HistoryScreen} options={{ headerShown: false }} />  
         </Stack.Navigator>
 
         {/* <Navigator navigation={navigator}></Navigator> */}

@@ -15,8 +15,9 @@ import styles from './../styles/screens/SignUpScreen.style'
 
 export const PasswordScreen = ({ navigation }) => {
 
-  const [isDisabled, setIsDisabled] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(true);
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('')
   const [border, setBorder] = useState(true)
   const [border1, setBorder1] = useState(false)
   const [editable, setEditable] = useState(false)
@@ -93,12 +94,21 @@ export const PasswordScreen = ({ navigation }) => {
   const unLockPassword1 = () =>{
     if(secure1){
       setSecure1(false);
-      console.log(false)
+      console.log(false +"1")
     }
     else{
       setSecure1(true);
-      console.log(true)
+      console.log(true +"1")
     }
+  }
+
+  const checkPassword = (text) => {
+      if(text === password){
+        setIsDisabled(false)
+      }
+      else{
+        setIsDisabled(true)
+      }
   }
 
     return(
@@ -179,8 +189,9 @@ source={require('../signupImages/lock.png')}
   <Text style={secondPassword? styles.mobileTxt2:styles.mobileTxt2Grey}>
   Confirm Password
   </Text>
-  <TextInput 
-   secureTextEntry={secure}
+  <TextInput value={confirmPassword}
+   onChangeText={(text) => {setConfirmPassword(text); checkPassword(text);}}
+   secureTextEntry={secure1}
    maxLength={maxLength}
    ref={inputRef1}
    editable={editable}
