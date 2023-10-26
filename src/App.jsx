@@ -3,10 +3,12 @@ import {View, StatusBar, Modal} from 'react-native';
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {LoginScreen, SplashScreen} from './screens';
+import {AccountsScreen, CardsScreen, HistoryScreen, HomeScreen, LoginScreen, SplashScreen, UtilsScreen} from './screens';
 
 import styles from './styles/App.style';
 import AppLoggedIn from './AppBeforeLogin';
+import { colors } from './constants/Colors';
+import { Navigator, TopBar } from './components';
 
 const Stack = createNativeStackNavigator();
 
@@ -18,7 +20,6 @@ export const App = () => {
         backgroundColor={colors.background}
         translucent={false}
       />
-      <TopBar />
 
       <Stack.Navigator
         initialRouteName="home"
