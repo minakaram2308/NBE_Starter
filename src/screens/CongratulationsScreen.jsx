@@ -4,7 +4,8 @@ import {
   Image,
   TouchableOpacity,
   Text,
-  ImageBackground
+  ImageBackground,
+  StatusBar
 } from 'react-native';
 
 import styles from './../styles/screens/SignUpScreen.style'
@@ -13,13 +14,14 @@ export const CongratulationsScreen = ({ navigation }) => {
 
     return(
 
+
    
  <ImageBackground
     source={require('../signupImages/success.png')}
     style={{flex:1, paddingTop:11, paddingHorizontal:24, backgroundColor:"#007236"}}
     imageStyle={{width:"85%", height:"85%", resizeMode: 'contain', position:"absolute", top:110, left:-14}}
     >
-        
+            <StatusBar barStyle='dark-content' backgroundColor='#007236' />
             <View style={styles.finishFirstContainer}>
             <Image
         style={styles.finishLogo}

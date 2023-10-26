@@ -272,6 +272,6 @@ import {
       width: 80,
       height: 40,
       borderRadius: 10,
-      textAlign:'center'
+      
     }
   });
