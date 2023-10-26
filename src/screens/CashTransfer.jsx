@@ -123,7 +123,7 @@ export const CashTransfer = ({navigation}) => {
     setIsFocustext(false);
     setIsBlurtext1(true);
     if(textvalue.length===1){
-      setErrorMessagetext1('this is a required field');
+      setErrorMessagetext1(' this is a required field');
     }
     else{
       setErrorMessagetext1('');
@@ -138,7 +138,7 @@ const handleBlurtext2=()=>{
   setIsFocustext2(false);
   setIsBlurtext2(true);
   if(textvalue2.length<10){
-    setErrorMessagetext2('Text must be 10 or more characters');
+    setErrorMessagetext2(' Text must be 10 or more characters');
   }
   else{
     setErrorMessagetext2('');
@@ -237,7 +237,7 @@ const handleBlurtext2=()=>{
       
       {renderLabeltext()}
       <TextInput
-      style={[styles.textinput, isFocustext && styles.focusText,IsBlurtext1&&textvalue.length==1&&{borderColor:'red'}]}
+      style={[styles.textinput, isFocustext && styles.focusText,IsBlurtext1&&textvalue.length==1&&{borderColor:'#ff9494',borderWidth:2}]}
       keyboardType='numeric'
       onFocus={()=>{setIsFocustext(true)
         setIsBlurtext1(false);
@@ -261,7 +261,7 @@ const handleBlurtext2=()=>{
       
       {errorMessagetext1&& textvalue.length==1 ? (
         <View style={{flexDirection:'row',justifyContent:'center'}}>
-        <FontAwesome5 name={'exclamation-circle'} color={'red'} size={20}/>
+        <FontAwesome5 name={'exclamation-circle'} color={'red'} size={17}/>
         <Text style={styles.errorMessage}>{errorMessagetext1}</Text>
         </View>
       ) : null}
@@ -270,12 +270,13 @@ const handleBlurtext2=()=>{
 
      
       <TextInput
-      style={[styles.textinput2, isFocustext2 && styles.focusText,IsBlurtext2&&textvalue2.length<10&&{borderColor:'red'}]}
+      style={[styles.textinput2, isFocustext2 && styles.focusText,IsBlurtext2&&textvalue2.length<10&&{borderColor:'#ff9494',borderWidth:2}]}
       onFocus={()=>{setIsFocustext2(true)
       setIsBlurtext2(false);
       }}
       value={textvalue2}
       placeholder="Reason of Transfer"
+      placeholderTextColor="#B7B7B7"     
       onBlur={handleBlurtext2}
     
       onChangeText={(text) => {setTextValue2( text)
@@ -287,7 +288,7 @@ const handleBlurtext2=()=>{
      
      {errorMessagetext2 && textvalue2.length<10 ? (
        <View style={{flexDirection:'row',justifyContent:'center'}}>
-       <FontAwesome5 name={'exclamation-circle'} color={'red'} size={20}/>
+       <FontAwesome5 name={'exclamation-circle'} color={'red'} size={17}/>
        <Text style={styles.errorMessage}>{errorMessagetext2}</Text>
        </View>
       ) : null}

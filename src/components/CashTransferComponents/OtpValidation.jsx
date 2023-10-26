@@ -36,13 +36,13 @@ export default function OtpValidation({navigation}) {
       try {
         
         await confirm.confirm(confirm2);
-        // Code confirmation was successful, you can navigate or perform other actions here.
+    
        setShowModal(true);
-       //setShowErrorModal(false);
+      
         console.log("success");
       } catch (error) {
         console.log('Error occurred while confirming code:', error);
-        // Handle the error, e.g., show an error message to the user
+       
         setShowErrorModal(true);
         console.log('show error modal is'+showErrorModal);
         seterr(error.toString());
@@ -50,7 +50,7 @@ export default function OtpValidation({navigation}) {
       }
     } else {
       console.log('No confirmation object available. Please sign in with a phone number first.');
-      // Handle the scenario where there's no confirmation object available.
+      
     }
    
   }

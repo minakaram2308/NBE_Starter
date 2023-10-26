@@ -12,7 +12,7 @@ const ErrorModal=({error,modalopen})=>{
       <View style={styles.centeredView}>
         <StatusBar backgroundColor={modalVisible?'rgba(0, 0, 0, 0.7)':'#F1F3FB'} />
         <Modal
-          animationType="slide" // Use fade animation
+          animationType="slide" 
           transparent={true}
           visible={modalVisible}
         >

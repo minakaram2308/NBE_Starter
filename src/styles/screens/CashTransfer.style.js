@@ -83,6 +83,7 @@
        marginTop:15,
        fontFamily:'Roboto',
         fontWeight:'400',
+        color:'#B7B7B7',
        
     
       },
@@ -156,6 +157,7 @@
       errorMessage:{
          color: 'red',
          textAlign:'center',
+         
       },
       pressableView:{ 
         flex: 1, 

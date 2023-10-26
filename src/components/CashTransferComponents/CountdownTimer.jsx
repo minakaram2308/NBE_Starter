@@ -3,7 +3,7 @@ import { View, Text, Pressable } from 'react-native';
 import OtpResend from './OtpResend';
 import styles from '../../styles/components/CashTransferStyles/CountdownTimer.style';
 function CountdownTimer({ navigation,phoneNumber }) {
-  const [remainingTime, setRemainingTime] = useState(200); // 10 seconds for testing
+  const [remainingTime, setRemainingTime] = useState(200); 
   const [timerFinished, setTimerFinished] = useState(false);
 
   useEffect(() => {
