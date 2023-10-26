@@ -4,7 +4,12 @@ export const colors =
     primary: hex('007236'),
     bgLight: hex('F1F3FB'),
     btnRippleBase: hex('3B3B3B', 0),
-    textMuted: hex('6B839E')
+    textMuted: hex('6B839E'),
+    gray:{
+        light_1: hex('EDEDED'),
+        base: hex('E6E6E6'),
+        dark_1: hex('CCCCCC')
+    }
 }
 
 //==========================================================================//
