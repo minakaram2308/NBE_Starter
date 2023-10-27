@@ -29,7 +29,7 @@ export default function BenCardWrapper({ children, disabled })
 
                 // console.log('onStartShouldSetPanResponder\n', 'evt: ', evt, '\ngestureState: ', gestureState)
                 console.log('on start');
-                return false;
+                return true;
             },
 
             onStartShouldSetPanResponderCapture: function (evt, gestureState)
@@ -49,18 +49,23 @@ export default function BenCardWrapper({ children, disabled })
             onMoveShouldSetPanResponderCapture: function (evt, gestureState)
             {
                 // console.log('onMoveShouldSetPanResponderCapture\n', 'evt: ', evt, '\ngestureState: ', gestureState)
-                console.log('on move capture', gestureState.moveX);
+                // console.log('on move capture', gestureState.moveX);
+                console.log('on move capture');
                 return true;
             },
 
             onPanResponderGrant: function (evt, gestureState)
             {
                 // console.log('onPanResponderGrant\n', 'evt: ', evt, '\ngestureState: ', gestureState)
-                console.log('on touch granted');
+                console.log('Pan granted');
 
                 // The gesture has started. Show visual feedback so the user knows
                 // what is happening!
                 // gestureState.d{x,y} will be set to zero now
+            },
+
+            onPanResponderReject: function(evt){
+                console.log('Pan Reject')
             },
 
             onPanResponderMove: function (evt, gestureState)
@@ -70,6 +75,7 @@ export default function BenCardWrapper({ children, disabled })
                 // if(Math.abs(gestureState.dy) - Math.abs(gestureState.bx) > 1) return
                 // if(gestureState.vy > gestureState.vx) return
                 // if (Math.abs(gestureState.dx) > deadspace) 
+                console.log('on move granted');
                 pan.setValue(gestureState.dx);
             },
 
@@ -77,7 +83,7 @@ export default function BenCardWrapper({ children, disabled })
             {
                 // console.log('onPanResponderTerminationRequest\n', 'evt: ', evt, '\ngestureState: ', gestureState)
                 console.log('termination request');
-                return true;
+                return false;
             },
 
             onPanResponderRelease: function (evt, gestureState)
@@ -87,6 +93,7 @@ export default function BenCardWrapper({ children, disabled })
 
                 // console.log('onPanResponderRelease\n', 'evt: ', evt, '\ngestureState: ', gestureState)
                 // console.log('released', gestureState);
+                console.log('released');
                 pan.extractOffset();
             },
 

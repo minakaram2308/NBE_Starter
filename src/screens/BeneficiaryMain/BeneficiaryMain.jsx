@@ -1,25 +1,22 @@
 import React from 'react';
 import
     {
-        FlatList,
-        Image,
-        ScrollView,
-        StyleSheet,
+        FlatList, StyleSheet,
         Text,
         View,
-        useWindowDimensions,
+        useWindowDimensions
     } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import ButtonInlineText from '../../components/commons/ButtonInlineText';
-import { colors } from '../../constants/colors';
-import { spacers } from '../../constants/spacing';
 import ButtonInlineToggle from '../../components/commons/ButtonInlineToggle';
 import { Spacer } from '../../components/commons/Spacer';
+import { colors } from '../../constants/colors';
 import { beneficiaries } from '../../constants/data';
+import { IMAGES } from '../../constants/images';
+import { spacers } from '../../constants/spacing';
+import BenCardWrapper from './BenCardWrapper';
 import BeneficiaryCard from './BeneficiaryCard';
 import { EmptyScreenPlaceholder } from './EmptyScreenPlaceholder';
-import BenCardWrapper from './BenCardWrapper';
-import { IMAGES } from '../../constants/images';
 
 export default function BeneficiaryMain({ navigator })
 {
@@ -54,7 +51,7 @@ export default function BeneficiaryMain({ navigator })
                     for (let i = 0; i < diff; i++)
                     {
                         console.log('push null');
-                        fixed.push({ id: crypto.randomUUID(), blank: true });
+                        fixed.push({ id: 'blankCard' + i, blank: true });
                     }
 
                     return fixed;
@@ -64,69 +61,7 @@ export default function BeneficiaryMain({ navigator })
         [compactView],
     );
 
-    const rowsOfCardsDOM = [];
-    // if (beneficiariesData.length > 0)
-    // {
-    //     for (let i = 0; i < beneficiariesData.length; i += cardsPerRow)
-    //     {
-    //         let row = beneficiariesData.slice(i, i + cardsPerRow);
-    //         if (row.length < cardsPerRow)
-    //         {
-    //             row.push(...Array(cardsPerRow - row.length).fill(null));
-    //         }
-
-    //         let rowKey = row.map(e => (e ? e.id : '0')).join('.');
-
-    //         rowsOfCardsDOM.push(
-    //             <View key={rowKey} style={[styles.row]}>
-    //                 {row.map(function (e, i)
-    //                 {
-    //                     let key = ((e === null) ? crypto.randomUUID() : e.id);
-    //                     return (
-    //                         <React.Fragment key={key}>
-    //                             <BenCardWrapper disabled={compactView}>
-    //                                 <BeneficiaryCard
-    //                                     cardData={e}
-    //                                     compact={compactView}
-    //                                     blank={e === null}
-    //                                     cardsPerRow={cardsPerRow}
-    //                                 />
-    //                             </BenCardWrapper>
-
-    //                             {i !== row.length - 1 && (
-    //                                 <Spacer
-    //                                     horizontal
-    //                                     value={Math.trunc(
-    //                                         (width * (0.2 / cardsPerRow)) / cardsPerRow,
-    //                                     )}
-    //                                 />
-    //                             )}
-    //                         </React.Fragment>
-    //                     );
-    //                 })}
-    //             </View>,
-    //         );
-    //     }
-    // }
-
-    // const benCardsDOM = beneficiariesData.map(function(el){
-    //     return <BenCardWrapper>
-
-    //     </BenCardWrapper>
-    // })
-
-    // const diff = cardsPerRow - beneficiariesData.length % cardsPerRow
-    // // let
-    // if(diff !== cardsPerRow)
-    // {
-    //     for(let i = 0; i < diff; i++)
-    //     {
-    //         beneficiariesData.push(null)
-    //     }
-    // }
-
     console.log(beneficiariesData.length, beneficiariesData.includes(null));
-    // FlatList.flashScrollIndicators()
     return (
         <View style={styles.screen}>
             <View style={[styles.viewHeader]}>
@@ -141,6 +76,7 @@ export default function BeneficiaryMain({ navigator })
                     Add
                 </ButtonInlineText>
             </View>
+
             <FlatList
                 style={[styles.cardGridScrollView, {}]}
                 horizontal={false}
@@ -149,20 +85,19 @@ export default function BeneficiaryMain({ navigator })
                 keyExtractor={item => item.id}
                 extraData={compactView}
                 key={compactView}
-                columnWrapperStyle={cardsPerRow > 1 && { alignItems: 'flex-start' }}
-                initialNumToRender={5}
-                ItemSeparatorComponent={args => <Spacer vertical value={10} />}
                 removeClippedSubviews={true}
-                contentContainerStyle={
-                    !beneficiariesData.length && {
-                        flex: 1,
-                    }
-                }
+                initialNumToRender={5}
                 ListEmptyComponent={<EmptyScreenPlaceholder />}
+                // columnWrapperStyle={cardsPerRow > 1 && { alignItems: 'flex-start' }}
+                ItemSeparatorComponent={args => <Spacer vertical value={10} />}
+                contentContainerStyle={
+                    [!beneficiariesData.length && {
+                        flex: 1,
+                    },
+                    {paddingBottom: 10}]
+                }
                 renderItem={function ({ item, index, separators })
                 {
-                    // if(! item?.id) console.log(item?.id)
-
                     let key = item?.id;
                     let child;
                     let spacing;

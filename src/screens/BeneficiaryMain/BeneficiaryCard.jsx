@@ -127,6 +127,7 @@ const styles = StyleSheet.create({
     blank: {
         backgroundColor: null,
         elevation: 0,
+        borderWidth: 0,
     },
     imageWrapper: {
         aspectRatio: 1,
