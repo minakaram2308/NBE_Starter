@@ -1,6 +1,7 @@
 import React from 'react';
 import
     {
+        FlatList,
         Image,
         ScrollView,
         StyleSheet,
@@ -18,6 +19,7 @@ import { beneficiaries } from '../../constants/data';
 import BeneficiaryCard from './BeneficiaryCard';
 import { EmptyScreenPlaceholder } from './EmptyScreenPlaceholder';
 import BenCardWrapper from './BenCardWrapper';
+import { IMAGES } from '../../constants/images';
 
 export default function BeneficiaryMain({ navigator })
 {
@@ -31,51 +33,100 @@ export default function BeneficiaryMain({ navigator })
     {
         const timeoutID = setTimeout(function ()
         {
-            // console.log('timeout');
-            setBeneficiariesData(beneficiaries);
-        }, 0);
+            setBeneficiariesData(beneficiaries.slice(0));
+        }, 10);
 
         return () => clearTimeout(timeoutID);
     }, []);
 
-    const rowsOfCardsDOM = [];
-    if (beneficiariesData.length > 0)
-    {
-        for (let i = 0; i < beneficiariesData.length; i += cardsPerRow)
+    React.useEffect(
+        function ()
         {
-            let row = beneficiariesData.slice(i, i + cardsPerRow);
-            if (row.length < cardsPerRow)
+            if (!compactView) return;
+
+            const diff = cardsPerRow - (beneficiariesData.length % cardsPerRow);
+            console.log({ diff });
+            if (diff !== cardsPerRow)
             {
-                row.push(...Array(cardsPerRow - row.length).fill(null));
-            }
-
-            let rowKey = row.map((e) => e ? e.id : '0').join('.')
-            
-            rowsOfCardsDOM.push(
-                <View key={rowKey} style={[styles.row]}>
-                    {row.map(function (e, i)
+                setBeneficiariesData(function (prev)
+                {
+                    let fixed = [...prev];
+                    for (let i = 0; i < diff; i++)
                     {
-                        let key= ((e === null) ? crypto.randomUUID() : e.id)
-                        return (
-                            <React.Fragment key={key}>
-                                <BenCardWrapper disabled={compactView}>
-                                    <BeneficiaryCard
-                                        cardData={e}
-                                        compact={compactView}
-                                        blank={e === null}
-                                        cardsPerRow={cardsPerRow}
-                                    />
-                                </BenCardWrapper>
+                        console.log('push null');
+                        fixed.push({ id: crypto.randomUUID(), blank: true });
+                    }
 
-                                {i !== row.length - 1 && <Spacer horizontal value={Math.trunc(width * (0.2 / cardsPerRow) / (cardsPerRow))} />}
-                            </React.Fragment>
-                        );
-                    })}
-                </View>,
-            );
-        }
-    }
+                    return fixed;
+                });
+            }
+        },
+        [compactView],
+    );
 
+    const rowsOfCardsDOM = [];
+    // if (beneficiariesData.length > 0)
+    // {
+    //     for (let i = 0; i < beneficiariesData.length; i += cardsPerRow)
+    //     {
+    //         let row = beneficiariesData.slice(i, i + cardsPerRow);
+    //         if (row.length < cardsPerRow)
+    //         {
+    //             row.push(...Array(cardsPerRow - row.length).fill(null));
+    //         }
+
+    //         let rowKey = row.map(e => (e ? e.id : '0')).join('.');
+
+    //         rowsOfCardsDOM.push(
+    //             <View key={rowKey} style={[styles.row]}>
+    //                 {row.map(function (e, i)
+    //                 {
+    //                     let key = ((e === null) ? crypto.randomUUID() : e.id);
+    //                     return (
+    //                         <React.Fragment key={key}>
+    //                             <BenCardWrapper disabled={compactView}>
+    //                                 <BeneficiaryCard
+    //                                     cardData={e}
+    //                                     compact={compactView}
+    //                                     blank={e === null}
+    //                                     cardsPerRow={cardsPerRow}
+    //                                 />
+    //                             </BenCardWrapper>
+
+    //                             {i !== row.length - 1 && (
+    //                                 <Spacer
+    //                                     horizontal
+    //                                     value={Math.trunc(
+    //                                         (width * (0.2 / cardsPerRow)) / cardsPerRow,
+    //                                     )}
+    //                                 />
+    //                             )}
+    //                         </React.Fragment>
+    //                     );
+    //                 })}
+    //             </View>,
+    //         );
+    //     }
+    // }
+
+    // const benCardsDOM = beneficiariesData.map(function(el){
+    //     return <BenCardWrapper>
+
+    //     </BenCardWrapper>
+    // })
+
+    // const diff = cardsPerRow - beneficiariesData.length % cardsPerRow
+    // // let
+    // if(diff !== cardsPerRow)
+    // {
+    //     for(let i = 0; i < diff; i++)
+    //     {
+    //         beneficiariesData.push(null)
+    //     }
+    // }
+
+    console.log(beneficiariesData.length, beneficiariesData.includes(null));
+    // FlatList.flashScrollIndicators()
     return (
         <View style={styles.screen}>
             <View style={[styles.viewHeader]}>
@@ -90,10 +141,79 @@ export default function BeneficiaryMain({ navigator })
                     Add
                 </ButtonInlineText>
             </View>
-            {!beneficiariesData.length && <EmptyScreenPlaceholder />}
-            <ScrollView style={[styles.cardGridScrollView]}>
-                <View style={[styles.cardGrid]}>{rowsOfCardsDOM}</View>
-            </ScrollView>
+            <FlatList
+                style={[styles.cardGridScrollView, {}]}
+                horizontal={false}
+                numColumns={cardsPerRow}
+                data={beneficiariesData}
+                keyExtractor={item => item.id}
+                extraData={compactView}
+                key={compactView}
+                columnWrapperStyle={cardsPerRow > 1 && { alignItems: 'flex-start' }}
+                initialNumToRender={5}
+                ItemSeparatorComponent={args => <Spacer vertical value={10} />}
+                removeClippedSubviews={true}
+                contentContainerStyle={
+                    !beneficiariesData.length && {
+                        flex: 1,
+                    }
+                }
+                ListEmptyComponent={<EmptyScreenPlaceholder />}
+                renderItem={function ({ item, index, separators })
+                {
+                    // if(! item?.id) console.log(item?.id)
+
+                    let key = item?.id;
+                    let child;
+                    let spacing;
+
+                    if (cardsPerRow === 1)
+                    {
+                        child = (
+                            <BenCardWrapper>
+                                <BeneficiaryCard
+                                    cardData={item}
+                                    cardsPerRow={cardsPerRow}
+                                    compact={compactView}
+                                    image={IMAGES[key]}
+                                />
+                            </BenCardWrapper>
+                        );
+                    } else
+                    {
+                        if (item?.blank)
+                        {
+                            child = (
+                                <BeneficiaryCard
+                                    cardsPerRow={cardsPerRow}
+                                    compact={compactView}
+                                    blank
+                                />
+                            );
+                        } else
+                        {
+                            child = (
+                                <BeneficiaryCard
+                                    cardData={item}
+                                    cardsPerRow={cardsPerRow}
+                                    compact={compactView}
+                                    image={IMAGES[key]}
+                                />
+                            );
+                        }
+
+                        if ((index + 1) % 3 !== 0)
+                            spacing = <Spacer horizontal value={10} />;
+                    }
+
+                    return (
+                        <React.Fragment key={key}>
+                            {child}
+                            {spacing}
+                        </React.Fragment>
+                    );
+                }}
+            />
         </View>
     );
 }
@@ -119,6 +239,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         flex: 1,
     },
+    cardGridScrollView: {},
     row: {
         flexDirection: 'row',
         marginBottom: 10,

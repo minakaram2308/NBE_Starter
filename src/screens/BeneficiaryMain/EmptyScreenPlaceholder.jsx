@@ -13,6 +13,10 @@ export function EmptyScreenPlaceholder({ })
                 flexDirection: 'column',
                 flex: 1,
                 alignItems: 'center',
+                width: '100%',
+                // bottom: 0,
+                height: '100%',
+                // alignSelf: 'stretch',
                 justifyContent: 'center',
             }}>
             <View
@@ -54,9 +58,9 @@ export function EmptyScreenPlaceholder({ })
                 </Text>
                 <Spacer vertical value={20}/>
                 <View style={{flexDirection: 'row', justifyContent: 'center'}}>
-                    <ButtonInlineText variant={'green'}>
+                    <ButtonInlineText variant={'green'} onPress={() => console.log('press')}>
                         <Icon name="plus-circle" size={20} />
-                        Add
+                        Add More
                     </ButtonInlineText>
                 </View>
             </View>

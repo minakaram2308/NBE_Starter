@@ -3,6 +3,7 @@ import
     {
         Animated,
         PanResponder,
+        PixelRatio,
         Pressable,
         StyleSheet,
         Text,
@@ -17,7 +18,8 @@ export default function BenCardWrapper({ children, disabled })
     const [moveOffset, setMoveOffset] = React.useState(0);
     const pan = React.useRef(new Animated.Value(0)).current;
     const { width } = useWindowDimensions();
-    const deadspace = width * 0.05;
+    const deadspace = 10;
+
     const panResponder = React.useRef(
         PanResponder.create({
             // Ask to be the responder:
@@ -64,8 +66,11 @@ export default function BenCardWrapper({ children, disabled })
             onPanResponderMove: function (evt, gestureState)
             {
                 // console.log('onPanResponderMove\n', 'evt: ', evt, '\ngestureState: ', gestureState)
-                console.log('on move granted', gestureState.dx, deadspace);
-                if (Math.abs(gestureState.dx) > deadspace) pan.setValue(gestureState.dx);
+                // console.log('on move granted', gestureState.dx, gestureState.dy);
+                // if(Math.abs(gestureState.dy) - Math.abs(gestureState.bx) > 1) return
+                // if(gestureState.vy > gestureState.vx) return
+                // if (Math.abs(gestureState.dx) > deadspace) 
+                pan.setValue(gestureState.dx);
             },
 
             onPanResponderTerminationRequest: function (evt, gestureState)

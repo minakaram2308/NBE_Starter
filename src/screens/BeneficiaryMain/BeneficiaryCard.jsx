@@ -9,27 +9,28 @@ import
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { Spacer } from '../../components/commons/Spacer';
 import { colors } from '../../constants/colors';
-import { IMAGES } from '../../constants/images';
+// import { IMAGES } from '../../constants/images';
 
 export default function BeneficiaryCard({
     cardData,
     cardsPerRow,
+    image,
     compact = true,
     blank = false,
 })
 {
-    if (blank)
-    {
-        return (
-            <View
-                style={[
-                    styles.container,
-                    compact && styles.containerCompact,
-                    styles.blank,
-                ]}>
-            </View>
-        );
-    }
+    // if (blank)
+    // {
+    //     return (
+    //         <View
+    //             style={[
+    //                 styles.container,
+    //                 compact && styles.containerCompact,
+    //                 styles.blank,
+    //             ]}>
+    //         </View>
+    //     );
+    // }
 
     const {width, height} = useWindowDimensions()
 
@@ -44,12 +45,14 @@ export default function BeneficiaryCard({
     const padding = Math.trunc(Math.min(width * 0.2 / (cardsPerRow ** 2), 12 * cardsPerRow))
     // console.log(padding)
 
-    const imageExist = id in IMAGES;
+    // const imageExist = id in IMAGES;
     return (
-        <View style={[styles.container, compact && styles.containerCompact, {padding: padding}]}>
-            <View style={[styles.imageWrapper]}>
-                {imageExist ? (
-                    <Image source={IMAGES[id]} style={[styles.profileImage]} />
+        <View style={[styles.container, compact && styles.containerCompact, {padding: padding}, blank && styles.blank]}>
+            {
+                !blank && (<>
+                <View style={[styles.imageWrapper]}>
+                {image ? (
+                    <Image source={image} style={[styles.profileImage]} />
                 ) : (
                     <Text>
                         <Icon name="user" solid size={30} />
@@ -97,6 +100,8 @@ export default function BeneficiaryCard({
                     </View>
                 </View>
             </View>
+                </>)
+            }
         </View>
     );
 }
