@@ -1,4 +1,4 @@
-export const spacers = 
+export const spacing = 
 {
     screenPadding: 18
 }

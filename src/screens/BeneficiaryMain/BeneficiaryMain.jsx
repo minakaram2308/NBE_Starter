@@ -13,7 +13,7 @@ import { Spacer } from '../../components/commons/Spacer';
 import { colors } from '../../constants/colors';
 import { beneficiaries } from '../../constants/data';
 import { IMAGES } from '../../constants/images';
-import { spacers } from '../../constants/spacing';
+import { spacing } from '../../constants/spacing';
 import BenCardWrapper from './BenCardWrapper';
 import BeneficiaryCard from './BeneficiaryCard';
 import { EmptyScreenPlaceholder } from './EmptyScreenPlaceholder';
@@ -42,7 +42,6 @@ export default function BeneficiaryMain({ navigator })
             if (!compactView) return;
 
             const diff = cardsPerRow - (beneficiariesData.length % cardsPerRow);
-            console.log({ diff });
             if (diff !== cardsPerRow)
             {
                 setBeneficiariesData(function (prev)
@@ -50,7 +49,6 @@ export default function BeneficiaryMain({ navigator })
                     let fixed = [...prev];
                     for (let i = 0; i < diff; i++)
                     {
-                        console.log('push null');
                         fixed.push({ id: 'blankCard' + i, blank: true });
                     }
 
@@ -61,7 +59,6 @@ export default function BeneficiaryMain({ navigator })
         [compactView],
     );
 
-    console.log(beneficiariesData.length, beneficiariesData.includes(null));
     return (
         <View style={styles.screen}>
             <View style={[styles.viewHeader]}>
@@ -94,7 +91,7 @@ export default function BeneficiaryMain({ navigator })
                     [!beneficiariesData.length && {
                         flex: 1,
                     },
-                    {paddingBottom: 10}]
+                    {paddingBottom: 10, }]
                 }
                 renderItem={function ({ item, index, separators })
                 {
@@ -158,7 +155,7 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         flexDirection: 'column',
-        padding: spacers.screenPadding,
+        padding: spacing.screenPadding,
         backgroundColor: colors.bgLight,
     },
     viewHeader: {
