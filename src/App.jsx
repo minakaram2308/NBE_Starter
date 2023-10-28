@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   Text,
   View,
@@ -11,12 +11,15 @@ import { TopBar, Balance, Navigator } from './components'
 import { HomeScreen, AccountsScreen, CardsScreen, UtilsScreen, HistoryScreen } from './screens'
 
 import styles from './styles/App.style'
+import { ModeContext, ThemeProvider } from './context/ModeContext';
 
 const Stack = createNativeStackNavigator();
 
 export const App = () => {
 
   return (
+      <ThemeProvider>
+
     <NavigationContainer>
       <View style={styles.app}>
         <TopBar />
@@ -34,5 +37,6 @@ export const App = () => {
 
       </View >
     </NavigationContainer>
+      </ThemeProvider>
   );
 };

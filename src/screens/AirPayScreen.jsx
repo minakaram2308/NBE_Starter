@@ -1,4 +1,4 @@
-import React,{createContext, useState} from 'react';
+import React,{createContext, useState,useContext} from 'react';
 import { View,Text,StyleSheet, ScrollView ,Dimensions, Pressable, Alert,Modal, Button} from 'react-native';
 import RNRestart from 'react-native-restart';
 import Draggable from 'react-native-draggable';
@@ -6,18 +6,19 @@ import Card from '../components/AirPay/Card';
 import Drop from '../components/AirPay/Drop';
 import SuccessModal from '../components/AirPay/SuccessModal';
 import FailModal from '../components/AirPay/FailModal';
-const ThemeContext = createContext(null);
+import { ModeContext, ThemeProvider } from '../context/ModeContext';
 
 export const AirPayScreen = ({ navigation }) => {
-  const [theme, setTheme] = useState(0);
+
 
   const windowWidth = Dimensions.get('window').width;
   const [enabled,setEnabled]=useState(false)
   const [modalVisible, setModalVisible] = useState(false);
-  const [successPay, setSuccessPay] = useState(false);
+  const [successPay, setSuccessPay] = useState(true);
   const [activeDraggable, setActiveDraggable] = useState(false);
-   //const [isDarkMode,setDarkMode]=useState(0)
-   const isDarkMode=theme
+  // console.log(useContext(ModeContext));
+  const {darkTheme, toggle} = useContext(ModeContext);
+   const isDarkMode=darkTheme
   const allstyles=(isDarkMode)?darkStyles:lightStyles
 
   const cardData=
@@ -83,10 +84,9 @@ export const AirPayScreen = ({ navigation }) => {
   <View  style={{flex:4}}>
   <Text style={allstyles.cardsText}>Cards</Text>
 
-
-  <ThemeContext.Provider value={theme}>
-    <Button title='Change' onPress={()=> setTheme(theme == 1 ? 0 : 1)}></Button>
-  </ThemeContext.Provider>
+  <ThemeProvider>
+    <Button title='Change' onPress={toggle}></Button>
+  </ThemeProvider>
 
   <ScrollView
   scrollEnabled={!enabled} horizontal={true}>
@@ -125,7 +125,7 @@ export const AirPayScreen = ({ navigation }) => {
 </ScrollView>
 <View style={{ justifyContent: 'center', position: 'absolute', top: '60%', alignSelf: 'center', left: '8%' }}>
   <Pressable onPress={() => RNRestart.restart()}>
-    <Drop choosedCard={activeDraggable} />
+    <Drop mode={isDarkMode} choosedCard={activeDraggable} />
   </Pressable>
 </View>
 <View>
@@ -156,7 +156,6 @@ const lightStyles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 22,
   },
   modalContainer: {
     flex: 1,
@@ -182,7 +181,6 @@ const darkStyles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 22,
     backgroundColor:'black'
   },
   modalContainer: {

@@ -1,7 +1,10 @@
 import React from 'react';
 import { View,Text,StyleSheet,Image ,Dimensions, Pressable} from 'react-native';
+
 function FailModal(props){
+  //const mode=useContext(ThemeContext)
   const allstyles=(props.mode)?darkStyles:lightStyles
+
     const windowWidth = Dimensions.get('window').width;
     return(
         <View style={{width:windowWidth*.95}}>
