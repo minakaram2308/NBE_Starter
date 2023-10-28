@@ -1,0 +1,11 @@
+export const accountSummaryIcon = require('../../assets/media/AccountSummary.png');
+export const CertificatesIcon = require('../../assets/media/OpenCertificate.png');
+export const PaymentServiceIcon = require('../../assets/media/PaymentService.png');
+export const CardServiceIcon = require('../../assets/media/CardService.png');
+export const HardTokenIcon = require('../../assets/media/HardToken.png');
+export const CustomerServicesIcon = require('../../assets/media/CustomerServices.png');
+export const CalculatorIcon = require('../../assets/media/Calculator.png');
+export const DarkModeIcon = require('../../assets/media/DarkMode.png');
+export const OffersIcon = require('../../assets/media/Offers.png');
+export const AhlyLogo = require('../../assets/media/AhlyBankLogo.png');
+export const logoutIcon = require('../../assets/media/Logout.png');
