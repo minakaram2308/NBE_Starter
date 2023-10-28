@@ -17,13 +17,14 @@ import styles from './styles/App.style';
 import {colors} from './constants/Colors';
 import {App} from './App';
 import { NavigationContainer } from '@react-navigation/native';
+import LanguageProvider from './store/Language/LanguageProvider';
 
 const Stack = createNativeStackNavigator();
 
 function AppLoggedIn() {
   const [loading, setLoading] = useState(true);
   return (
-    <>
+    <LanguageProvider>
       <Modal
         visible={loading}
         animationType="fade"
@@ -48,7 +49,7 @@ function AppLoggedIn() {
           </Stack.Navigator>
         </View>
       </NavigationContainer>
-    </>
+    </LanguageProvider>
   );
 }
 

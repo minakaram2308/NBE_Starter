@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {
   Image,
   ImageBackground,
@@ -19,12 +19,11 @@ import LanguageButton from '../components/Buttons/LanguageButton';
 import TextButton from '../components/Buttons/TextButton';
 import RobotoText from '../components/RobotoText';
 import LoginForm from '../components/Login/LoginForm';
+import LanguageContext from '../store/Language/language-context';
 
 export const LoginScreen = props => {
-  const [language, setLanguage] = useState('EN');
-  const languageChangeHandler = () => {
-    setLanguage(previousState => (previousState === 'EN' ? 'AR' : 'EN'));
-  };
+  const languageContext = useContext(LanguageContext)
+
   return (
     <>
       <StatusBar
@@ -43,8 +42,8 @@ export const LoginScreen = props => {
             <View style={styles.fade}>
               <View style={styles.content}>
                 <View style={styles.header}>
-                  <LanguageButton onPress={languageChangeHandler}>
-                    {language}
+                  <LanguageButton onPress={languageContext.changeLanguage}>
+                    {languageContext.language}
                   </LanguageButton>
                   <Image source={logoFull} />
                 </View>

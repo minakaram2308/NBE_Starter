@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {Image, View, useWindowDimensions, Text, Pressable} from 'react-native';
 import {DrawerItemList, createDrawerNavigator} from '@react-navigation/drawer';
 import {PreviewHomeScreen} from './PreviewHomeScreen';
@@ -22,15 +22,14 @@ import {
   AhlyLogo,
   logoutIcon,
 } from '../../src/constants/DrawerImages';
+import LanguageContext from '../store/Language/language-context';
 
 const Drawer = createDrawerNavigator();
 
 export const DrawerScreen = ({navigation}) => {
-  const [language, setLanguage] = useState('EN');
+  const languageContext = useContext(LanguageContext)
   const windowWidth = useWindowDimensions().width;
-  const languageChangeHandler = () => {
-    setLanguage(previousState => (previousState === 'EN' ? 'AR' : 'EN'));
-  };
+
   return (
     <View style={{flex: 1}}>
       <Drawer.Navigator
@@ -43,15 +42,19 @@ export const DrawerScreen = ({navigation}) => {
                     <Image source={AhlyLogo} />
                   </View>
                   <View style={styles.LanguageButtonContainer}>
-                    <LanguageButton onPress={languageChangeHandler}>
-                      {language}
+                    <LanguageButton onPress={languageContext.changeLanguage}>
+                      {languageContext.language}
                     </LanguageButton>
                   </View>
                 </View>
                 <DrawerItemList {...props} />
               </View>
               <View>
-                <Pressable style={styles.profileContainer} onPress={()=>{console.log('Button Logged Out Clicked')}}>
+                <Pressable
+                  style={styles.profileContainer}
+                  onPress={() => {
+                    console.log('Button Logged Out Clicked');
+                  }}>
                   <View style={styles.LogOutIconContainer}>
                     <Image source={logoutIcon} />
                   </View>
