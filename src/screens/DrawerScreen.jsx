@@ -23,11 +23,14 @@ import {
   logoutIcon,
 } from '../../src/constants/DrawerImages';
 import LanguageContext from '../store/Language/language-context';
+import LoginContext from '../store/Authentication/login-context';
 
 const Drawer = createDrawerNavigator();
 
 export const DrawerScreen = ({navigation}) => {
-  const languageContext = useContext(LanguageContext)
+  const languageContext = useContext(LanguageContext);
+  const loginContext = useContext(LoginContext);
+
   const windowWidth = useWindowDimensions().width;
 
   return (
@@ -52,9 +55,7 @@ export const DrawerScreen = ({navigation}) => {
               <View>
                 <Pressable
                   style={styles.profileContainer}
-                  onPress={() => {
-                    console.log('Button Logged Out Clicked');
-                  }}>
+                  onPress={loginContext.logout}>
                   <View style={styles.LogOutIconContainer}>
                     <Image source={logoutIcon} />
                   </View>

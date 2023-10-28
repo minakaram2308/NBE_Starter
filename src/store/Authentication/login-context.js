@@ -1,5 +1,11 @@
-function login-context(props) {
-return;
-};
+import React, {createContext} from 'react';
 
-export default login-context
+const LoginContext = createContext({
+  loggedIn: false,
+  rememberMe: false,
+  toggleRememberMe: () => {},
+  login: () => {},
+  logout: () => {},
+});
+
+export default LoginContext;
