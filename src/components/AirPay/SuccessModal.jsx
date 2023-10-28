@@ -1,7 +1,9 @@
 import React from 'react';
 import { View,Text,StyleSheet,Image ,Dimensions, Pressable} from 'react-native';
 function SuccessModal(props){
-    const windowWidth = Dimensions.get('window').width;
+  const allstyles=(props.mode)?darkStyles:lightStyles
+  const windowWidth = Dimensions.get('window').width;
+    
     return(
         <View style={{width:windowWidth*.95}}>
             <View style={allstyles.modalView}>
@@ -19,7 +21,8 @@ function SuccessModal(props){
     )
 }
 export default SuccessModal
-const allstyles = StyleSheet.create({
+
+const lightStyles = StyleSheet.create({
     modalView: {
       margin: 20,
       backgroundColor: 'white',
@@ -34,22 +37,6 @@ const allstyles = StyleSheet.create({
       shadowOpacity: 0.25,
       shadowRadius: 4,
       elevation: 5,
-    },
-    button: {
-      borderRadius: 20,
-      padding: 10,
-      elevation: 2,
-    },
-    buttonOpen: {
-      backgroundColor: '#F194FF',
-    },
-    buttonClose: {
-      backgroundColor: '#2196F3',
-    },
-    textStyle: {
-      color: 'white',
-      fontWeight: 'bold',
-      textAlign: 'center',
     },
     modalText1: {
       fontWeight:'700',
@@ -71,11 +58,43 @@ const allstyles = StyleSheet.create({
       textAlign: 'center',
       color:'#1C2437'
     },
-    cardsText:{
-      color:'#1C2437',
-      fontFamily:'roboto',
+  })
+
+
+  const darkStyles = StyleSheet.create({
+    modalView: {
+      margin: 20,
+      backgroundColor: 'black',
+      borderRadius: 20,
+      padding: 35,
+      alignItems: 'center',
+      shadowColor: '#000',
+      shadowOffset: {
+        width: 0,
+        height: 2,
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 4,
+      elevation: 5,
+    },
+    modalText1: {
       fontWeight:'700',
+      marginVertical:5,
       fontSize:20,
-      margin:20
-    }
+      textAlign: 'center',
+      color:'white'
+    },
+    modalText2: {
+      fontWeight:'700',
+      fontSize:16,
+      textAlign: 'center',
+      color:'#B7B7B7'
+    },
+    modalText3: {
+      fontWeight:'700',
+      marginVertical:5,
+      fontSize:40,
+      textAlign: 'center',
+      color:'white'
+    },
   })

@@ -1,6 +1,7 @@
 import React from 'react';
 import { View,Text,StyleSheet,Image ,Dimensions, Pressable} from 'react-native';
 function FailModal(props){
+  const allstyles=(props.mode)?darkStyles:lightStyles
     const windowWidth = Dimensions.get('window').width;
     return(
         <View style={{width:windowWidth*.95}}>
@@ -31,7 +32,7 @@ function FailModal(props){
 export default FailModal
 
 
-const allstyles = StyleSheet.create({
+const lightStyles = StyleSheet.create({
     modalView: {
       margin: 20,
       backgroundColor: 'white',
@@ -69,5 +70,46 @@ const allstyles = StyleSheet.create({
       fontSize:40,
       textAlign: 'center',
       color:'#1C2437'
+    },
+  })
+
+  const darkStyles = StyleSheet.create({
+    modalView: {
+      margin: 20,
+      backgroundColor: 'black',
+      borderRadius: 20,
+      padding: 35,
+      alignItems: 'center',
+      shadowColor: '#000',
+      shadowOffset: {
+        width: 0,
+        height: 2,
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 4,
+      elevation: 5,
+    },
+    buttonsContainer:{
+        flexDirection:'row'
+    },
+    modalText1: {
+      fontWeight:'700',
+      marginVertical:5,
+      fontSize:20,
+      textAlign: 'center',
+      color:'#EB001B'
+    },
+    modalText2: {
+      fontWeight:'400',
+      fontSize:16,
+      textAlign: 'center',
+      color:'#B7B7B7'
+    },
+    modalText3: {
+      fontWeight:'700',
+      marginVertical:5,
+      fontSize:40,
+      textAlign: 'center',
+      color:'white'
     },
   })

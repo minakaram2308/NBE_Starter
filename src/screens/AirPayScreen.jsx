@@ -1,17 +1,24 @@
-import React,{useState} from 'react';
-import { View,Text,StyleSheet, ScrollView ,Dimensions, Pressable, Alert,Modal} from 'react-native';
+import React,{createContext, useState} from 'react';
+import { View,Text,StyleSheet, ScrollView ,Dimensions, Pressable, Alert,Modal, Button} from 'react-native';
 import RNRestart from 'react-native-restart';
 import Draggable from 'react-native-draggable';
 import Card from '../components/AirPay/Card';
 import Drop from '../components/AirPay/Drop';
 import SuccessModal from '../components/AirPay/SuccessModal';
 import FailModal from '../components/AirPay/FailModal';
+const ThemeContext = createContext(null);
+
 export const AirPayScreen = ({ navigation }) => {
+  const [theme, setTheme] = useState(0);
+
   const windowWidth = Dimensions.get('window').width;
   const [enabled,setEnabled]=useState(false)
   const [modalVisible, setModalVisible] = useState(false);
-  const [successPay, setSuccessPay] = useState(true);
+  const [successPay, setSuccessPay] = useState(false);
   const [activeDraggable, setActiveDraggable] = useState(false);
+   //const [isDarkMode,setDarkMode]=useState(0)
+   const isDarkMode=theme
+  const allstyles=(isDarkMode)?darkStyles:lightStyles
 
   const cardData=
    [
@@ -69,12 +76,18 @@ export const AirPayScreen = ({ navigation }) => {
         setModalVisible(!modalVisible);
       }}>
       <View style={allstyles.modalContainer}>
-        {successPay?<SuccessModal closeMe={closeModal}/>:<FailModal closeMe={closeModal}/>}
+        {successPay?<SuccessModal mode={isDarkMode} closeMe={closeModal}/>:<FailModal mode={isDarkMode} closeMe={closeModal}/>}
       </View>
     </Modal>
     <View style={{flex:1}}>
   <View  style={{flex:4}}>
   <Text style={allstyles.cardsText}>Cards</Text>
+
+
+  <ThemeContext.Provider value={theme}>
+    <Button title='Change' onPress={()=> setTheme(theme == 1 ? 0 : 1)}></Button>
+  </ThemeContext.Provider>
+
   <ScrollView
   scrollEnabled={!enabled} horizontal={true}>
   <View style={{ flexDirection: 'row' }}>
@@ -138,7 +151,7 @@ export const AirPayScreen = ({ navigation }) => {
   )
 }
 
-const allstyles = StyleSheet.create({
+const lightStyles = StyleSheet.create({
   centeredView: {
     flex: 1,
     justifyContent: 'center',
@@ -151,56 +164,10 @@ const allstyles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  modalView: {
-    margin: 20,
-    backgroundColor: 'white',
-    borderRadius: 20,
-    padding: 35,
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-  },
-  button: {
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2,
-  },
-  buttonOpen: {
-    backgroundColor: '#F194FF',
-  },
-  buttonClose: {
-    backgroundColor: '#2196F3',
-  },
   textStyle: {
     color: 'white',
     fontWeight: 'bold',
     textAlign: 'center',
-  },
-  modalText1: {
-    fontWeight:'700',
-    marginVertical:5,
-    fontSize:20,
-    textAlign: 'center',
-    color:'#1C2437'
-  },
-  modalText2: {
-    fontWeight:'700',
-    fontSize:16,
-    textAlign: 'center',
-    color:'#B7B7B7'
-  },
-  modalText3: {
-    fontWeight:'700',
-    marginVertical:5,
-    fontSize:40,
-    textAlign: 'center',
-    color:'#1C2437'
   },
   cardsText:{
     color:'#1C2437',
@@ -210,4 +177,33 @@ const allstyles = StyleSheet.create({
     margin:20
   }
 })
+const darkStyles = StyleSheet.create({
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 22,
+    backgroundColor:'black'
+  },
+  modalContainer: {
+    flex: 1,
+    backgroundColor: '#1C2437C4', // Semi-transparent gray background
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  textStyle: {
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  cardsText:{
+    color:'white',
+    fontFamily:'roboto',
+    fontWeight:'700',
+    fontSize:20,
+    margin:20
+  }
+  
+})
+
 export default AirPayScreen;
