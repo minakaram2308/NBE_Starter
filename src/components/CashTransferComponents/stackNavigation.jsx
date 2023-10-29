@@ -21,17 +21,28 @@ export default function StackNavigation(){
 
       
     
-    })} >
+    })}
+    initialRouteName="CashTransfer"
+    
+    >
    
       <Stack.Screen name="CashTransfer" component={CashTransfer} 
       options={({navigation }) => ({
-        headerTitle: () => <Header navigation={navigation}/>
-      })}
+        headerTitle: () => <Header navigation={navigation}/>,
+
+        
+      })
+      
+    
+    
+    }
+ 
       
       />
       <Stack.Screen name="OtpValidation" component={OtpValidation} 
       options={({navigation }) => ({
-        headerTitle: () => <Header navigation={navigation}/>
+        headerTitle: () => <Header navigation={navigation}/>,
+          
       })}
       
       />

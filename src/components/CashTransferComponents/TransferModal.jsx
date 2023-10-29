@@ -4,7 +4,13 @@ import styles from '../../styles/components/CashTransferStyles/TransferModal.sty
 
 const TransferModal = ({navigation}) => {
   const [modalVisible, setModalVisible] = useState(true);
-  
+  const navigateToHome = () => {
+    setModalVisible(!modalVisible);
+    navigation.reset({
+      index: 0,
+      routes: [{ name: 'HomeScreen' }],
+    });
+  };
   return (
     <View style={styles.centeredView}>
       <StatusBar backgroundColor={modalVisible?'rgba(28, 36, 55, 0.77)':'#F1F3FB'} />
@@ -21,11 +27,10 @@ const TransferModal = ({navigation}) => {
             <View style={styles.pressableView}>
             <Pressable
               style={styles.pressableText}
-              onPress={() => {setModalVisible(!modalVisible)
-                navigation.navigate('Main');
+              onPress={navigateToHome}
               
               
-              }}
+              
             >
               <Text style={styles.textStyle}>Finish</Text>
             </Pressable>

@@ -6,6 +6,8 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import firebasesetup from '../setup';
 import styles from './../styles/screens/CashTransfer.style';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+
+
 const data1 = [
   { label: 'Between your accounts', value: '1' },
   { label: 'from your account to different account', value: '2' },
@@ -42,19 +44,21 @@ export const CashTransfer = ({navigation}) => {
   const { auth } = firebasesetup();
   const [errorMessagetext1, setErrorMessagetext1] = useState('');
   const [errorMessagetext2, setErrorMessagetext2] = useState('');
+
   const signInWithPhoneNumber = async (phone) => {
     try {
-      
+  
       const phoneNumber=phone;
       const confirmation = await auth().signInWithPhoneNumber(phoneNumber, null);
       console.log("Confirmation is", confirmation);
        
-       
+
       navigation.navigate('OtpValidation',{confirmation,phoneNumber});
     } catch (error) {
       console.log('Error occurred while signing in with phone number:', error);
     }
   };
+  
 
   useEffect(() => {
     // Check if all Dropdowns and TextInput are filled
@@ -306,7 +310,10 @@ const handleBlurtext2=()=>{
       
     }}
     disabled={!isDone}
-    onPress={()=>signInWithPhoneNumber('+201129908771')}
+    onPress={()=>{signInWithPhoneNumber('+201117521807')
+   
+    }
+  }
   >
     <Text style={styles.textTransferPressable}>Transfer</Text>
   </Pressable>
