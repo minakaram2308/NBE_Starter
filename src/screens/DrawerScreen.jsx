@@ -1,5 +1,12 @@
 import React, {useContext, useState} from 'react';
-import {Image, View, useWindowDimensions, Text, Pressable} from 'react-native';
+import {
+  Image,
+  View,
+  useWindowDimensions,
+  Text,
+  Pressable,
+  Switch,
+} from 'react-native';
 import {DrawerItemList, createDrawerNavigator} from '@react-navigation/drawer';
 import {PreviewHomeScreen} from './PreviewHomeScreen';
 import {AccountSummaryNav} from './NavDummyScreens/AccountSummaryNav';
@@ -9,6 +16,8 @@ import styles from '../styles/screens/HomeScreen.style';
 import {LanguageButton} from '../components/Buttons/LanguageButton';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {UserBar} from '../../src/screens/NavDummyScreens/UserBar';
+import { Pdf_React } from '../components/PDF-WEB/Pdf_React';
+import { Web_React } from '../components/PDF-WEB/Web_React';
 import {
   accountSummaryIcon,
   CertificatesIcon,
@@ -29,9 +38,13 @@ const Drawer = createDrawerNavigator();
 
 export const DrawerScreen = ({navigation}) => {
   const loginContext = useContext(LoginContext);
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   const windowWidth = useWindowDimensions().width;
 
+  const toggleDarkMode = () => {
+    setIsDarkMode(previousState => !previousState);
+  };
   return (
     <View style={{flex: 1}}>
       <Drawer.Navigator
@@ -134,7 +147,7 @@ export const DrawerScreen = ({navigation}) => {
         />
         <Drawer.Screen
           name=" Hard Token"
-          component={AccountSummaryNav}
+          component={Web_React}
           options={{
             drawerIcon: () => (
               <View style={styles.borderImageContainer}>
@@ -142,11 +155,12 @@ export const DrawerScreen = ({navigation}) => {
               </View>
             ),
             drawerItemStyle: HomeScreenStyle.drawerItemStyle,
+            navigation:navigation
           }}
         />
         <Drawer.Screen
           name="Offers"
-          component={AccountSummaryNav}
+          component={Pdf_React}
           options={{
             drawerIcon: () => (
               <View style={styles.borderImageContainer}>
@@ -154,6 +168,7 @@ export const DrawerScreen = ({navigation}) => {
               </View>
             ),
             drawerItemStyle: HomeScreenStyle.drawerItemStyle,
+            navigation:navigation
           }}
         />
         <Drawer.Screen
@@ -184,13 +199,20 @@ export const DrawerScreen = ({navigation}) => {
           }}
         />
         <Drawer.Screen
-          name="Dark Mode"
+          name="Dark Mode "
           component={AccountSummaryNav}
           options={{
             drawerIcon: () => (
-              <View style={styles.borderImageContainer}>
-                <Image source={DarkModeIcon} style={styles.ImageContainer} />
-              </View>
+              <>
+                <View style={styles.borderImageContainer}>
+                  <Image source={DarkModeIcon} style={styles.ImageContainer} />
+                </View>
+                <Switch
+                  value={isDarkMode}
+                  onValueChange={toggleDarkMode}
+                  style={{position: 'absolute', right: 20, top: 10}}
+                />
+              </>
             ),
             drawerItemStyle: HomeScreenStyle.drawerItemStyle,
           }}
