@@ -96,6 +96,7 @@ function LoginInput(props) {
           />
         }
         showPasswordContainerStyles={{paddingHorizontal: '5%'}}
+        autoComplete='off'
       />
       {props.invalid && (
         <View style={styles.errorView}>

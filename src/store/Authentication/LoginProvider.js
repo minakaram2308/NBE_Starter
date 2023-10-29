@@ -4,6 +4,7 @@ import LoginContext from './login-context';
 function LoginProvider(props) {
   const [loggedIn, setLoggedIn] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
+  const [username, setUsername] = useState('');
 
   const value = {
     loggedIn,
@@ -11,12 +12,15 @@ function LoginProvider(props) {
     toggleRememberMe: () => {
       setRememberMe(previousState => !previousState);
     },
-    login: () => {
+    login: name => {
+      setUsername(name);
       setLoggedIn(true);
     },
     logout: () => {
+      setUsername('');
       setLoggedIn(false);
     },
+    username,
   };
 
   return (

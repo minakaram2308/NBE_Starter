@@ -31,7 +31,8 @@ export default styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    marginLeft: 20,
+    marginHorizontal: 20,
+    paddingVertical:10,
   },
   LogOutIconContainer: {marginRight: 10},
   LogOutText: {

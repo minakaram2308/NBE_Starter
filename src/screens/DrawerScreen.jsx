@@ -22,13 +22,12 @@ import {
   AhlyLogo,
   logoutIcon,
 } from '../../src/constants/DrawerImages';
-import LanguageContext from '../store/Language/language-context';
 import LoginContext from '../store/Authentication/login-context';
+import { colors } from '../constants/Colors';
 
 const Drawer = createDrawerNavigator();
 
 export const DrawerScreen = ({navigation}) => {
-  const languageContext = useContext(LanguageContext);
   const loginContext = useContext(LoginContext);
 
   const windowWidth = useWindowDimensions().width;
@@ -45,9 +44,7 @@ export const DrawerScreen = ({navigation}) => {
                     <Image source={AhlyLogo} />
                   </View>
                   <View style={styles.LanguageButtonContainer}>
-                    <LanguageButton onPress={languageContext.changeLanguage}>
-                      {languageContext.language}
-                    </LanguageButton>
+                    <LanguageButton />
                   </View>
                 </View>
                 <DrawerItemList {...props} />
@@ -55,6 +52,7 @@ export const DrawerScreen = ({navigation}) => {
               <View>
                 <Pressable
                   style={styles.profileContainer}
+                  android_ripple={{color:colors.fade38}}
                   onPress={loginContext.logout}>
                   <View style={styles.LogOutIconContainer}>
                     <Image source={logoutIcon} />

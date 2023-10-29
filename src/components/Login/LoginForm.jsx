@@ -37,7 +37,7 @@ function LoginForm(props) {
     if (authenticated) {
       actions.resetForm();
       // props.navigation.navigate('app');
-      loginContext.login();
+      loginContext.login(values.username);
     } else {
       Alert.alert(
         'Authentication Failed',

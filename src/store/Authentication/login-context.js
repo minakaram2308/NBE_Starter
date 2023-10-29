@@ -4,8 +4,9 @@ const LoginContext = createContext({
   loggedIn: false,
   rememberMe: false,
   toggleRememberMe: () => {},
-  login: () => {},
+  login: name => {},
   logout: () => {},
+  username: '',
 });
 
 export default LoginContext;

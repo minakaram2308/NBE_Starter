@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React from 'react';
 import {
   Image,
   ImageBackground,
@@ -19,10 +19,8 @@ import LanguageButton from '../components/Buttons/LanguageButton';
 import TextButton from '../components/Buttons/TextButton';
 import RobotoText from '../components/RobotoText';
 import LoginForm from '../components/Login/LoginForm';
-import LanguageContext from '../store/Language/language-context';
 
 export const LoginScreen = props => {
-  const languageContext = useContext(LanguageContext)
 
   return (
     <>
@@ -42,9 +40,7 @@ export const LoginScreen = props => {
             <View style={styles.fade}>
               <View style={styles.content}>
                 <View style={styles.header}>
-                  <LanguageButton onPress={languageContext.changeLanguage}>
-                    {languageContext.language}
-                  </LanguageButton>
+                  <LanguageButton />
                   <Image source={logoFull} />
                 </View>
                 <View style={styles.body}>
