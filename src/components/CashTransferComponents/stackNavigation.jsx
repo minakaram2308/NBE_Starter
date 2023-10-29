@@ -4,7 +4,7 @@ import Main from '../../CashTransfer/Main';
 import {Image} from 'react-native';
 import Header from './Header';
 import OtpValidation from './OtpValidation';
-import {CashTransfer} from '../../screens/';
+import {CashTransfer, HomeScreen} from '../../screens/';
 
 export default function StackNavigation(){
 
@@ -22,7 +22,7 @@ export default function StackNavigation(){
       
     
     })} >
-    <Stack.Screen name="Main" component={Main} options={{headerRight:null}}/>
+   
       <Stack.Screen name="CashTransfer" component={CashTransfer} 
       options={({navigation }) => ({
         headerTitle: () => <Header navigation={navigation}/>
@@ -35,6 +35,7 @@ export default function StackNavigation(){
       })}
       
       />
+       <Stack.Screen name="Main" component={HomeScreen} />
     </Stack.Navigator>
   );
 }
