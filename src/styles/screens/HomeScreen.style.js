@@ -11,6 +11,9 @@ export default styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#b8b8b8',
+    flexDirection: 'row',
+    // justifyContent: 'space-between',
+
   },
   ImageContainer: {
     width: '60%',
@@ -51,5 +54,6 @@ export default styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-between',
     flex: 1,
-  }
+  },
+  
 });
