@@ -16,6 +16,8 @@ import styles from '../styles/screens/HomeScreen.style';
 import {LanguageButton} from '../components/Buttons/LanguageButton';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {UserBar} from '../../src/screens/NavDummyScreens/UserBar';
+import { Pdf_React } from '../components/PDF-WEB/Pdf_React';
+import { Web_React } from '../components/PDF-WEB/Web_React';
 import {
   accountSummaryIcon,
   CertificatesIcon,
@@ -147,7 +149,7 @@ export const DrawerScreen = ({navigation}) => {
         />
         <Drawer.Screen
           name=" Hard Token"
-          component={AccountSummaryNav}
+          component={Web_React}
           options={{
             drawerIcon: () => (
               <View style={styles.borderImageContainer}>
@@ -155,11 +157,12 @@ export const DrawerScreen = ({navigation}) => {
               </View>
             ),
             drawerItemStyle: HomeScreenStyle.drawerItemStyle,
+            navigation:navigation
           }}
         />
         <Drawer.Screen
           name="Offers"
-          component={AccountSummaryNav}
+          component={Pdf_React}
           options={{
             drawerIcon: () => (
               <View style={styles.borderImageContainer}>
@@ -167,6 +170,7 @@ export const DrawerScreen = ({navigation}) => {
               </View>
             ),
             drawerItemStyle: HomeScreenStyle.drawerItemStyle,
+            navigation:navigation
           }}
         />
         <Drawer.Screen
