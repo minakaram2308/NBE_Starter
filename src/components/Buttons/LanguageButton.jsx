@@ -4,7 +4,7 @@ import {Pressable, Text, View} from 'react-native';
 import {colors} from '../../constants/Colors';
 import RobotoText from '../RobotoText';
 
-function LanguageButton(props) {
+export function LanguageButton(props) {
   const [isPressed, setIsPressed] = useState(false);
 
   let viewStyle = isPressed ? [styles.view, styles.viewPressed] : [styles.view];
