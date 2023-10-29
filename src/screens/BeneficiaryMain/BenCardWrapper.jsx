@@ -44,7 +44,7 @@ export default function BenCardWrapper({ children, actionsOnPress })
                 <Animated.Text
                     style={[
                         // {transform: [{ translateX: trans }]},
-                        { color: colors.textDark},
+                        { color: colors.textDark, fontSize: 18},
                     ]}>
                     Edit
                 </Animated.Text>
@@ -70,7 +70,7 @@ export default function BenCardWrapper({ children, actionsOnPress })
                 <Animated.Text
                     style={[
                         // {transform: [{ translateX: trans }]},
-                        { color: colors.textDark},
+                        { color: colors.textDark, fontSize: 18},
                     ]}>
                     Delete
                 </Animated.Text>
@@ -83,11 +83,15 @@ export default function BenCardWrapper({ children, actionsOnPress })
         <Swipeable
             renderLeftActions={renderLeftActions}
             renderRightActions={renderRightActions}
-            overshootLeft={false}
-            overshootRight={false}
+            // overshootLeft={false}
+            // overshootRight={false}
+            friction={1.8}
+            dragOffsetFromLeftEdge={30}
+            dragOffsetFromRightEdge={30}
+            overshootFriction={8}
             style={{ backgroundColor: 'red' }}>
             <Animated.View>
-                <View style={[styles.cardWrapper]}>{children}</View>
+                <RectButton style={[styles.cardWrapper]} onPress={() => console.log("View")}>{children}</RectButton>
             </Animated.View>
         </Swipeable>
     );
