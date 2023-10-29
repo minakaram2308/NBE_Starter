@@ -1,8 +1,10 @@
 import React from 'react';
 import
     {
-        FlatList, Pressable, StyleSheet,
+        FlatList, LayoutAnimation, Pressable, StyleSheet,
         Text,
+        ToastAndroid,
+        UIManager,
         View,
         useWindowDimensions
     } from 'react-native';
@@ -18,7 +20,7 @@ import BenCardWrapper from './BenCardWrapper';
 import BeneficiaryCard from './BeneficiaryCard';
 import { EmptyScreenPlaceholder } from './EmptyScreenPlaceholder';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import SwipeableFlatList from 'react-native-swipeable-list';
+// import SwipeableFlatList from 'react-native-swipeable-list';
 
 export default function BeneficiaryMain({ navigator })
 {
@@ -81,7 +83,27 @@ export default function BeneficiaryMain({ navigator })
             </View>
           </View>
         );
-      };    
+      };  
+      
+      const layoutAnimConfig = {
+        duration: 500,
+        update: {
+          type: LayoutAnimation.Types.spring,
+          springDamping: -0.9,
+        },
+        delete: {
+          duration: 100,
+          type: LayoutAnimation.Types.easeIn,
+          property: LayoutAnimation.Properties.scaleXY,
+        },
+      };
+      
+      if (
+        Platform.OS === "android" &&
+        UIManager.setLayoutAnimationEnabledExperimental
+      ) {
+        UIManager.setLayoutAnimationEnabledExperimental(true);
+      }
 
     return (
         <GestureHandlerRootView  style={styles.screen}>
@@ -256,6 +278,8 @@ export default function BeneficiaryMain({ navigator })
         setBeneficiariesData(function(prev){
             return prev.filter((item) => item.id !== id)
         })
+        LayoutAnimation.configureNext(layoutAnimConfig)
+        ToastAndroid.show("Deleted Beneficiary", ToastAndroid.SHORT)
     }
 }
 
