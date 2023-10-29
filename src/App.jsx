@@ -7,7 +7,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {AccountsScreen, CardsScreen, HistoryScreen, HomeScreen, UtilsScreen} from './screens';
 
 import styles from './styles/App.style'
-import styles from './styles/App.style';
+//import styles from './styles/App.style';
 import { colors } from './constants/Colors';
 
 

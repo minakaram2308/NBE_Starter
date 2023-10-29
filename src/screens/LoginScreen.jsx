@@ -20,7 +20,7 @@ import TextButton from '../components/Buttons/TextButton';
 import RobotoText from '../components/RobotoText';
 import LoginForm from '../components/Login/LoginForm';
 
-export const LoginScreen = props => {
+export const LoginScreen = (props,  navigation ) => {
   const [language, setLanguage] = useState('EN');
   const languageChangeHandler = () => {
     setLanguage(previousState => (previousState === 'EN' ? 'AR' : 'EN'));
@@ -58,7 +58,7 @@ export const LoginScreen = props => {
                     {/* //TODO - link to sign up page} */}
                     <TextButton
                       style={[styles.footerLinks, {fontSize: 14}]}
-                      onPress={null}>
+                      onPress={()=>props.navigation.navigate('signup')}>
                       Sign up
                     </TextButton>
                   </View>
