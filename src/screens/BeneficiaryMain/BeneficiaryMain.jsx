@@ -1,7 +1,7 @@
 import React from 'react';
 import
     {
-        FlatList, StyleSheet,
+        FlatList, Pressable, StyleSheet,
         Text,
         View,
         useWindowDimensions
@@ -17,6 +17,8 @@ import { spacing } from '../../constants/spacing';
 import BenCardWrapper from './BenCardWrapper';
 import BeneficiaryCard from './BeneficiaryCard';
 import { EmptyScreenPlaceholder } from './EmptyScreenPlaceholder';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import SwipeableFlatList from 'react-native-swipeable-list';
 
 export default function BeneficiaryMain({ navigator })
 {
@@ -59,8 +61,30 @@ export default function BeneficiaryMain({ navigator })
         [compactView],
     );
 
+    const QuickActions = (index, qaItem) => {
+        return (
+          <View style={styles.qaContainer}>
+            <View style={[styles.button, styles.button1]}>
+              <Pressable onPress={() => archiveItem(qaItem.id)}>
+                <Text style={[styles.buttonText, styles.button1Text]}>Archive</Text>
+              </Pressable>
+            </View>
+            <View style={[styles.button, styles.button2]}>
+              <Pressable onPress={() => snoozeItem(qaItem.id)}>
+                <Text style={[styles.buttonText, styles.button2Text]}>Snooze</Text>
+              </Pressable>
+            </View>
+            <View style={[styles.button, styles.button3]}>
+              <Pressable onPress={() => deleteItem(qaItem.id)}>
+                <Text style={[styles.buttonText, styles.button3Text]}>Delete</Text>
+              </Pressable>
+            </View>
+          </View>
+        );
+      };    
+
     return (
-        <View style={styles.screen}>
+        <GestureHandlerRootView  style={styles.screen}>
             <View style={[styles.viewHeader]}>
                 <Text style={[styles.headerText]}>Beneficiaries</Text>
                 <ButtonInlineToggle control={[compactView, setCompactView]}>
@@ -74,7 +98,81 @@ export default function BeneficiaryMain({ navigator })
                 </ButtonInlineText>
             </View>
 
-            <FlatList
+                <FlatList
+                    style={[styles.cardGridScrollView, {}]}
+                    horizontal={false}
+                    numColumns={cardsPerRow}
+                    data={beneficiariesData}
+                    keyExtractor={item => item.id}
+                    extraData={compactView}
+                    key={compactView}
+                    removeClippedSubviews={true}
+                    initialNumToRender={5}
+                    ListEmptyComponent={<EmptyScreenPlaceholder />}
+                    // columnWrapperStyle={cardsPerRow > 1 && { alignItems: 'flex-start' }}
+                    ItemSeparatorComponent={args => <Spacer vertical value={10} />}
+                    contentContainerStyle={
+                        [!beneficiariesData.length && {
+                            flex: 1,
+                        },
+                        {paddingBottom: 10, }]
+                    }
+                    renderItem={function ({ item, index, separators })
+                    {
+                        let key = item?.id;
+                        let child;
+                        let spacing;
+
+                        if (cardsPerRow === 1)
+                        {
+                            child = (
+                                <BenCardWrapper actionsOnPress={{'delete': () => deleteBeneficiary(key)}}>
+                                    <BeneficiaryCard
+                                        cardData={item}
+                                        cardsPerRow={cardsPerRow}
+                                        compact={compactView}
+                                        image={IMAGES[key]}
+                                    />
+                                </BenCardWrapper>
+                            );
+                        } else
+                        {
+                            if (item?.blank)
+                            {
+                                child = (
+                                    <BeneficiaryCard
+                                        cardsPerRow={cardsPerRow}
+                                        compact={compactView}
+                                        blank
+                                    />
+                                );
+                            } else
+                            {
+                                child = (
+                                    <BeneficiaryCard
+                                        cardData={item}
+                                        cardsPerRow={cardsPerRow}
+                                        compact={compactView}
+                                        image={IMAGES[key]}
+                                    />
+                                );
+                            }
+
+                            if ((index + 1) % 3 !== 0)
+                                spacing = <Spacer horizontal value={10} />;
+                        }
+
+                        return (
+                            <React.Fragment key={key}>
+                                {child}
+                                {spacing}
+                            </React.Fragment>
+                        );
+                    }}
+                />
+            {/* <SwipeableFlatList
+                scrollEnabled={false}
+
                 style={[styles.cardGridScrollView, {}]}
                 horizontal={false}
                 numColumns={cardsPerRow}
@@ -85,8 +183,10 @@ export default function BeneficiaryMain({ navigator })
                 removeClippedSubviews={true}
                 initialNumToRender={5}
                 ListEmptyComponent={<EmptyScreenPlaceholder />}
+                renderQuickActions={({index, item}) => QuickActions(index, item)}
                 // columnWrapperStyle={cardsPerRow > 1 && { alignItems: 'flex-start' }}
                 ItemSeparatorComponent={args => <Spacer vertical value={10} />}
+                maxSwipeDistance={240}
                 contentContainerStyle={
                     [!beneficiariesData.length && {
                         flex: 1,
@@ -99,19 +199,19 @@ export default function BeneficiaryMain({ navigator })
                     let child;
                     let spacing;
 
-                    if (cardsPerRow === 1)
-                    {
-                        child = (
-                            <BenCardWrapper>
-                                <BeneficiaryCard
-                                    cardData={item}
-                                    cardsPerRow={cardsPerRow}
-                                    compact={compactView}
-                                    image={IMAGES[key]}
-                                />
-                            </BenCardWrapper>
-                        );
-                    } else
+                    // if (cardsPerRow === 1)
+                    // {
+                    //     child = (
+                    //         <BenCardWrapper>
+                    //             <BeneficiaryCard
+                    //                 cardData={item}
+                    //                 cardsPerRow={cardsPerRow}
+                    //                 compact={compactView}
+                    //                 image={IMAGES[key]}
+                    //             />
+                    //         </BenCardWrapper>
+                    //     );
+                    // } else
                     {
                         if (item?.blank)
                         {
@@ -145,9 +245,18 @@ export default function BeneficiaryMain({ navigator })
                         </React.Fragment>
                     );
                 }}
-            />
-        </View>
+            /> */}
+
+        </GestureHandlerRootView>
     );
+
+    function deleteBeneficiary(id)
+    {
+        console.log('delete', id)
+        setBeneficiariesData(function(prev){
+            return prev.filter((item) => item.id !== id)
+        })
+    }
 }
 
 const styles = StyleSheet.create({
@@ -184,4 +293,24 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         padding: 10,
     },
+    qaContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+      },
+      button: {
+        width: 80,
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
+      buttonText: {
+        fontWeight: 'bold',
+      },
+      button1Text: {
+      },
+      button2Text: {
+      },
+      button3Text: {
+      },
+    
 });
