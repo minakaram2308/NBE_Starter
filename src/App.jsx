@@ -9,14 +9,11 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { TopBar, Balance, Navigator } from './components'
 import { HomeScreen, AccountsScreen, CardsScreen, UtilsScreen, HistoryScreen } from './screens'
-
 import styles from './styles/App.style'
 import { ModeContext, ThemeProvider } from './context/ModeContext';
-
 const Stack = createNativeStackNavigator();
 
 export const App = () => {
-
   return (
       <ThemeProvider>
 

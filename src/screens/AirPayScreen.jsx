@@ -76,7 +76,7 @@ export const AirPayScreen = ({ navigation }) => {
         Alert.alert('Modal has been closed.');
         setModalVisible(!modalVisible);
       }}>
-      <View style={allstyles.modalContainer}>
+      <View style={[allstyles.modalContainer,{backgroundColor:'red'}]}>
         {successPay?<SuccessModal mode={isDarkMode} closeMe={closeModal}/>:<FailModal mode={isDarkMode} closeMe={closeModal}/>}
       </View>
     </Modal>

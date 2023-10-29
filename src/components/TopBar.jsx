@@ -1,16 +1,16 @@
 import React,{useContext,useState} from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { View, Image, Button, Text, Alert, TouchableOpacity } from 'react-native';
-import lightStyles from './../styles/components/TopBar.style'
-import darkStyles from './../styles/components/DarkTopBar.style'
+import styles from './../styles/components/TopBar.style'
 import { ModeContext } from '../context/ModeContext';
-
+import { darkColors } from '../styles/components/Modes/Dark';
+import { lightColors } from '../styles/components/Modes/light';
 export const TopBar = (props) => {
   const {darkTheme, toggle} = useContext(ModeContext);
-  const styles=darkTheme?darkStyles:lightStyles
-  console.log(darkTheme)
+  let backgroundStyle=darkTheme?darkColors.darkBackgrd:lightColors.lightBackgrd
+  let textStyle=darkTheme?darkColors.darkText:lightColors.lightText
   return (
-    <View style={styles.topBar}>
+    <View style={[styles.topBar,{backgroundColor:backgroundStyle}]}>
 
       <View style={styles.user}>
 
@@ -30,8 +30,8 @@ export const TopBar = (props) => {
         />
 
         <View style={styles.userInfo}>
-          <Text style={styles.greeting}>Good morning</Text>
-          <Text style={styles.userName}>Ahmad</Text>
+          <Text style={[styles.greeting,{color:textStyle}]}>Good morning</Text>
+          <Text style={[styles.userName,{color:textStyle}]}>Ahmad</Text>
         </View>
         
       </View>
