@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
   Image,
   ImageBackground,
@@ -21,10 +21,7 @@ import RobotoText from '../components/RobotoText';
 import LoginForm from '../components/Login/LoginForm';
 
 export const LoginScreen = props => {
-  const [language, setLanguage] = useState('EN');
-  const languageChangeHandler = () => {
-    setLanguage(previousState => (previousState === 'EN' ? 'AR' : 'EN'));
-  };
+
   return (
     <>
       <StatusBar
@@ -43,9 +40,7 @@ export const LoginScreen = props => {
             <View style={styles.fade}>
               <View style={styles.content}>
                 <View style={styles.header}>
-                  <LanguageButton onPress={languageChangeHandler}>
-                    {language}
-                  </LanguageButton>
+                  <LanguageButton />
                   <Image source={logoFull} />
                 </View>
                 <View style={styles.body}>

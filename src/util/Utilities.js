@@ -1,3 +1,5 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 export function shadeColor(color, percent) {
   var R = parseInt(color.substring(1, 3), 16);
   var G = parseInt(color.substring(3, 5), 16);
@@ -20,4 +22,25 @@ export function shadeColor(color, percent) {
   var BB = B.toString(16).length == 1 ? '0' + B.toString(16) : B.toString(16);
 
   return '#' + RR + GG + BB;
+}
+
+export async function saveData(key, value) {
+  try {
+    const stringValue = JSON.stringify(value);
+    await AsyncStorage.setItem(key, stringValue);
+    console.log(
+      `saved data with key ${key} and value ${stringValue} successfully`,
+    );
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function getData(key) {
+  try {
+    const jsonValue = await AsyncStorage.getItem(key);
+    return jsonValue != null ? JSON.parse(jsonValue) : null;
+  } catch (error) {
+    console.log(error);
+  }
 }

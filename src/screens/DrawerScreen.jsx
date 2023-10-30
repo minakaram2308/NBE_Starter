@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {
   Image,
   View,
@@ -31,16 +31,17 @@ import {
   AhlyLogo,
   logoutIcon,
 } from '../../src/constants/DrawerImages';
+import LoginContext from '../store/Authentication/login-context';
+import { colors } from '../constants/Colors';
 
 const Drawer = createDrawerNavigator();
 
 export const DrawerScreen = ({navigation}) => {
-  const [language, setLanguage] = useState('EN');
+  const loginContext = useContext(LoginContext);
   const [isDarkMode, setIsDarkMode] = useState(false);
+
   const windowWidth = useWindowDimensions().width;
-  const languageChangeHandler = () => {
-    setLanguage(previousState => (previousState === 'EN' ? 'AR' : 'EN'));
-  };
+
   const toggleDarkMode = () => {
     setIsDarkMode(previousState => !previousState);
   };
@@ -56,9 +57,7 @@ export const DrawerScreen = ({navigation}) => {
                     <Image source={AhlyLogo} />
                   </View>
                   <View style={styles.LanguageButtonContainer}>
-                    <LanguageButton onPress={languageChangeHandler}>
-                      {language}
-                    </LanguageButton>
+                    <LanguageButton />
                   </View>
                 </View>
                 <DrawerItemList {...props} />
@@ -66,9 +65,8 @@ export const DrawerScreen = ({navigation}) => {
               <View>
                 <Pressable
                   style={styles.profileContainer}
-                  onPress={() => {
-                    console.log('Button Logged Out Clicked');
-                  }}>
+                  android_ripple={{color:colors.fade38}}
+                  onPress={loginContext.logout}>
                   <View style={styles.LogOutIconContainer}>
                     <Image source={logoutIcon} />
                   </View>
@@ -201,7 +199,7 @@ export const DrawerScreen = ({navigation}) => {
           }}
         />
         <Drawer.Screen
-          name="Dark Mode "
+          name="Dark Mode"
           component={AccountSummaryNav}
           options={{
             drawerIcon: () => (
@@ -212,7 +210,8 @@ export const DrawerScreen = ({navigation}) => {
                 <Switch
                   value={isDarkMode}
                   onValueChange={toggleDarkMode}
-                  style={{position: 'absolute', right: 20, top: 10}}
+                  color="#EB001B"
+                  style={{position: 'absolute', right: 0}}
                 />
               </>
             ),

@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { View, Image, Button, Text, Alert, TouchableOpacity } from 'react-native';
 
 import styles from './../styles/components/TopBar.style'
+import LoginContext from '../store/Authentication/login-context';
 
 export const  TopBar = (props) => {
+  const loginContext = useContext(LoginContext)
 
   // console.log('<<>>>', props);
   function openDrawerHandler() {
@@ -33,7 +35,7 @@ export const  TopBar = (props) => {
 
         <View style={styles.userInfo}>
           <Text style={styles.greeting}>Good morning</Text>
-          <Text style={styles.userName}>Ahmad</Text>
+          <Text style={styles.userName}>{loginContext.username}</Text>
         </View>
         
       </View>
