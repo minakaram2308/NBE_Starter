@@ -2,15 +2,15 @@ import React, {useState} from 'react';
 import {View, Text, StyleSheet, ScrollView, Image} from 'react-native';
 import {HistoryScreen} from './HistoryScreen';
 
-export const HomePageFooter = () => {
+export const HomePageFooter = (props) => {
   return (
     <View style={styles.rootContainer}>
       <View style={styles.container}>
-        <View style={styles.historyTextContainer}>
-          <Text style={styles.historyText}>History</Text>
+        <View style={[styles.historyTextContainer]}>
+          <Text style={[styles.historyText,{color:props.textStyle}]}>History</Text>
         </View>
         <View style={styles.viewAllTextContainer}>
-          <Text style={styles.viewAllText}>View All</Text>
+          <Text style={[styles.viewAllText,{color:props.textStyle}]}>View All</Text>
         </View>
       </View>
       <HistoryScreen />

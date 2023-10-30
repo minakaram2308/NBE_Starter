@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { View, Text, Image, ScrollView } from 'react-native';
-
+import { darkColors } from '../styles/components/Modes/DarkColors';
+import { lightColors } from '../styles/components/Modes/LightColors';
 import styles from './../styles/components/SendMoney.style'
 
-export const SendMoney = () => {
+export const SendMoney = ({textStyle}) => {
 
   const [users, setUsers] = useState([
     { name: 'Alexandar', image: require('./../../assets/media/picture.jpg') },
@@ -20,7 +21,7 @@ export const SendMoney = () => {
   return (
     <View style={styles.sendMoney}>
 
-      <Text style={styles.title}>Send Money</Text>
+      <Text style={[styles.title, {color: textStyle}]}>Send Money</Text>
 
       <ScrollView horizontal={true}>
         {

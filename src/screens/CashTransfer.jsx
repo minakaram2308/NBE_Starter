@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState,useEffect,useContext } from 'react';
 import {  Text, TextInput, View ,KeyboardAvoidingView,Pressable} from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 import { TouchableWithoutFeedback,Keyboard,StatusBar } from 'react-native';
@@ -6,7 +6,10 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import firebasesetup from '../setup';
 import styles from './../styles/screens/CashTransfer.style';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-
+import { darkColors } from '../styles/components/Modes/DarkColors';
+import { lightColors } from '../styles/components/Modes/LightColors';
+import { ModeContext } from '../context/ModeContext';
+import { text } from 'stream/consumers';
 
 const data1 = [
   { label: 'Between your accounts', value: '1' },
@@ -44,6 +47,9 @@ export const CashTransfer = ({navigation}) => {
   const { auth } = firebasesetup();
   const [errorMessagetext1, setErrorMessagetext1] = useState('');
   const [errorMessagetext2, setErrorMessagetext2] = useState('');
+  const {darkTheme, toggle} = useContext(ModeContext);
+  let backgroundStyle=darkTheme?darkColors:lightColors
+  let textStyle=darkTheme?darkColors.darkText:lightColors.lightText
 
   const signInWithPhoneNumber = async (phone) => {
     try {
@@ -159,12 +165,12 @@ const handleBlurtext2=()=>{
    
     <KeyboardAwareScrollView contentContainerStyle={{ flexGrow: 1 }}>
     
-   <View style={styles.container}>
+   <View style={[styles.container,{backgroundColor:backgroundStyle.darkBackgrd}]}>
   
     <StatusBar backgroundColor='#F1F3FB'/>
    
       
-    <Text style={styles.transferText}>Transfer</Text>
+    <Text style={[styles.transferText,{color: textStyle}]}>Transfer</Text>
 
       {renderLabel()}
       <Dropdown
