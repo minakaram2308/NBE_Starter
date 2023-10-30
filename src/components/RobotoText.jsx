@@ -11,7 +11,7 @@ function RobotoText(props) {
     }
   }
   textStyle = textStyle.concat({fontFamily: 'Roboto-Regular'});
-  return <Text style={[{color:"white"}, textStyle]}>{props.children}</Text>;
+  return <Text style={[{color: 'white'}, textStyle]}>{props.children}</Text>;
 }
 
 export default RobotoText;
