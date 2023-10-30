@@ -18,11 +18,11 @@ import {
 
 import {Navigator, TopBar} from './components';
 import LoginContext from './store/Authentication/login-context';
-import { colors } from './constants/Colors';
-import styles from "./styles/App.style";
-import { ModeContext, ThemeProvider } from './context/ModeContext';
-import { CashTransferStack } from './components/CashTransferComponents/CashTransferStack';
-import { Maps } from './screens/Maps';
+import {colors} from './constants/Colors';
+import styles from './styles/App.style';
+import {ModeContext, ThemeProvider} from './context/ModeContext';
+import {CashTransferStack} from './components/CashTransferComponents/CashTransferStack';
+import {Maps} from './screens/Maps';
 import AirPayScreen from './screens/AirPayScreen';
 
 const Stack = createNativeStackNavigator();
@@ -35,64 +35,60 @@ export const App = () => {
 
   return (
     <>
-    <ThemeProvider>
-      <Modal
-        visible={loading}
-        animationType="fade"
-        statusBarTranslucent={true}
-        transparent={true}>
-        <SplashScreen onAnimationFinish={setLoading.bind(null, false)} />
-      </Modal>
+      <ThemeProvider>
+        <Modal
+          visible={loading}
+          animationType="fade"
+          statusBarTranslucent={true}
+          transparent={true}>
+          <SplashScreen onAnimationFinish={setLoading.bind(null, false)} />
+        </Modal>
 
-      <NavigationContainer>
-        <View style={styles.app}>
-          {loginContext.loggedIn && (
-            <>
-              <StatusBar
-                barStyle="dark-content"
-                backgroundColor={colors.background}
-                translucent={false}
-              />
-              <Tab.Navigator
-                initialRouteName="home"
-                tabBar={prop => (
-                  <Navigator {...prop} screenOptions={{headerShown: false}} />
-                )}
-                screenOptions={{
-                  header: () => null,
+        <NavigationContainer>
+          <View style={styles.app}>
+            {loginContext.loggedIn && (
+              <>
+                <StatusBar
+                  barStyle="dark-content"
+                  backgroundColor={colors.background}
+                  translucent={false}
+                />
+                <Tab.Navigator
+                  initialRouteName="home"
+                  tabBar={prop => (
+                    <Navigator {...prop} screenOptions={{headerShown: false}} />
+                  )}
+                  screenOptions={{
+                    header: () => null,
+                  }}>
+                  <Tab.Screen name="home" component={HomeScreen} />
+                  <Stack.Screen name="transfer" component={CashTransferStack} />
+                  <Stack.Screen name="cards" component={CardsScreen} />
+                  <Stack.Screen name="map" component={Maps} />
+                  <Stack.Screen name="AirPay" component={AirPayScreen} />
+                </Tab.Navigator>
+              </>
+            )}
 
-               }
-      
-     }
-                >
-                <Tab.Screen name="home" component={HomeScreen} />
-                <Stack.Screen name="transfer" component={CashTransferStack}  />
-                <Stack.Screen name="cards" component={CardsScreen} />
-                <Stack.Screen name="map" component={Maps} />
-                <Stack.Screen name="AirPay" component={AirPayScreen} />
-              </Tab.Navigator>
-            </>
-          )}
+            {!loginContext.loggedIn && (
+              <>
+                <StatusBar
+                  barStyle="dark-content"
+                  backgroundColor={colors.background}
+                  translucent={true}
+                />
 
-          {!loginContext.loggedIn && (
-            <>
-              <StatusBar
-                barStyle="dark-content"
-                backgroundColor={colors.background}
-                translucent={true}
-              />
-
-              <Stack.Navigator
-                initialRouteName="login"
-                screenOptions={{headerShown: false}}>
-                <Stack.Screen name="login" component={LoginScreen} />
-                {/* //TODO - Add signup here */}
-                {/* <Stack.Screen name="login" component={LoginScreen} /> */}
-              </Stack.Navigator>
-            </>
-          )}
-        </View>
-      </NavigationContainer>
+                <Stack.Navigator
+                  initialRouteName="login"
+                  screenOptions={{headerShown: false}}>
+                  <Stack.Screen name="login" component={LoginScreen} />
+                  {/* //TODO - Add signup here */}
+                  {/* <Stack.Screen name="login" component={LoginScreen} /> */}
+                </Stack.Navigator>
+              </>
+            )}
+          </View>
+        </NavigationContainer>
       </ThemeProvider>
     </>
   );
