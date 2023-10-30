@@ -1,10 +1,15 @@
-import React, {useState} from 'react';
+import React, {useState,useContext} from 'react';
 import {TouchableOpacity, View, StyleSheet} from 'react-native';
 import {Balance, More, SendMoney} from './../components';
-
+import { ModeContext } from '../context/ModeContext';
 import {HomePageFooter} from './HomePageFooter';
 import Card from '../components/Card';
+import { darkColors } from '../styles/components/Modes/DarkColors';
+import { lightColors } from '../styles/components/Modes/LightColors';
 export const PreviewHomeScreen = ({navigation}) => {
+  const {darkTheme, toggle} = useContext(ModeContext);
+  let backgroundStyle=darkTheme?darkColors.darkBackgrd:lightColors.lightBackgrd
+  let textStyle=darkTheme?darkColors.darkText:lightColors.lightText
   // console.log(navigation.toggleDrawer);
   const [isCardVisible, setIsCardVisible] = useState(false);
   const cardData = {
@@ -22,7 +27,7 @@ export const PreviewHomeScreen = ({navigation}) => {
   }
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container,{backgroundColor:backgroundStyle}]}>
       {isCardVisible ? (
         <TouchableOpacity onPress={BalancePressedHandler}>
           <Card lower={1} data={cardData} />
@@ -33,10 +38,10 @@ export const PreviewHomeScreen = ({navigation}) => {
             <Balance />
           </TouchableOpacity>
           <More navigation={navigation} />
-          <SendMoney />
+          <SendMoney textStyle={textStyle} />
         </>
       )}
-      <HomePageFooter />
+      <HomePageFooter textStyle={textStyle} />
     </View>
   );
 };

@@ -50,6 +50,7 @@ export default styles = StyleSheet.create({
     padding: 0,
     marginBottom: 0,
     marginBottom: 0,
+    color:'white'
   },
   safeAreaContainer:{
     flexDirection: 'column',

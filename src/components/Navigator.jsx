@@ -1,18 +1,23 @@
-import React, {useState} from 'react';
+import React, {useState,useContext} from 'react';
 import { View, Text, TouchableWithoutFeedback } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import styles from './../styles/components/Navigator.style'
 import {AccountsScreen, CardsScreen, HistoryScreen, HomeScreen, LoginScreen, SplashScreen, UtilsScreen} from './screens';
-
-
+import { lightColors } from '../styles/components/Modes/LightColors';
+import { darkColors } from '../styles/components/Modes/DarkColors';
+import { ModeContext } from '../context/ModeContext';
 
 export const Navigator = ({ navigation }) => {
-
+  const {darkTheme, toggle} = useContext(ModeContext);
+  let backgroundStyle=darkTheme?darkColors.greyBackgrd:lightColors.lightBackgrd
+  let textStyle=darkTheme?darkColors.darkText:lightColors.lightText
+  const routeName =
+  navigation.getState().routes[navigation.getState().index].name;
+console.log(`current route -> ${routeName}`);
   return (
-    <View style={styles.navigator}>
-
+    <View style={[styles.navigator,{backgroundColor:backgroundStyle}]}>
       <TouchableWithoutFeedback
       onPress={() => {
         navigation.navigate('home');}}

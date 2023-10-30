@@ -18,6 +18,9 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {UserBar} from '../../src/screens/NavDummyScreens/UserBar';
 import { Pdf_React } from '../components/PDF-WEB/Pdf_React';
 import { Web_React } from '../components/PDF-WEB/Web_React';
+import { darkColors } from '../styles/components/Modes/DarkColors';
+import { lightColors } from '../styles/components/Modes/LightColors';
+
 import {
   accountSummaryIcon,
   CertificatesIcon,
@@ -33,15 +36,18 @@ import {
 } from '../../src/constants/DrawerImages';
 import LoginContext from '../store/Authentication/login-context';
 import { colors } from '../constants/Colors';
+import { ModeContext } from '../context/ModeContext';
 
 const Drawer = createDrawerNavigator();
 
 export const DrawerScreen = ({navigation}) => {
+  const {darkTheme, toggle} = useContext(ModeContext);
+  let backgroundStyle=darkTheme?darkColors.darkBackgrd:lightColors.lightBackgrd
+  let textStyle=darkTheme?darkColors.darkText:lightColors.lightText
   const loginContext = useContext(LoginContext);
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   const windowWidth = useWindowDimensions().width;
-
   const toggleDarkMode = () => {
     setIsDarkMode(previousState => !previousState);
   };
@@ -82,7 +88,7 @@ export const DrawerScreen = ({navigation}) => {
           header: props => <TopBar {...props} />,
           drawerActiveTintColor: 'green',
           drawerStyle: {
-            backgroundColor: '#F1F3FB',
+            backgroundColor: backgroundStyle,
             borderTopRightRadius: 12,
             borderBottomRightRadius: 12,
             width: windowWidth * 0.8,
@@ -101,6 +107,7 @@ export const DrawerScreen = ({navigation}) => {
               </View>
             ),
             drawerItemStyle: HomeScreenStyle.drawerItemStyle,
+            drawerLabelStyle:{color: textStyle}
           }}
         />
         <Drawer.Screen
@@ -116,6 +123,7 @@ export const DrawerScreen = ({navigation}) => {
               </View>
             ),
             drawerItemStyle: HomeScreenStyle.drawerItemStyle,
+            drawerLabelStyle:{color: textStyle}
           }}
         />
         <Drawer.Screen
@@ -131,6 +139,7 @@ export const DrawerScreen = ({navigation}) => {
               </View>
             ),
             drawerItemStyle: HomeScreenStyle.drawerItemStyle,
+            drawerLabelStyle:{color: textStyle}
           }}
         />
         <Drawer.Screen
@@ -143,6 +152,7 @@ export const DrawerScreen = ({navigation}) => {
               </View>
             ),
             drawerItemStyle: HomeScreenStyle.drawerItemStyle,
+            drawerLabelStyle:{color: textStyle}
           }}
         />
         <Drawer.Screen
@@ -155,7 +165,9 @@ export const DrawerScreen = ({navigation}) => {
               </View>
             ),
             drawerItemStyle: HomeScreenStyle.drawerItemStyle,
-            navigation:navigation
+            navigation:navigation,
+            drawerLabelStyle:{color: textStyle}
+            
           }}
         />
         <Drawer.Screen
@@ -168,7 +180,8 @@ export const DrawerScreen = ({navigation}) => {
               </View>
             ),
             drawerItemStyle: HomeScreenStyle.drawerItemStyle,
-            navigation:navigation
+            navigation:navigation,
+            drawerLabelStyle:{color: textStyle}
           }}
         />
         <Drawer.Screen
@@ -184,6 +197,7 @@ export const DrawerScreen = ({navigation}) => {
               </View>
             ),
             drawerItemStyle: HomeScreenStyle.drawerItemStyle,
+            drawerLabelStyle:{color: textStyle}
           }}
         />
         <Drawer.Screen
@@ -196,6 +210,7 @@ export const DrawerScreen = ({navigation}) => {
               </View>
             ),
             drawerItemStyle: HomeScreenStyle.drawerItemStyle,
+            drawerLabelStyle:{color: textStyle}
           }}
         />
         <Drawer.Screen
@@ -208,14 +223,16 @@ export const DrawerScreen = ({navigation}) => {
                   <Image source={DarkModeIcon} style={styles.ImageContainer} />
                 </View>
                 <Switch
-                  value={isDarkMode}
-                  onValueChange={toggleDarkMode}
+                  
+                  value={darkTheme}
+                  onValueChange={toggle}
                   color="#EB001B"
                   style={{position: 'absolute', right: 0}}
                 />
               </>
             ),
             drawerItemStyle: HomeScreenStyle.drawerItemStyle,
+            drawerLabelStyle:{color: textStyle}
           }}
         />
       </Drawer.Navigator>

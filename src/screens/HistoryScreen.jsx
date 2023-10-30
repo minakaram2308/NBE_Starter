@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, Image, ScrollView , StyleSheet} from 'react-native';
-
+import { useContext } from 'react';
+import { ModeContext } from '../context/ModeContext';
 
 // function wait(ms) {
 //   const start = new Date().getTime();
@@ -12,8 +13,12 @@ import { View, Text, Image, ScrollView , StyleSheet} from 'react-native';
 // }
 
 // wait(1000);
-
+import { darkColors } from '../styles/components/Modes/DarkColors';
+import { lightColors } from '../styles/components/Modes/LightColors';
 export const HistoryScreen = () => {
+  const {darkTheme, toggle} = useContext(ModeContext);
+  let backgroundStyle=darkTheme?darkColors.darkBackgrd:lightColors.lightBackgrd
+  let textStyle=darkTheme?darkColors.darkText:lightColors.lightText
 
   const [users, setUsers] = useState([
     { name: 'Alexandar', image: require('./../../assets/media/picture.jpg') },
@@ -56,17 +61,17 @@ export const HistoryScreen = () => {
     <ScrollView>
       {users.map((user, i) => {
         return (
-          <View key={i} style={styles.userContainer}>
+          <View key={i} style={[styles.userContainer]}>
             <View style={styles.userCard}>
               <Image style={styles.image} source={user.image} />
             </View>
             <View style={styles.userDetails}>
               <View style={styles.nameDateContainer}>
-                <Text style={styles.name}>{user.name}</Text>
-                <Text style={styles.date}>15-12-2021</Text>
+                <Text style={[styles.name, {color: textStyle}]}>{user.name}</Text>
+                <Text style={[styles.date,{color: textStyle}]}>15-12-2021</Text>
               </View>
               <View style={styles.priceContainer}>
-                <Text style={styles.price}>$250.21</Text>
+                <Text style={[styles.price,{color: textStyle}]}>$250.21</Text>
               </View>
             </View>
           </View>
