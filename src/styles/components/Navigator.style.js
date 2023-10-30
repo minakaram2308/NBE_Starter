@@ -8,6 +8,7 @@ export default styles = StyleSheet.create({
   navigator: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'space-around',
     height: 80,
     padding: 10,
   },

@@ -6,6 +6,9 @@ import { darkColors } from '../styles/components/Modes/DarkColors';
 import { lightColors } from '../styles/components/Modes/LightColors';
 import styles from './../styles/components/Navigator.style'
 import { ModeContext } from '../context/ModeContext';
+import {AccountsScreen, CardsScreen, HistoryScreen, HomeScreen, LoginScreen, SplashScreen, UtilsScreen} from './screens';
+
+
 
 export const Navigator = ({ navigation }) => {
   const {darkTheme, toggle} = useContext(ModeContext);
@@ -13,7 +16,10 @@ export const Navigator = ({ navigation }) => {
   return (
     <View style={[styles.navigator,{backgroundColor:backgroundStyle}]}>
 
-      <TouchableWithoutFeedback>
+      <TouchableWithoutFeedback
+      onPress={() => {
+        navigation.navigate('home');}}
+      >
         <View style={styles.activeNavBtn}>
           <MaterialCommunityIcons
             name="home"
@@ -24,7 +30,10 @@ export const Navigator = ({ navigation }) => {
         </View>
       </TouchableWithoutFeedback>
 
-      <TouchableWithoutFeedback>
+      <TouchableWithoutFeedback
+       onPress={() => {
+        navigation.navigate('accounts');}}
+      >
         <View style={styles.navBtn}>
           <MaterialCommunityIcons
             name="bank-transfer"
@@ -35,7 +44,10 @@ export const Navigator = ({ navigation }) => {
         </View>
       </TouchableWithoutFeedback>
 
-      <TouchableWithoutFeedback>
+      <TouchableWithoutFeedback
+       onPress={() => {
+        navigation.navigate('cards');}}
+      >
         <View style={styles.navBtn}>
           <Icon
             name="people"
@@ -46,7 +58,10 @@ export const Navigator = ({ navigation }) => {
         </View>
       </TouchableWithoutFeedback>
 
-      <TouchableWithoutFeedback>
+      <TouchableWithoutFeedback
+       onPress={() => {
+        navigation.navigate('utils');}}
+      >
         <View style={styles.navBtn}>
           <MaterialCommunityIcons
             name="map-marker-outline"
@@ -57,7 +72,10 @@ export const Navigator = ({ navigation }) => {
         </View>
       </TouchableWithoutFeedback>
 
-      <TouchableWithoutFeedback>
+      <TouchableWithoutFeedback
+       onPress={() => {
+        navigation.navigate('history');}}
+      >
         <View style={styles.navBtn}>
           <MaterialCommunityIcons
             name="cellphone-nfc"
@@ -71,3 +89,5 @@ export const Navigator = ({ navigation }) => {
     </View>
   )
 }
+
+

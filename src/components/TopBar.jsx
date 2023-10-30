@@ -2,20 +2,23 @@ import React,{useContext,useState} from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { View, Image, Button, Text, Alert, TouchableOpacity } from 'react-native';
 import styles from './../styles/components/TopBar.style'
-import { ModeContext } from '../context/ModeContext';
-import { darkColors } from '../styles/components/Modes/DarkColors';
-import { lightColors } from '../styles/components/Modes/LightColors';
-export const TopBar = (props) => {
-  const {darkTheme, toggle} = useContext(ModeContext);
-  let backgroundStyle=darkTheme?darkColors.darkBackgrd:lightColors.lightBackgrd
-  let textStyle=darkTheme?darkColors.darkText:lightColors.lightText
+import LoginContext from '../store/Authentication/login-context';
+
+export const  TopBar = (props) => {
+  const loginContext = useContext(LoginContext)
+
+  // console.log('<<>>>', props);
+  function openDrawerHandler() {
+    props.navigation.toggleDrawer();
+
+  }
   return (
     <View style={[styles.topBar,{backgroundColor:backgroundStyle}]}>
 
       <View style={styles.user}>
         <TouchableOpacity
           style={styles.menu}
-          onPress={() => Alert.alert('Notification clicked', 'This is a notification message')}>
+          onPress={openDrawerHandler}>
           <MaterialCommunityIcons
             name="menu"
             color={darkTheme?'white':'#333333'}
