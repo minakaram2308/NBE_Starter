@@ -14,8 +14,8 @@ export default styles = StyleSheet.create({
   background: {
     flex: 1,
     position: 'absolute',
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height,
+    width: Dimensions.get('screen').width,
+    height: Dimensions.get('screen').height,
   },
   fade: {
     flex: 1,
