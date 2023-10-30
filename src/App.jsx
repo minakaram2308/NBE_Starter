@@ -3,9 +3,7 @@ import {View, StatusBar, Modal} from 'react-native';
 
 import {NavigationContainer} from '@react-navigation/native';
 
-import {Navigator, TopBar} from './components';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {createNativeStackNavigator} from 'react-native-screens/native-stack';
 
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {
@@ -20,6 +18,8 @@ import {
 
 import {Navigator, TopBar} from './components';
 import LoginContext from './store/Authentication/login-context';
+import { colors } from './constants/Colors';
+import styles from "./styles/App.style";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
