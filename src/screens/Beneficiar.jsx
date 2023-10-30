@@ -3,8 +3,8 @@ import {Text, View, StatusBar, StyleSheet, ScrollView} from 'react-native';
 import {TopBar} from '../components';
 import {UserBar} from '../components/UserBar';
 import TransactionHistory from './TransactionHistory';
-import { lightColors } from '../styles/components/Modes/Light';
-import { darkColors } from '../styles/components/Modes/Dark';
+import { lightColors } from '../styles/components/Modes/LightColors';
+import { darkColors } from '../styles/components/Modes/DarkColors';
 import { ModeContext,  } from '../Context/ModeContext';
 
 function Beneficiar({mode}) {

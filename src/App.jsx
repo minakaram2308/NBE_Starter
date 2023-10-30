@@ -20,8 +20,8 @@ const Stack = createNativeStackNavigator();
 export const App = () => {
   return (
       <ThemeProvider>
-{/* <Beneficiar /> */}
-<AddBeneficiarScreen/>
+<Beneficiar />
+{/* <AddBeneficiarScreen/> */}
 <Navigator navigation={navigator} ></Navigator>
     {/* <NavigationContainer>
       <View style={styles.app}>

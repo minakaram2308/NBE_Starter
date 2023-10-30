@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useContext} from 'react';
 import {
   Text,
   View,
@@ -11,11 +11,14 @@ import {Dimensions} from 'react-native';
 import ModalDropdown from 'react-native-modal-dropdown';
 import ErrorIcon from 'react-native-vector-icons/MaterialIcons';
 import CorrectIcon from 'react-native-vector-icons/AntDesign';
-
+import { darkColors } from '../../styles/components/Modes/DarkColors';
+import { lightColors } from '../../styles/components/Modes/LightColors';
+import { ModeContext, ThemeProvider } from '../../Context/ModeContext';
 const {width, height} = Dimensions.get('window');
-let modex = null
-function AddBeneficiaryForm({mode}) {
-  modex = mode;
+function AddBeneficiaryForm() {
+  const {darkTheme, toggle} = useContext(ModeContext);
+  let  style = darkTheme ? darkColors.darkBackgrd : lightColors.lightBackgrd
+
   const data = ['Option 1', 'Option 2', 'Option 3'];
   const [isFocused, setIsFocused] = useState(false);
   const [bankBranch, setBankBranch] = useState(0);
@@ -73,7 +76,7 @@ function AddBeneficiaryForm({mode}) {
 
   function AddBeneficiarHandler() {}
   return (
-    <View style={[styles.rootContainer]}>
+    <View style={[styles.rootContainer,]}>
       <View style={{flexDirection: 'row', justifyContent: 'center'}}>
         <View
           style={[
@@ -156,12 +159,13 @@ function AddBeneficiaryForm({mode}) {
                 fontSize: 18,
                 backgroundColor: 'rgba(255, 255, 255,0.9)',
               }}
+              
               onSelect={element => {
                 setBankBranch(element + 1);
               }}
               style={{width: 700, marginLeft: 9}}
               options={data}
-              textStyle={{fontSize: 16}}
+              textStyle={{fontSize: 16, color:'black'}}
             />
           </View>
           {bankBranch ? (
@@ -323,6 +327,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   TextInput: {
+    color:'#1C2437',
     marginBottom: 5,
     padding: 8,
     width: '80%',
@@ -330,6 +335,7 @@ const styles = StyleSheet.create({
   },
 
   label: {
+    color:'#1C2437',
     padding: 8,
     paddingBottom: 0,
     fontWeight: 'bold',

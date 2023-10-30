@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import {Pressable, ScrollView} from 'react-native';
 import {Text, View, StyleSheet, Image} from 'react-native';
 import {Dimensions} from 'react-native';
@@ -7,18 +7,22 @@ import PressableNavItem from '../components/utils/PressableNavItem';
 import BeneficiaryTwoNav from '../components/utils/BeneficiaryTwoNav';
 import AddBeneficiaryCard from '../components/utils/AddBeneficiaryCard';
 import AddBeneficiaryForm from '../components/utils/AddBeneficiaryForm';
+import { darkColors } from '../styles/components/Modes/DarkColors';
+import { lightColors } from '../styles/components/Modes/LightColors';
+import { ModeContext } from '../Context/ModeContext';
 const {width, height} = Dimensions.get('window');
-let modex = true;
-function AddBeneficiarScreen({mode}) {
-  const styles = (mode ==='light') ? lightStyles: darkStyles
+
+function AddBeneficiarScreen() {
+  const {darkTheme, toggle} = useContext(ModeContext);
+  let  style = darkTheme ? darkColors.darkBackgrd : lightColors.lightBackgrd
   return (
     <ScrollView contentContainerStyle={{flexGrow: 1}}>
-      <View style={styles.rootContainer}>
+      <View style={[styles.rootContainer, {backgroundColor: style}]}>
         <BeneficiaryTwoNav></BeneficiaryTwoNav>
         <View style={styles.CameraContainer}>
           <Image source={require('../images/camera.png')} />
         </View>
-        <AddBeneficiaryForm mode={modex}></AddBeneficiaryForm>
+        <AddBeneficiaryForm ></AddBeneficiaryForm>
       </View>
     </ScrollView>
   );
@@ -26,7 +30,7 @@ function AddBeneficiarScreen({mode}) {
 
 export default AddBeneficiarScreen;
 
-const lightStyles = StyleSheet.create({
+const styles = StyleSheet.create({
   rootContainer: {
     justifyContent: 'center',
     backgroundColor: '#F1F3FB',

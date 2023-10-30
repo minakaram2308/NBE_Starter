@@ -1,17 +1,22 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import { darkColors } from '../../styles/components/Modes/DarkColors';
+import { lightColors } from '../../styles/components/Modes/LightColors';
+import { ModeContext, ThemeProvider } from '../../Context/ModeContext';
 
 function TransactionCard({data,mode}) {
-  const style = mode ==='light'? lightstyle : darkstyle
+  const {darkTheme, toggle} = useContext(ModeContext);
+
+  const textStyles = darkTheme === true? darkColors.darkText : lightColors.lightText;
   return (
     <View style={style.rootContainer}>
         {data.map((item, index) => (
       <View style={style.cardContainer} key={index}>
         <View style={style.transactionDetails}>
-          <Text style={style.transactionTitle}>{item.reason}</Text>
-          <Text style={style.transactionDate}>{item.date}</Text>
+          <Text style={[style.transactionTitle, {color: textStyles}]}>{item.reason}</Text>
+          <Text style={[style.transactionDate,{color: textStyles}]}>{item.date}</Text>
         </View>
-        <Text style={style.transactionCost}>{item.amount}</Text>
+      <Text style={[style.transactionCost,{color: textStyles}]}>{item.amount}</Text>
       </View>
       ))}
     </View>
@@ -20,7 +25,7 @@ function TransactionCard({data,mode}) {
 
 export default TransactionCard;
 
-const lightstyle = StyleSheet.create({
+const style = StyleSheet.create({
   rootContainer: {
     flexDirection: 'column',
     alignItems: 'flex-start',

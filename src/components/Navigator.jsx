@@ -3,8 +3,8 @@ import { View, Text, TouchableWithoutFeedback } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon from 'react-native-vector-icons/Ionicons';
 import styles from '../styles/components/Navigator.style'
-import { lightColors } from '../styles/components/Modes/Light';
-import { darkColors } from '../styles/components/Modes/Dark';
+import { lightColors } from '../styles/components/Modes/LightColors';
+import { darkColors } from '../styles/components/Modes/DarkColors';
 import { ModeContext, ThemeProvider } from '../Context/ModeContext';
 
 

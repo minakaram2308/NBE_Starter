@@ -3,8 +3,8 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { View, Image, Button, Text, Alert, TouchableOpacity } from 'react-native';
 import styles from './../styles/components/TopBar.style'
 import { ModeContext, ThemeProvider } from '../Context/ModeContext';
-import { darkColors } from '../styles/components/Modes/Dark';
-import { lightColors } from '../styles/components/Modes/Light';
+import { darkColors } from '../styles/components/Modes/DarkColors';
+import { lightColors } from '../styles/components/Modes/LightColors';
 
 
 export const TopBar = (props) => {

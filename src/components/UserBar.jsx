@@ -2,8 +2,8 @@ import React, {useContext} from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {View, Image, Button, Text, Alert, TouchableOpacity} from 'react-native';
 import styles from '../styles/components/UserBar.style';
-import { lightColors } from '../styles/components/Modes/Light';
-import { darkColors } from '../styles/components/Modes/Dark';
+import { lightColors } from '../styles/components/Modes/LightColors';
+import { darkColors } from '../styles/components/Modes/DarkColors';
 import { ModeContext, ThemeProvider  } from '../Context/ModeContext';
 
 export const UserBar = () => {
