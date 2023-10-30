@@ -6,7 +6,6 @@ import {
 export  default styles = StyleSheet.create({
 
   navigator: {
-    backgroundColor: '#fff',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-around',

@@ -1,31 +1,22 @@
-import React, {useContext, useState} from 'react';
-import {View, Text, TouchableWithoutFeedback} from 'react-native';
+import React, {useState} from 'react';
+import { View, Text, TouchableWithoutFeedback } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {lightColors} from '../styles/components/Modes/LightColors';
-import {darkColors} from '../styles/components/Modes/DarkColors';
-import {ModeContext, ThemeProvider} from '../Context/ModeContext';
 
-import styles from './../styles/components/Navigator.style';
-import {
-  AccountsScreen,
-  CardsScreen,
-  HistoryScreen,
-  HomeScreen,
-  LoginScreen,
-  SplashScreen,
-  UtilsScreen,
-} from './screens';
+import styles from './../styles/components/Navigator.style'
+import {AccountsScreen, CardsScreen, HistoryScreen, HomeScreen, LoginScreen, SplashScreen, UtilsScreen} from './screens';
 
-export const Navigator = ({navigation, mode}) => {
-  const {darkTheme, toggle} = useContext(ModeContext);
-  let style = darkTheme ? darkColors.greyBackgrd : lightColors.lightBackgrd;
+
+
+export const Navigator = ({ navigation }) => {
+
   return (
-    <View style={[styles.navigator, {backgroundColor: style}]}>
+    <View style={styles.navigator}>
+
       <TouchableWithoutFeedback
-        onPress={() => {
-          navigation.navigate('home');
-        }}>
+      onPress={() => {
+        navigation.navigate('home');}}
+      >
         <View style={styles.activeNavBtn}>
           <MaterialCommunityIcons
             name="home"
@@ -37,33 +28,38 @@ export const Navigator = ({navigation, mode}) => {
       </TouchableWithoutFeedback>
 
       <TouchableWithoutFeedback
-        onPress={() => {
-          navigation.navigate('accounts');
-        }}>
+       onPress={() => {
+        navigation.navigate('transfer');}}
+      >
         <View style={styles.navBtn}>
           <MaterialCommunityIcons
             name="bank-transfer"
             style={styles.navIcon}
             size={25}
+            
           />
           <Text style={styles.navText}>Transfer</Text>
         </View>
       </TouchableWithoutFeedback>
 
       <TouchableWithoutFeedback
-        onPress={() => {
-          navigation.navigate('cards');
-        }}>
+       onPress={() => {
+        navigation.navigate('cards');}}
+      >
         <View style={styles.navBtn}>
-          <Icon name="people" style={styles.navIcon} size={25} />
+          <Icon
+            name="people"
+            style={styles.navIcon}
+            size={25}
+          />
           <Text style={styles.navText}>Benef.</Text>
         </View>
       </TouchableWithoutFeedback>
 
       <TouchableWithoutFeedback
-        onPress={() => {
-          navigation.navigate('utils');
-        }}>
+       onPress={() => {
+        navigation.navigate('map');}}
+      >
         <View style={styles.navBtn}>
           <MaterialCommunityIcons
             name="map-marker-outline"
@@ -75,9 +71,9 @@ export const Navigator = ({navigation, mode}) => {
       </TouchableWithoutFeedback>
 
       <TouchableWithoutFeedback
-        onPress={() => {
-          navigation.navigate('history');
-        }}>
+       onPress={() => {
+        navigation.navigate('AirPay');}}
+      >
         <View style={styles.navBtn}>
           <MaterialCommunityIcons
             name="cellphone-nfc"
@@ -87,6 +83,8 @@ export const Navigator = ({navigation, mode}) => {
           <Text style={styles.navText}>Air Pay</Text>
         </View>
       </TouchableWithoutFeedback>
+
     </View>
-  );
-};
+  )
+}
+
