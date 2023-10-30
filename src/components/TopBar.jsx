@@ -1,10 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { View, Image, Button, Text, Alert, TouchableOpacity } from 'react-native';
 
 import styles from './../styles/components/TopBar.style'
+import LoginContext from '../store/Authentication/login-context';
 
-export const TopBar = () => {
+export const  TopBar = (props) => {
+  const loginContext = useContext(LoginContext)
+
+  // console.log('<<>>>', props);
+  function openDrawerHandler() {
+    props.navigation.toggleDrawer();
+
+  }
   return (
     <View style={styles.topBar}>
 
@@ -12,7 +20,7 @@ export const TopBar = () => {
 
         <TouchableOpacity
           style={styles.menu}
-          onPress={() => Alert.alert('Notification clicked', 'This is a notification message')}>
+          onPress={openDrawerHandler}>
           <MaterialCommunityIcons
             name="menu"
             color='#333333'
@@ -27,7 +35,7 @@ export const TopBar = () => {
 
         <View style={styles.userInfo}>
           <Text style={styles.greeting}>Good morning</Text>
-          <Text style={styles.userName}>Ahmad</Text>
+          <Text style={styles.userName}>{loginContext.username}</Text>
         </View>
         
       </View>
