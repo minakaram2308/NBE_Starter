@@ -2,15 +2,19 @@ import React, {useState} from 'react';
 import {View, StatusBar, Modal} from 'react-native';
 
 import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {AccountsScreen, CardsScreen, HistoryScreen, HomeScreen, LoginScreen, SplashScreen, UtilsScreen} from './screens';
 
 import styles from './styles/App.style';
 import AppLoggedIn from './AppBeforeLogin';
 import { colors } from './constants/Colors';
 import { Navigator, TopBar } from './components';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createNativeStackNavigator } from 'react-native-screens/native-stack';
+
 
 const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
+
 
 export const App = () => {
   return (
@@ -21,7 +25,7 @@ export const App = () => {
         translucent={false}
       />
 
-      <Stack.Navigator
+      {/* <Stack.Navigator
         initialRouteName="home"
         screenOptions={{headerShown: false}}>
         <Stack.Screen name="home" component={HomeScreen} />
@@ -29,10 +33,20 @@ export const App = () => {
         <Stack.Screen name="cards" component={CardsScreen} />
         <Stack.Screen name="utils" component={UtilsScreen} />
         <Stack.Screen name="history" component={HistoryScreen} />
-      </Stack.Navigator>
+      </Stack.Navigator> */}
+      
+      <Tab.Navigator initialRouteName="home" tabBar={prop => <Navigator {...prop}  screenOptions={{headerShown: false}}/>}>
+      <Tab.Screen name="home" component={HomeScreen} />
+      <Stack.Screen name="accounts" component={AccountsScreen} />
+      <Stack.Screen name="cards" component={CardsScreen} />
+      <Stack.Screen name="utils" component={UtilsScreen} />
+      <Stack.Screen name="history" component={HistoryScreen} />
+      </Tab.Navigator>
 
-      <Navigator navigation={navigator}></Navigator>
+      {/* <AppAfterLogin></AppAfterLogin> */}
+     
     </View>
+
   );
 
   /**
@@ -56,4 +70,20 @@ export const App = () => {
       </NavigationContainer>
     );
   */
+};
+
+const AppAfterLogin = () => {
+  return (
+   
+      
+      <Tab.Navigator initialRouteName="home" tabBar={prop => <Navigator {...prop}  screenOptions={{headerShown: false}}/>}>
+      <Tab.Screen name="home" component={HomeScreen} />
+      <Tab.Screen name="accounts" component={AccountsScreen} />
+      <Tab.Screen name="cards" component={CardsScreen} />
+      <Tab.Screen name="utils" component={UtilsScreen} />
+      <Tab.Screen name="history" component={HistoryScreen} />
+      </Tab.Navigator>
+    
+
+  );
 };
