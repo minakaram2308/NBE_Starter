@@ -6,8 +6,14 @@ import logoText from '../../assets/media/logoText.png';
 import styles from '../styles/components/SplashScreen.style';
 
 export const SplashScreen = props => {
+  //NOTE - replace dark with the actual dark context
+  let dark = true;
+  let viewStyle = dark
+    ? [styles.splashContainer, {backgroundColor: 'black'}]
+    : styles.splashContainer;
+
   return (
-    <View style={styles.splashContainer}>
+    <View style={viewStyle}>
       <LottieView
         style={styles.splash}
         source={splashScreen}
