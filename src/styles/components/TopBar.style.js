@@ -16,7 +16,6 @@ export  default styles = StyleSheet.create({
     height: 40,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'red'
   },
 
   user: {
