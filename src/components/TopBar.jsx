@@ -1,11 +1,19 @@
-import React, { useContext } from 'react';
+import React,{useContext,useState} from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { View, Image, Button, Text, Alert, TouchableOpacity, Pressable } from 'react-native';
-
+import { View, Image, Button, Text, Alert, TouchableOpacity } from 'react-native';
 import styles from './../styles/components/TopBar.style'
+import { ModeContext, ThemeProvider } from '../context/ModeContext';
+import { darkColors } from '../styles/components/Modes/DarkColors';
+import { lightColors } from '../styles/components/Modes/LightColors';
 import LoginContext from '../store/Authentication/login-context';
 
-export const  TopBar = (props) => {
+
+export const TopBar = (props) => {
+  const {darkTheme, toggle} = useContext(ModeContext);
+  let backgroundStyle=darkTheme?darkColors.darkBackgrd:lightColors.lightBackgrd
+  let textStyle=darkTheme?darkColors.darkText:lightColors.lightText
+
+
   const loginContext = useContext(LoginContext)
 
   // console.log('<<>>>', props);
@@ -14,7 +22,7 @@ export const  TopBar = (props) => {
 
   }
   return (
-    <View style={styles.topBar}>
+    <View style={[styles.topBar,{backgroundColor:backgroundStyle}]}>
 
       <View style={styles.user}>
 
@@ -23,7 +31,7 @@ export const  TopBar = (props) => {
           onPress={openDrawerHandler}>
           <MaterialCommunityIcons
             name="menu"
-            color='#333333'
+            color={darkTheme?'white':'#333333'}
             size={25}
           />
         </Pressable>
@@ -34,8 +42,8 @@ export const  TopBar = (props) => {
         />
 
         <View style={styles.userInfo}>
-          <Text style={styles.greeting}>Good morning</Text>
-          <Text style={styles.userName}>{loginContext.username}</Text>
+          <Text style={[styles.greeting,{color:textStyle}]}>Good morning</Text>
+          <Text style={[styles.userName,{color:textStyle}]}>{loginContext.username}</Text>
         </View>
         
       </View>

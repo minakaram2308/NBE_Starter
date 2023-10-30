@@ -3,10 +3,9 @@ import {
 } from 'react-native';
 
 
-export default styles = StyleSheet.create({
+export  default styles = StyleSheet.create({
 
   navigator: {
-    backgroundColor: '#fff',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-around',
@@ -21,12 +20,13 @@ export default styles = StyleSheet.create({
 
   activeNavBtn: {
     backgroundColor: '#007236',
-    // height: 65,
-    // width: 65,
-    // borderRadius: 10,
-    // justifyContent: 'center',
-    // alignItems: 'center',
-    // marginEnd: 5,
+    height: 65,
+    width: 65,
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginEnd: 5,
+    
   },
 
   activeNavIcon: {
@@ -45,7 +45,8 @@ export default styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginEnd: 5,
-    borderRadius: 20
+    borderRadius: 20,
+    marginHorizontal:10
   },
 
   navIcon: {
