@@ -8,7 +8,7 @@ const TransferModal = ({navigation}) => {
     setModalVisible(!modalVisible);
     navigation.reset({
       index: 0,
-      routes: [{ name: 'HomeScreen' }],
+      routes: [{ name: 'home' }],
     });
   };
   return (
