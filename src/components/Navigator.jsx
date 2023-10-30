@@ -17,7 +17,7 @@ export const Navigator = ({ navigation }) => {
       onPress={() => {
         navigation.navigate('home');}}
       >
-        <View style={styles.activeNavBtn}>
+        <View style={[styles.navBtn, styles.activeNavBtn]}>
           <MaterialCommunityIcons
             name="home"
             style={styles.activeNavIcon}
