@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         elevation: 1,
         borderWidth: 1,
-        borderColor: colors.gray.light_1,
+        borderColor: colors.grays.light_1,
     },
     containerCompact: {
         flexDirection: 'column',
@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderWidth: 1,
-        borderColor: colors.gray.light_1,
+        borderColor: colors.grays.light_1,
     },
     profileImage: {
         resizeMode: 'cover',
