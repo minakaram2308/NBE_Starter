@@ -1,10 +1,12 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import styles from '../../styles/components/Buttons/LanguageButton.style';
 import {Pressable, Text, View} from 'react-native';
 import {colors} from '../../constants/Colors';
 import RobotoText from '../RobotoText';
+import LanguageContext from '../../store/Language/language-context';
 
-function LanguageButton(props) {
+export function LanguageButton(props) {
+  const languageContext = useContext(LanguageContext)
   const [isPressed, setIsPressed] = useState(false);
 
   let viewStyle = isPressed ? [styles.view, styles.viewPressed] : [styles.view];
@@ -24,9 +26,9 @@ function LanguageButton(props) {
         // android_ripple={{color: colors.green}}
         onPressIn={setIsPressed.bind(null, true)}
         onPressOut={setIsPressed.bind(null, false)}
-        onPress={props.onPress}>
+        onPress={languageContext.changeLanguage}>
         <View style={viewStyle}>
-          <RobotoText style={textStyle}>{props.children}</RobotoText>
+          <RobotoText style={textStyle}>{languageContext.language}</RobotoText>
         </View>
       </Pressable>
     </View>

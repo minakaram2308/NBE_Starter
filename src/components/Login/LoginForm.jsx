@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import styles from '../../styles/components/Login/LoginForm.style';
 import {
   Alert,
@@ -22,21 +22,22 @@ import {colors} from '../../constants/Colors';
 import RobotoText from '../RobotoText';
 import TextButton from '../Buttons/TextButton';
 import LoginInput from './LoginInput';
+import LoginContext from '../../store/Authentication/login-context';
 
 function LoginForm(props) {
   /**
     const [usernameFocus, setUsernameFocus] = useState(false);
     const [passwordFocus, setPasswordFocus] = useState(false);
   */
-  const [remember, setRemember] = useState(false);
-
+  const loginContext = useContext(LoginContext);
   const initialValues = {username: '', password: ''};
   const submitHandler = (values, actions) => {
     console.log(values);
-    let authenticated = Math.random() < 0.5;
+    let authenticated = Math.random() < 0.75;
     if (authenticated) {
       actions.resetForm();
-      props.navigation.navigate('app');
+      // props.navigation.navigate('app');
+      loginContext.login(values.username);
     } else {
       Alert.alert(
         'Authentication Failed',
@@ -45,9 +46,6 @@ function LoginForm(props) {
         {cancelable: true},
       );
     }
-  };
-  const rememberHandler = () => {
-    setRemember(previousState => !previousState);
   };
 
   return (
@@ -230,19 +228,20 @@ function LoginForm(props) {
                 <View style={styles.rememberForget}>
                   <View style={styles.rememberMe}>
                     <View style={styles.rememberMeIcon}>
-                      <Pressable onPress={rememberHandler}>
+                      <Pressable onPress={loginContext.toggleRememberMe}>
                         <Feather
                           name="check"
-                          color={`${remember ? colors.green : 'white'}`}
+                          color={`${
+                            loginContext.rememberMe ? colors.green : 'white'
+                          }`}
                           size={25}
                         />
                       </Pressable>
                     </View>
-                    <TextButton onPress={rememberHandler}>
+                    <TextButton onPress={loginContext.toggleRememberMe}>
                       Remember me
                     </TextButton>
                   </View>
-                  {/* //TODO - forgot password page? */}
                   <TextButton onPress={null}>Forgot Password?</TextButton>
                 </View>
                 <View style={styles.buttons}>

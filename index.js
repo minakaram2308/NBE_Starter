@@ -4,6 +4,6 @@
 
 import {AppRegistry} from 'react-native';
 import {name as appName} from './app.json';
-import AppLoggedIn from './src/AppBeforeLogin';
+import AppProviders from './src/AppProviders';
 
-AppRegistry.registerComponent(appName, () => AppLoggedIn);
+AppRegistry.registerComponent(appName, () => AppProviders);
