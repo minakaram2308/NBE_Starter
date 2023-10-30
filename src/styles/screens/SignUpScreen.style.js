@@ -6,7 +6,7 @@ import {
     background: {
         backgroundColor: '#F1F3FB',
         flex:1,
-        paddingTop:16,
+        paddingTop:50,
         paddingHorizontal:24
     },
     logo:{

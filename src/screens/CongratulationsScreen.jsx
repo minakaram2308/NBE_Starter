@@ -18,8 +18,8 @@ export const CongratulationsScreen = ({ navigation }) => {
    
  <ImageBackground
     source={require('../signupImages/success.png')}
-    style={{flex:1, paddingTop:11, paddingHorizontal:24, backgroundColor:"#007236"}}
-    imageStyle={{width:"85%", height:"85%", resizeMode: 'contain', position:"absolute", top:110, left:-14}}
+    style={{flex:1, paddingTop:50, paddingHorizontal:24, backgroundColor:"#007236"}}
+    imageStyle={{width:"85%", height:"85%", resizeMode: 'cover', position:"absolute", top:160, left:0}}
     >
             <StatusBar barStyle='dark-content' backgroundColor='#007236' />
             <View style={styles.finishFirstContainer}>
@@ -38,7 +38,7 @@ export const CongratulationsScreen = ({ navigation }) => {
            <View>
            <TouchableOpacity 
              style={{ width: 345, height: 50, borderRadius: 10, backgroundColor: 'white', color:'green' }}
-             onPress={ () => navigation.navigate('home')}
+             onPress={ () => navigation.navigate('app')}
              >
             <Text style={styles.finishButton}>Finish</Text>
             </TouchableOpacity>

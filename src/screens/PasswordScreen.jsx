@@ -234,7 +234,7 @@ source={require('../signupImages/Vector.png')}
                 <Text style={styles.checkText}>Upper case letter</Text>
               </View>
               <View style={styles.check}>
-                <View style={uppercase? styles.circle:styles.circleGray}></View>
+                <View style={number? styles.circle:styles.circleGray}></View>
                 <Text style={styles.checkText}>Number</Text>
               </View>
             </View>

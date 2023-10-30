@@ -15,7 +15,7 @@ const Stack = createNativeStackNavigator();
 
 export const App = () => {
   return (
-    <NavigationContainer>
+
        <View style={styles.app}>
       <StatusBar
         barStyle="dark-content"
@@ -31,7 +31,7 @@ export const App = () => {
         </Stack.Navigator>
 
        </View > 
-    </NavigationContainer>
+
    
   );
 
