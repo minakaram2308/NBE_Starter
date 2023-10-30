@@ -1,6 +1,6 @@
 import React,{useContext,useState} from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { View, Image, Button, Text, Alert, TouchableOpacity } from 'react-native';
+import { View, Image, Button, Text, Alert, TouchableOpacity, Pressable } from 'react-native';
 import styles from './../styles/components/TopBar.style'
 import { ModeContext, ThemeProvider } from '../context/ModeContext';
 import { darkColors } from '../styles/components/Modes/DarkColors';
@@ -26,7 +26,7 @@ export const TopBar = (props) => {
 
       <View style={styles.user}>
 
-        <TouchableOpacity
+        <Pressable
           style={styles.menu}
           onPress={openDrawerHandler}>
           <MaterialCommunityIcons
@@ -34,7 +34,7 @@ export const TopBar = (props) => {
             color={darkTheme?'white':'#333333'}
             size={25}
           />
-        </TouchableOpacity>
+        </Pressable>
 
         <Image
           style={styles.userImage}
@@ -57,7 +57,6 @@ export const TopBar = (props) => {
           size={20}
         />
       </TouchableOpacity>
-
     </View>
   )
 }

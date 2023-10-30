@@ -1,0 +1,28 @@
+const relativePathTOImagesDir = '../../assets/media/avatars/'
+
+export const IMAGES = {
+    1: require(relativePathTOImagesDir + 1 + '.png'),
+    2: require(relativePathTOImagesDir + 2 + '.png'),
+    3: require(relativePathTOImagesDir + 3 + '.png'),
+    4: require(relativePathTOImagesDir + 4 + '.png'),
+    5: require(relativePathTOImagesDir + 5 + '.png'),
+    6: require(relativePathTOImagesDir + 6 + '.png'),
+    7: require(relativePathTOImagesDir + 7 + '.png'),
+    8: require(relativePathTOImagesDir + 8 + '.png'),
+    9: require(relativePathTOImagesDir + 9 + '.png'),
+    10: require(relativePathTOImagesDir + 10 + '.png'),
+    11: require(relativePathTOImagesDir + 11 + '.png'),
+    12: require(relativePathTOImagesDir + 12 + '.png'),
+    13: require(relativePathTOImagesDir + 13 + '.png'),
+    14: require(relativePathTOImagesDir + 14 + '.png'),
+    15: require(relativePathTOImagesDir + 15 + '.png'),
+    16: require(relativePathTOImagesDir + 16 + '.png'),
+    17: require(relativePathTOImagesDir + 17 + '.png'),
+    18: require(relativePathTOImagesDir + 18 + '.png'),
+    19: require(relativePathTOImagesDir + 19 + '.png'),
+    20: require(relativePathTOImagesDir + 20 + '.png'),
+    // 21: require(relativePathTOImagesDir + 21 + '.png'),
+    // 22: require(relativePathTOImagesDir + 22 + '.png'),
+    // 23: require(relativePathTOImagesDir + 23 + '.png'),
+    // 24: require(relativePathTOImagesDir + 24 + '.png'),
+}
