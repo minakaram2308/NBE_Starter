@@ -3,7 +3,7 @@ import {
 } from 'react-native';
 
 
-export default styles = StyleSheet.create({
+export  default styles = StyleSheet.create({
 
   navigator: {
     flexDirection: 'row',
@@ -11,6 +11,7 @@ export default styles = StyleSheet.create({
     justifyContent: 'space-around',
     height: 80,
     padding: 10,
+    
   },
 
   activeNavBtn: {
@@ -21,6 +22,7 @@ export default styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginEnd: 5,
+    
   },
 
   activeNavIcon: {
@@ -39,6 +41,7 @@ export default styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginEnd: 5,
+    marginHorizontal:10
   },
 
   navIcon: {

@@ -3,32 +3,29 @@ import {
 } from 'react-native';
 
 
-export  default styles = StyleSheet.create({
+export default styles = StyleSheet.create({
 
   topBar: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     padding: 10,
+    width:'100%',
+    
   },
 
-  menu: {
-    width: 40,
-    height: 40,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
 
   user: {
-    height: 40,
+    height: 60,
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'flex-start',
   },
 
   userImage: {
-    width: 40,
-    height: 40,
+    width: 60,
+    height: 60,
     borderRadius: 10,
     marginRight: 10,
+    marginLeft:10,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,

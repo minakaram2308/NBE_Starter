@@ -1,11 +1,8 @@
 import React, {useContext, useState} from 'react';
 import {View, StatusBar, Modal} from 'react-native';
 
-import {NavigationContainer} from '@react-navigation/native';
-
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {
   AccountsScreen,
   CardsScreen,
@@ -16,7 +13,9 @@ import {
   UtilsScreen,
 } from './screens';
 
-import {Navigator, TopBar} from './components';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {TopBar, Balance, Navigator} from './components';
 import LoginContext from './store/Authentication/login-context';
 import {colors} from './constants/Colors';
 import styles from './styles/App.style';
