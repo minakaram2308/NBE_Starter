@@ -1,6 +1,6 @@
 module.exports = {
     assets: [
-        '.\\assets\\fonts\\', 
+        '.\\assets\\fonts\\quicksand\\', 
         '.\\assets\\icons\\',
 ],
 };

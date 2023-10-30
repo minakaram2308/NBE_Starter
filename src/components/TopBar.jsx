@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { View, Image, Button, Text, Alert, TouchableOpacity } from 'react-native';
+import { View, Image, Button, Text, Alert, TouchableOpacity, Pressable } from 'react-native';
 
 import styles from './../styles/components/TopBar.style'
 import LoginContext from '../store/Authentication/login-context';
@@ -18,7 +18,7 @@ export const  TopBar = (props) => {
 
       <View style={styles.user}>
 
-        <TouchableOpacity
+        <Pressable
           style={styles.menu}
           onPress={openDrawerHandler}>
           <MaterialCommunityIcons
@@ -26,7 +26,7 @@ export const  TopBar = (props) => {
             color='#333333'
             size={25}
           />
-        </TouchableOpacity>
+        </Pressable>
 
         <Image
           style={styles.userImage}
@@ -49,7 +49,10 @@ export const  TopBar = (props) => {
           size={20}
         />
       </TouchableOpacity>
-
+      
+      <SlidingModal visible={showSidebar} onClose={() => setShowSidebar(false)}>
+        <Text>Hi</Text>
+      </SlidingModal>
     </View>
   )
 }
