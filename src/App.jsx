@@ -20,6 +20,7 @@ import {Navigator, TopBar} from './components';
 import LoginContext from './store/Authentication/login-context';
 import { colors } from './constants/Colors';
 import styles from "./styles/App.style";
+import { ModeContext, ThemeProvider } from './context/ModeContext';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -31,6 +32,7 @@ export const App = () => {
 
   return (
     <>
+    <ThemeProvider>
       <Modal
         visible={loading}
         animationType="fade"
@@ -81,6 +83,7 @@ export const App = () => {
           )}
         </View>
       </NavigationContainer>
+      </ThemeProvider>
     </>
   );
 };

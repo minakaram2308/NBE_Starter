@@ -6,7 +6,6 @@ import Card from '../components/AirPay/Card';
 import Drop from '../components/AirPay/Drop';
 import SuccessModal from '../components/AirPay/SuccessModal';
 import FailModal from '../components/AirPay/FailModal';
-import { ModeContext, ThemeProvider } from '../context/ModeContext';
 
 export const AirPayScreen = ({ navigation }) => {
 
@@ -16,9 +15,8 @@ export const AirPayScreen = ({ navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [successPay, setSuccessPay] = useState(false);
   const [activeDraggable, setActiveDraggable] = useState(false);
-  // console.log(useContext(ModeContext));
-  const {darkTheme, toggle} = useContext(ModeContext);
-   const isDarkMode=darkTheme
+
+   const isDarkMode=0
   const allstyles=(isDarkMode)?darkStyles:lightStyles
 
   const cardData=
@@ -84,9 +82,9 @@ export const AirPayScreen = ({ navigation }) => {
   <View  style={{flex:4}}>
   <Text style={allstyles.cardsText}>Cards</Text>
 
-  <ThemeProvider>
+  {/* <ThemeProvider>
     <Button title='Change' onPress={toggle}></Button>
-  </ThemeProvider>
+  </ThemeProvider> */}
 
   <ScrollView
   scrollEnabled={!enabled} horizontal={true}>
