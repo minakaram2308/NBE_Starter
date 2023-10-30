@@ -1,18 +1,18 @@
 import React from 'react';
 import { View,Text,StyleSheet,Image ,Dimensions, Pressable} from 'react-native';
-
+import { lightColors } from '../../styles/components/Modes/LightColors';
+import { darkColors } from '../../styles/components/Modes/DarkColors';
 function FailModal(props){
   //const mode=useContext(ThemeContext)
-  const allstyles=(props.mode)?darkStyles:lightStyles
 
     const windowWidth = Dimensions.get('window').width;
     return(
         <View style={{width:windowWidth*.95}}>
-            <View style={allstyles.modalView}>
+            <View style={[allstyles.modalView,{backgroundColor:props.mode?darkColors.darkBackgrd:lightColors.lightBackgrd}]}>
             <Image source={require('../../../assets/media/airPay/failCard.png')}></Image>
             <Text style={allstyles.modalText1}>Ooops...</Text>
             <Text style={allstyles.modalText2}>Your payment didn’t go through</Text>
-            <Text style={allstyles.modalText3}>$5,542.00</Text>
+            <Text style={[allstyles.modalText3,{color:props.mode?darkColors.darkText:lightColors.lightText}]}>$5,542.00</Text>
             <View style={allstyles.buttonsContainer}>
                 <Pressable onPress={props.closeMe}>
                 <View style={{width:windowWidth*.95*.8*.35,borderRadius:12.5,borderColor:'#EB001B',borderWidth:1,marginEnd:10 }}>
@@ -35,7 +35,7 @@ function FailModal(props){
 export default FailModal
 
 
-const lightStyles = StyleSheet.create({
+const allstyles = StyleSheet.create({
     modalView: {
       margin: 20,
       backgroundColor: 'white',
@@ -73,46 +73,5 @@ const lightStyles = StyleSheet.create({
       fontSize:40,
       textAlign: 'center',
       color:'#1C2437'
-    },
-  })
-
-  const darkStyles = StyleSheet.create({
-    modalView: {
-      margin: 20,
-      backgroundColor: 'black',
-      borderRadius: 20,
-      padding: 35,
-      alignItems: 'center',
-      shadowColor: '#000',
-      shadowOffset: {
-        width: 0,
-        height: 2,
-      },
-      shadowOpacity: 0.25,
-      shadowRadius: 4,
-      elevation: 5,
-    },
-    buttonsContainer:{
-        flexDirection:'row'
-    },
-    modalText1: {
-      fontWeight:'700',
-      marginVertical:5,
-      fontSize:20,
-      textAlign: 'center',
-      color:'#EB001B'
-    },
-    modalText2: {
-      fontWeight:'400',
-      fontSize:16,
-      textAlign: 'center',
-      color:'#B7B7B7'
-    },
-    modalText3: {
-      fontWeight:'700',
-      marginVertical:5,
-      fontSize:40,
-      textAlign: 'center',
-      color:'white'
     },
   })

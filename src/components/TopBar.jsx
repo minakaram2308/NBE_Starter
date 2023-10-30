@@ -3,8 +3,8 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { View, Image, Button, Text, Alert, TouchableOpacity } from 'react-native';
 import styles from './../styles/components/TopBar.style'
 import { ModeContext } from '../context/ModeContext';
-import { darkColors } from '../styles/components/Modes/Dark';
-import { lightColors } from '../styles/components/Modes/light';
+import { darkColors } from '../styles/components/Modes/DarkColors';
+import { lightColors } from '../styles/components/Modes/LightColors';
 export const TopBar = (props) => {
   const {darkTheme, toggle} = useContext(ModeContext);
   let backgroundStyle=darkTheme?darkColors.darkBackgrd:lightColors.lightBackgrd
@@ -13,7 +13,6 @@ export const TopBar = (props) => {
     <View style={[styles.topBar,{backgroundColor:backgroundStyle}]}>
 
       <View style={styles.user}>
-
         <TouchableOpacity
           style={styles.menu}
           onPress={() => Alert.alert('Notification clicked', 'This is a notification message')}>

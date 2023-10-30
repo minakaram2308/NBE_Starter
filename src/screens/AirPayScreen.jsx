@@ -14,7 +14,7 @@ export const AirPayScreen = ({ navigation }) => {
   const windowWidth = Dimensions.get('window').width;
   const [enabled,setEnabled]=useState(false)
   const [modalVisible, setModalVisible] = useState(false);
-  const [successPay, setSuccessPay] = useState(true);
+  const [successPay, setSuccessPay] = useState(false);
   const [activeDraggable, setActiveDraggable] = useState(false);
   // console.log(useContext(ModeContext));
   const {darkTheme, toggle} = useContext(ModeContext);
@@ -76,7 +76,7 @@ export const AirPayScreen = ({ navigation }) => {
         Alert.alert('Modal has been closed.');
         setModalVisible(!modalVisible);
       }}>
-      <View style={[allstyles.modalContainer,{backgroundColor:'red'}]}>
+      <View style={[allstyles.modalContainer,{backgroundColor:'#1C2437C4'}]}>
         {successPay?<SuccessModal mode={isDarkMode} closeMe={closeModal}/>:<FailModal mode={isDarkMode} closeMe={closeModal}/>}
       </View>
     </Modal>

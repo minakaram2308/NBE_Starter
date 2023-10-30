@@ -2,14 +2,14 @@ import React, { useContext } from 'react';
 import { View, Text, TouchableWithoutFeedback } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { darkColors } from '../styles/components/Modes/Dark';
-import { lightColors } from '../styles/components/Modes/light';
+import { darkColors } from '../styles/components/Modes/DarkColors';
+import { lightColors } from '../styles/components/Modes/LightColors';
 import styles from './../styles/components/Navigator.style'
 import { ModeContext } from '../context/ModeContext';
 
 export const Navigator = ({ navigation }) => {
   const {darkTheme, toggle} = useContext(ModeContext);
-  let backgroundStyle=darkTheme?darkColors.darkBackgrd:'#FFF'
+  let backgroundStyle=darkTheme?darkColors.darkBackgrd:lightColors.lightBackgrd
   return (
     <View style={[styles.navigator,{backgroundColor:backgroundStyle}]}>
 
