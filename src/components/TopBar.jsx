@@ -1,4 +1,5 @@
 import React,{useContext,useState} from 'react';
+import React, { useContext } from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { View, Image, Button, Text, Alert, TouchableOpacity } from 'react-native';
 import styles from './../styles/components/TopBar.style'
@@ -11,6 +12,16 @@ export const TopBar = (props) => {
   const {darkTheme, toggle} = useContext(ModeContext);
   let backgroundStyle=darkTheme?darkColors.darkBackgrd:lightColors.lightBackgrd
   let textStyle=darkTheme?darkColors.darkText:lightColors.lightText
+import LoginContext from '../store/Authentication/login-context';
+
+export const  TopBar = (props) => {
+  const loginContext = useContext(LoginContext)
+
+  // console.log('<<>>>', props);
+  function openDrawerHandler() {
+    props.navigation.toggleDrawer();
+
+  }
   return (
     <View style={[styles.topBar,{backgroundColor:backgroundStyle}]}>
 
@@ -18,7 +29,7 @@ export const TopBar = (props) => {
 
         <TouchableOpacity
           style={styles.menu}
-          onPress={() => Alert.alert('Notification clicked', 'This is a notification message')}>
+          onPress={openDrawerHandler}>
           <MaterialCommunityIcons
             name="menu"
             color={darkTheme?'white':'#333333'}
@@ -33,7 +44,7 @@ export const TopBar = (props) => {
 
         <View style={styles.userInfo}>
           <Text style={[styles.greeting,{color:textStyle}]}>Good morning</Text>
-          <Text style={[styles.userName,{color:textStyle}]}>Ahmad</Text>
+          <Text style={[styles.userName,{color:textStyle}]}>{loginContext.username}</Text>
         </View>
         
       </View>
