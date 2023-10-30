@@ -7,6 +7,7 @@ import
         Pressable,
         StyleSheet,
         Text,
+        ToastAndroid,
         View,
         useWindowDimensions,
     } from 'react-native';
@@ -89,9 +90,10 @@ export default function BenCardWrapper({ children, actionsOnPress })
             dragOffsetFromLeftEdge={30}
             dragOffsetFromRightEdge={30}
             overshootFriction={8}
-            style={{ backgroundColor: 'red' }}>
+            // style={{ backgroundColor: 'red' }}
+            >
             <Animated.View>
-                <RectButton style={[styles.cardWrapper]} onPress={() => console.log("View")}>{children}</RectButton>
+                <RectButton style={[styles.cardWrapper]} onPress={() => ToastAndroid.show('View Ben.', ToastAndroid.SHORT)}>{children}</RectButton>
             </Animated.View>
         </Swipeable>
     );
