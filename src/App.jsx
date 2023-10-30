@@ -23,6 +23,7 @@ import styles from "./styles/App.style";
 import { ModeContext, ThemeProvider } from './context/ModeContext';
 import { CashTransferStack } from './components/CashTransferComponents/CashTransferStack';
 import { Maps } from './screens/Maps';
+import AirPayScreen from './screens/AirPayScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -68,7 +69,7 @@ export const App = () => {
                 <Stack.Screen name="transfer" component={CashTransferStack}  />
                 <Stack.Screen name="cards" component={CardsScreen} />
                 <Stack.Screen name="map" component={Maps} />
-                <Stack.Screen name="history" component={HistoryScreen} />
+                <Stack.Screen name="AirPay" component={AirPayScreen} />
               </Tab.Navigator>
             </>
           )}

@@ -72,7 +72,7 @@ export const Navigator = ({ navigation }) => {
 
       <TouchableWithoutFeedback
        onPress={() => {
-        navigation.navigate('history');}}
+        navigation.navigate('AirPay');}}
       >
         <View style={styles.navBtn}>
           <MaterialCommunityIcons
