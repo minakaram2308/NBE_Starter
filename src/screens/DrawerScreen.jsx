@@ -199,7 +199,7 @@ export const DrawerScreen = ({navigation}) => {
           }}
         />
         <Drawer.Screen
-          name="Dark Mode "
+          name="Dark Mode"
           component={AccountSummaryNav}
           options={{
             drawerIcon: () => (
@@ -210,7 +210,8 @@ export const DrawerScreen = ({navigation}) => {
                 <Switch
                   value={isDarkMode}
                   onValueChange={toggleDarkMode}
-                  style={{position: 'absolute', right: 20, top: 10}}
+                  color="#EB001B"
+                  style={{position: 'absolute', right: 0}}
                 />
               </>
             ),
