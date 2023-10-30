@@ -1,35 +1,26 @@
 import React, {useState} from 'react';
-import {View, Text, TouchableWithoutFeedback} from 'react-native';
+import { View, Text, TouchableWithoutFeedback } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import styles from './../styles/components/Navigator.style';
-import {
-  AccountsScreen,
-  CardsScreen,
-  HistoryScreen,
-  HomeScreen,
-  LoginScreen,
-  SplashScreen,
-  UtilsScreen,
-} from './screens';
+import styles from './../styles/components/Navigator.style'
+import {AccountsScreen, CardsScreen, HistoryScreen, HomeScreen, LoginScreen, SplashScreen, UtilsScreen} from './screens';
 
-export const Navigator = ({navigation}) => {
-  const routeName =
-    navigation.getState().routes[navigation.getState().index].name;
-  console.log(`current route -> ${routeName}`);
+
+
+export const Navigator = ({ navigation }) => {
 
   return (
     <View style={styles.navigator}>
+
       <TouchableWithoutFeedback
-        onPress={() => {
-          navigation.navigate('home');
-        }}>
-        <View
-          style={routeName === 'home' ? styles.activeNavBtn : styles.navBtn}>
+      onPress={() => {
+        navigation.navigate('home');}}
+      >
+        <View style={styles.activeNavBtn}>
           <MaterialCommunityIcons
             name="home"
-            style={routeName === 'home' ? styles.activeNavIcon : styles.navIcon}
+            style={styles.activeNavIcon}
             size={25}
           />
           <Text style={styles.activeNavText}>Home</Text>
@@ -37,35 +28,28 @@ export const Navigator = ({navigation}) => {
       </TouchableWithoutFeedback>
 
       <TouchableWithoutFeedback
-        onPress={() => {
-          navigation.navigate('transfer');
-        }}>
-        <View
-          style={
-            routeName === 'transfer' ? styles.activeNavBtn : styles.navBtn
-          }>
+       onPress={() => {
+        navigation.navigate('transfer');}}
+      >
+        <View style={styles.navBtn}>
           <MaterialCommunityIcons
             name="bank-transfer"
-            style={
-              routeName === 'transfer' ? styles.activeNavIcon : styles.navIcon
-            }
+            style={styles.navIcon}
             size={25}
+            
           />
           <Text style={styles.navText}>Transfer</Text>
         </View>
       </TouchableWithoutFeedback>
 
       <TouchableWithoutFeedback
-        onPress={() => {
-          navigation.navigate('cards');
-        }}>
-        <View
-          style={routeName === 'cards' ? styles.activeNavBtn : styles.navBtn}>
+       onPress={() => {
+        navigation.navigate('cards');}}
+      >
+        <View style={styles.navBtn}>
           <Icon
             name="people"
-            style={
-              routeName === 'cards' ? styles.activeNavIcon : styles.navIcon
-            }
+            style={styles.navIcon}
             size={25}
           />
           <Text style={styles.navText}>Benef.</Text>
@@ -73,13 +57,13 @@ export const Navigator = ({navigation}) => {
       </TouchableWithoutFeedback>
 
       <TouchableWithoutFeedback
-        onPress={() => {
-          navigation.navigate('map');
-        }}>
-        <View style={routeName === 'map' ? styles.activeNavBtn : styles.navBtn}>
+       onPress={() => {
+        navigation.navigate('map');}}
+      >
+        <View style={styles.navBtn}>
           <MaterialCommunityIcons
             name="map-marker-outline"
-            style={routeName === 'map' ? styles.activeNavIcon : styles.navIcon}
+            style={styles.navIcon}
             size={25}
           />
           <Text style={styles.navText}>ATMs</Text>
@@ -87,21 +71,20 @@ export const Navigator = ({navigation}) => {
       </TouchableWithoutFeedback>
 
       <TouchableWithoutFeedback
-        onPress={() => {
-          navigation.navigate('AirPay');
-        }}>
-        <View
-          style={routeName === 'AirPay' ? styles.activeNavBtn : styles.navBtn}>
+       onPress={() => {
+        navigation.navigate('AirPay');}}
+      >
+        <View style={styles.navBtn}>
           <MaterialCommunityIcons
             name="cellphone-nfc"
-            style={
-              routeName === 'AirPay' ? styles.activeNavIcon : styles.navIcon
-            }
+            style={styles.navIcon}
             size={25}
           />
           <Text style={styles.navText}>Air Pay</Text>
         </View>
       </TouchableWithoutFeedback>
+
     </View>
-  );
-};
+  )
+}
+

@@ -6,7 +6,7 @@
    <!-- You will only need to add this meta-data tag, but make sure it's a child of application -->
    <meta-data
      android:name="com.google.android.geo.API_KEY"
-     android:value="AIzaSyCzoDtUtxPJ0r_OEzV-JFv70IAqYK3Vyik"/>
+     android:value="Your Google maps API Key Here"/>
 </application>
     <application
       android:name=".MainApplication"
