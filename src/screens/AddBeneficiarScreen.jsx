@@ -9,7 +9,7 @@ import AddBeneficiaryCard from '../components/utils/AddBeneficiaryCard';
 import AddBeneficiaryForm from '../components/utils/AddBeneficiaryForm';
 import { darkColors } from '../styles/components/Modes/DarkColors';
 import { lightColors } from '../styles/components/Modes/LightColors';
-import { ModeContext } from '../Context/ModeContext';
+import { ModeContext } from '../context/ModeContext';
 const {width, height} = Dimensions.get('window');
 
 function AddBeneficiarScreen() {

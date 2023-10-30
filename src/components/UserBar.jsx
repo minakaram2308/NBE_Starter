@@ -4,7 +4,7 @@ import {View, Image, Button, Text, Alert, TouchableOpacity} from 'react-native';
 import styles from '../styles/components/UserBar.style';
 import { lightColors } from '../styles/components/Modes/LightColors';
 import { darkColors } from '../styles/components/Modes/DarkColors';
-import { ModeContext, ThemeProvider  } from '../Context/ModeContext';
+import { ModeContext, ThemeProvider  } from '../context/ModeContext';
 
 export const UserBar = () => {
   const {darkTheme, toggle} = useContext(ModeContext);

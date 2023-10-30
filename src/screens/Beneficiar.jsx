@@ -5,7 +5,7 @@ import {UserBar} from '../components/UserBar';
 import TransactionHistory from './TransactionHistory';
 import { lightColors } from '../styles/components/Modes/LightColors';
 import { darkColors } from '../styles/components/Modes/DarkColors';
-import { ModeContext,  } from '../Context/ModeContext';
+import { ModeContext,  } from '../context/ModeContext';
 
 function Beneficiar({mode}) {
   const {darkTheme, toggle} = useContext(ModeContext);

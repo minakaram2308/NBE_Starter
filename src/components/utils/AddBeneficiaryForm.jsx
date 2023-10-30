@@ -13,7 +13,7 @@ import ErrorIcon from 'react-native-vector-icons/MaterialIcons';
 import CorrectIcon from 'react-native-vector-icons/AntDesign';
 import { darkColors } from '../../styles/components/Modes/DarkColors';
 import { lightColors } from '../../styles/components/Modes/LightColors';
-import { ModeContext, ThemeProvider } from '../../Context/ModeContext';
+import { ModeContext, ThemeProvider } from '../../context/ModeContext';
 const {width, height} = Dimensions.get('window');
 function AddBeneficiaryForm() {
   const {darkTheme, toggle} = useContext(ModeContext);

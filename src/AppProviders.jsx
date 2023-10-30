@@ -2,7 +2,7 @@ import React from 'react';
 import LanguageProvider from './store/Language/LanguageProvider';
 import LoginProvider from './store/Authentication/LoginProvider';
 import {App} from './App';
-import {ThemeProvider} from './Context/ModeContext';
+import {ThemeProvider} from './context/ModeContext';
 
 const AppProviders = () => {
   return (
