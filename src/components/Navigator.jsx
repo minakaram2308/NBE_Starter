@@ -29,7 +29,7 @@ export const Navigator = ({ navigation }) => {
 
       <TouchableWithoutFeedback
        onPress={() => {
-        navigation.navigate('accounts');}}
+        navigation.navigate('transfer');}}
       >
         <View style={styles.navBtn}>
           <MaterialCommunityIcons
@@ -58,7 +58,7 @@ export const Navigator = ({ navigation }) => {
 
       <TouchableWithoutFeedback
        onPress={() => {
-        navigation.navigate('utils');}}
+        navigation.navigate('map');}}
       >
         <View style={styles.navBtn}>
           <MaterialCommunityIcons

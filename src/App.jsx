@@ -21,6 +21,8 @@ import LoginContext from './store/Authentication/login-context';
 import { colors } from './constants/Colors';
 import styles from "./styles/App.style";
 import { ModeContext, ThemeProvider } from './context/ModeContext';
+import { CashTransferStack } from './components/CashTransferComponents/CashTransferStack';
+import { Maps } from './screens/Maps';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -54,11 +56,18 @@ export const App = () => {
                 initialRouteName="home"
                 tabBar={prop => (
                   <Navigator {...prop} screenOptions={{headerShown: false}} />
-                )}>
+                )}
+                screenOptions={{
+                  header: () => null,
+
+               }
+      
+     }
+                >
                 <Tab.Screen name="home" component={HomeScreen} />
-                <Stack.Screen name="accounts" component={AccountsScreen} />
+                <Stack.Screen name="transfer" component={CashTransferStack}  />
                 <Stack.Screen name="cards" component={CardsScreen} />
-                <Stack.Screen name="utils" component={UtilsScreen} />
+                <Stack.Screen name="map" component={Maps} />
                 <Stack.Screen name="history" component={HistoryScreen} />
               </Tab.Navigator>
             </>
