@@ -1,20 +1,19 @@
 import React,{useContext,useState} from 'react';
-import React, { useContext } from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { View, Image, Button, Text, Alert, TouchableOpacity } from 'react-native';
 import styles from './../styles/components/TopBar.style'
 import { ModeContext, ThemeProvider } from '../Context/ModeContext';
 import { darkColors } from '../styles/components/Modes/DarkColors';
 import { lightColors } from '../styles/components/Modes/LightColors';
+import LoginContext from '../store/Authentication/login-context';
 
 
 export const TopBar = (props) => {
   const {darkTheme, toggle} = useContext(ModeContext);
   let backgroundStyle=darkTheme?darkColors.darkBackgrd:lightColors.lightBackgrd
   let textStyle=darkTheme?darkColors.darkText:lightColors.lightText
-import LoginContext from '../store/Authentication/login-context';
 
-export const  TopBar = (props) => {
+
   const loginContext = useContext(LoginContext)
 
   // console.log('<<>>>', props);
