@@ -1,6 +1,6 @@
 import React,{useContext,useState} from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { View, Image, Button, Text, Alert, TouchableOpacity } from 'react-native';
+import { View, Image, Button, Text, Alert, TouchableOpacity, Pressable } from 'react-native';
 import styles from './../styles/components/TopBar.style'
 import { ModeContext, ThemeProvider } from '../context/ModeContext';
 import { darkColors } from '../styles/components/Modes/DarkColors';
