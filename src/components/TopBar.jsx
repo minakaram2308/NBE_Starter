@@ -49,10 +49,6 @@ export const  TopBar = (props) => {
           size={20}
         />
       </TouchableOpacity>
-      
-      <SlidingModal visible={showSidebar} onClose={() => setShowSidebar(false)}>
-        <Text>Hi</Text>
-      </SlidingModal>
     </View>
   )
 }
