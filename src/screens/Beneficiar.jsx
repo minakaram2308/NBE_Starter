@@ -1,127 +1,98 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {Text, View, StatusBar, StyleSheet, ScrollView} from 'react-native';
 import {TopBar} from '../components';
 import {UserBar} from '../components/UserBar';
 import TransactionHistory from './TransactionHistory';
+import { lightColors } from '../styles/components/Modes/Light';
+import { darkColors } from '../styles/components/Modes/Dark';
+import { ModeContext,  } from '../Context/ModeContext';
 
-function Beneficiar() {
-  const beneficiaries = [
-    {
-      id: 1,
-      firstName: 'John',
-      lastName: 'Doe',
-      branch: 'Cairo',
-      accountNumber: '1234567890',
-      phoneNumber: '+201234567890',
-      email: 'john.doe@example.com',
-      transactions: [
-        {
-          id: 1,
-          reason: 'Salary deposit',
-          date: '2023-10-23',
-          amount: 1000,
-          state: 'Completed',
-        },
-        {
-          id: 2,
-          reason: 'Utility bill payment',
-          date: '2023-10-25',
-          amount: 200,
-          state: 'Completed',
-        },
-        {
-          id: 3,
-          reason: 'Online shopping purchase',
-          date: '2023-10-27',
-          amount: 500,
-          state: 'Completed',
-        },
-      ],
-    },
-  ];
-  const transactions= [
+function Beneficiar({mode}) {
+  const {darkTheme, toggle} = useContext(ModeContext);
+  let  styles = darkTheme ? darkColors.darkBackgrd : lightColors.lightBackgrd
+  const transactions = [
     {
       id: 1,
       reason: 'Salary deposit',
       date: '2023-10-23',
-      amount: 1000,
+      amount: '$1000',
       state: 'Completed',
     },
     {
       id: 2,
       reason: 'Utility bill payment',
       date: '2023-10-25',
-      amount: 200,
+      amount: '$200',
       state: 'Completed',
     },
     {
       id: 3,
       reason: 'Online shopping purchase',
       date: '2023-10-27',
-      amount: 500,
+      amount: '$500',
       state: 'Completed',
     },
     {
       id: 3,
       reason: 'Online shopping purchase',
       date: '2023-10-27',
-      amount: 500,
+      amount: '$500',
       state: 'Completed',
     },
     {
       id: 3,
       reason: 'Online shopping purchase',
       date: '2023-10-27',
-      amount: 500,
+      amount: '$500',
       state: 'Completed',
     },
     {
       id: 3,
       reason: 'Online shopping purchase',
       date: '2023-10-27',
-      amount: 500,
+      amount: '$500',
       state: 'Completed',
     },
     {
       id: 3,
       reason: 'Online shopping purchase',
       date: '2023-10-27',
-      amount: 500,
+      amount: '$500',
       state: 'Completed',
     },
     {
-        id: 2,
-        reason: 'Utility bill payment',
-        date: '2023-10-25',
-        amount: 200,
-        state: 'Completed',
-      },
-      {
-        id: 2,
-        reason: 'Utility bill payment',
-        date: '2023-10-25',
-        amount: 200,
-        state: 'Completed',
-      },
-      {
-        id: 2,
-        reason: 'Utility bill payment',
-        date: '2023-10-25',
-        amount: 200,
-        state: 'Completed',
-      },
-      {
-        id: 2,
-        reason: 'Utility bill payment',
-        date: '2023-10-25',
-        amount: 200,
-        state: 'Completed',
-      },
-  ]
+      id: 2,
+      reason: 'Utility bill payment',
+      date: '2023-10-25',
+      amount: '$500',
+      state: 'Completed',
+    },
+    {
+      id: 2,
+      reason: 'Utility bill payment',
+      date: '2023-10-25',
+      amount: '$500',
+      state: 'Completed',
+    },
+    {
+      id: 2,
+      reason: 'Utility bill payment',
+      date: '2023-10-25',
+      amount: '$500',
+      state: 'Completed',
+    },
+    {
+      id: 2,
+      reason: 'Utility bill payment',
+      date: '2023-10-25',
+      amount: '$500',
+      state: 'Completed',
+    },
+  ];
   return (
-    <ScrollView>
+    <ScrollView style={{backgroundColor:  styles}}>
       <StatusBar barStyle="dark-content" backgroundColor="#F1F3FB" />
-      <TopBar></TopBar>
+      <TopBar/>
       <View
         style={{
           marginHorizontal: 20,
@@ -132,7 +103,7 @@ function Beneficiar() {
         }}>
         <UserBar />
       </View>
-      <Text style={styles.transactiontextStyle}>Transaction History</Text>
+      <Text style={styles.transactiontextStyle}>{transactions ? '': 'Transaction History'}</Text>
       <TransactionHistory data={transactions}/>
     </ScrollView>
   );
@@ -140,12 +111,3 @@ function Beneficiar() {
 
 export default Beneficiar;
 
-const styles = StyleSheet.create({
-  transactiontextStyle: {
-    padding: 24,
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#1C2437',
-
-  },
-});

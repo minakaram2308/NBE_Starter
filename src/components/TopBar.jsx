@@ -1,12 +1,18 @@
-import React from 'react';
+import React,{useContext,useState} from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { View, Image, Button, Text, Alert, TouchableOpacity } from 'react-native';
-
 import styles from './../styles/components/TopBar.style'
+import { ModeContext, ThemeProvider } from '../Context/ModeContext';
+import { darkColors } from '../styles/components/Modes/Dark';
+import { lightColors } from '../styles/components/Modes/Light';
 
-export const TopBar = () => {
+
+export const TopBar = (props) => {
+  const {darkTheme, toggle} = useContext(ModeContext);
+  let backgroundStyle=darkTheme?darkColors.darkBackgrd:lightColors.lightBackgrd
+  let textStyle=darkTheme?darkColors.darkText:lightColors.lightText
   return (
-    <View style={styles.topBar}>
+    <View style={[styles.topBar,{backgroundColor:backgroundStyle}]}>
 
       <View style={styles.user}>
 
@@ -15,7 +21,7 @@ export const TopBar = () => {
           onPress={() => Alert.alert('Notification clicked', 'This is a notification message')}>
           <MaterialCommunityIcons
             name="menu"
-            color='#333333'
+            color={darkTheme?'white':'#333333'}
             size={25}
           />
         </TouchableOpacity>
@@ -26,8 +32,8 @@ export const TopBar = () => {
         />
 
         <View style={styles.userInfo}>
-          <Text style={styles.greeting}>Good morning</Text>
-          <Text style={styles.userName}>Ahmad</Text>
+          <Text style={[styles.greeting,{color:textStyle}]}>Good morning</Text>
+          <Text style={[styles.userName,{color:textStyle}]}>Ahmad</Text>
         </View>
         
       </View>

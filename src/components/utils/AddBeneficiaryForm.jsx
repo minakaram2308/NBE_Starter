@@ -13,7 +13,9 @@ import ErrorIcon from 'react-native-vector-icons/MaterialIcons';
 import CorrectIcon from 'react-native-vector-icons/AntDesign';
 
 const {width, height} = Dimensions.get('window');
-function AddBeneficiaryForm() {
+let modex = null
+function AddBeneficiaryForm({mode}) {
+  modex = mode;
   const data = ['Option 1', 'Option 2', 'Option 3'];
   const [isFocused, setIsFocused] = useState(false);
   const [bankBranch, setBankBranch] = useState(0);
@@ -88,7 +90,7 @@ function AddBeneficiaryForm() {
                 setFormData({...formData, firstName: element});
               }}
             />
-            {formData.firstName ? (
+            {formData.firstName && formData.firstName.length > 3 ? (
               <View>
                 <CorrectIcon
                   name="check"
@@ -98,9 +100,9 @@ function AddBeneficiaryForm() {
                 />
               </View>
             ) : (
-              <View style={{marginTop: 5}}>
-                <ErrorIcon name="error" size={24} color={'rgb(255, 161, 0)'} />
-              </View>
+              formData.firstName.length > 0? <View style={{marginTop: 5}}>
+              <ErrorIcon name="error" size={24} color={'rgb(255, 161, 0)'} />
+            </View> : <View></View>
             )}
           </View>
         </View>
@@ -119,7 +121,7 @@ function AddBeneficiaryForm() {
               onFocus={handleInputFocus.bind(null, 2)}
               onBlur={handleInputBlur}
             />
-            {formData.lastName ? (
+            {(formData.lastName && formData.lastName.length > 3) ? (
               <View>
                 <CorrectIcon
                   name="check"
@@ -129,9 +131,10 @@ function AddBeneficiaryForm() {
                 />
               </View>
             ) : (
-              <View style={{marginTop: 5}}>
-                <ErrorIcon name="error" size={24} color={'rgb(255, 161, 0)'} />
-              </View>
+              formData.lastName.length > 0? <View style={{marginTop: 5}}>
+              <ErrorIcon name="error" size={24} color={'rgb(255, 161, 0)'} />
+            </View> : <View></View>
+              
             )}
           </View>
         </View>
@@ -171,9 +174,9 @@ function AddBeneficiaryForm() {
               />
             </View>
           ) : (
-            <View style={{marginTop: 5, marginLeft: 34}}>
+            bankBranch.length > 0? <View style={{marginTop: 5}}>
               <ErrorIcon name="error" size={24} color={'rgb(255, 161, 0)'} />
-            </View>
+            </View> : <View></View>
           )}
         </View>
       </View>
@@ -203,9 +206,9 @@ function AddBeneficiaryForm() {
               />
             </View>
           ) : (
-            <View style={{marginTop: 5, marginLeft: 34}}>
+            formData.accountNumber.length > 0? <View style={{marginTop: 5}}>
               <ErrorIcon name="error" size={24} color={'rgb(255, 161, 0)'} />
-            </View>
+            </View> : <View></View>
           )}
         </View>
       </View>
@@ -235,9 +238,9 @@ function AddBeneficiaryForm() {
               />
             </View>
           ) : (
-            <View style={{marginTop: 5, marginLeft: 34}}>
+            formData.phoneNumber.length > 0? <View style={{marginTop: 5}}>
               <ErrorIcon name="error" size={24} color={'rgb(255, 161, 0)'} />
-            </View>
+            </View> : <View></View>
           )}
         </View>
       </View>
@@ -267,9 +270,9 @@ function AddBeneficiaryForm() {
               />
             </View>
           ) : (
-            <View style={{marginTop: 5, marginLeft: 34}}>
+            formData.email.length > 0? <View style={{marginTop: 5}}>
               <ErrorIcon name="error" size={24} color={'rgb(255, 161, 0)'} />
-            </View>
+            </View> : <View></View>
           )}
         </View>
       </View>
@@ -281,6 +284,7 @@ function AddBeneficiaryForm() {
             styles.formSubmitButton,
             isFormValid() && {backgroundColor: '#007236'},
           ]}
+          
           onPress={AddBeneficiarHandler}>
           <Text style={[isFormValid() && {color: 'white'}]}>
             Add Beneficiar

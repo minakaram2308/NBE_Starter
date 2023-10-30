@@ -1,7 +1,8 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 
-function TransactionCard({data}) {
+function TransactionCard({data,mode}) {
+  const style = mode ==='light'? lightstyle : darkstyle
   return (
     <View style={style.rootContainer}>
         {data.map((item, index) => (
@@ -19,19 +20,20 @@ function TransactionCard({data}) {
 
 export default TransactionCard;
 
-const style = StyleSheet.create({
+const lightstyle = StyleSheet.create({
   rootContainer: {
     flexDirection: 'column',
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
     paddingHorizontal: 24,
+
   },
   cardContainer: {
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-between',
     borderBottomWidth: 1,
-    borderBottomColor: '#B7B7B7',
+    borderBottomColor: 'rgba(183,183,183,0.6)',
     alignItems: 'center',
   },
   transactionDetails: {
@@ -40,15 +42,52 @@ const style = StyleSheet.create({
   transactionTitle: {
     fontSize: 18,
     color: '#1C2437',
-    marginVertical: 5,
-    fontWeight: 'bold',
+    marginVertical: 7,
+    fontWeight: '500',
   },
   transactionDate: {
-    marginBottom: 5,
+    marginBottom: 15,
+    opacity:0.6
   },
   transactionCost: {
     color: '#1C2437',
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+});
+const darkstyle = StyleSheet.create({
+  rootContainer: {
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
+    paddingHorizontal: 24,
+  },
+  cardContainer: {
+    
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgba(183,183,183,0.6)',
+    alignItems: 'center',
+  },
+  transactionDetails: {
+    flexDirection: 'column',
+  },
+  transactionTitle: {
     fontSize: 18,
+    color: 'white',
+    marginVertical: 7,
+    fontWeight: '500',
+  },
+  transactionDate: {
+    color:"white",
+    marginBottom: 15,
+    opacity:0.6
+  },
+  transactionCost: {
+    color: 'white',
+    fontSize: 20,
     fontWeight: 'bold',
   },
 });

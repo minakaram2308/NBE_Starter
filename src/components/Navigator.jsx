@@ -1,17 +1,21 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { View, Text, TouchableWithoutFeedback } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon from 'react-native-vector-icons/Ionicons';
+import styles from '../styles/components/Navigator.style'
+import { lightColors } from '../styles/components/Modes/Light';
+import { darkColors } from '../styles/components/Modes/Dark';
+import { ModeContext, ThemeProvider } from '../Context/ModeContext';
 
-import styles from './../styles/components/Navigator.style'
 
-export const Navigator = ({ navigation }) => {
-
+export const Navigator = ({ navigation,mode }) => {
+  const {darkTheme, toggle} = useContext(ModeContext);
+  let  style = darkTheme ? darkColors.greyBackgrd : lightColors.lightBackgrd
   return (
-    <View style={styles.navigator}>
+    <View style={[styles.navigator,{backgroundColor: style}]}>
 
       <TouchableWithoutFeedback>
-        <View style={styles.activeNavBtn}>
+        <View style={[styles.activeNavBtn]}>
           <MaterialCommunityIcons
             name="home"
             style={styles.activeNavIcon}

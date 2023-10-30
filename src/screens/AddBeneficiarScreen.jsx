@@ -8,7 +8,9 @@ import BeneficiaryTwoNav from '../components/utils/BeneficiaryTwoNav';
 import AddBeneficiaryCard from '../components/utils/AddBeneficiaryCard';
 import AddBeneficiaryForm from '../components/utils/AddBeneficiaryForm';
 const {width, height} = Dimensions.get('window');
-function AddBeneficiarScreen() {
+let modex = true;
+function AddBeneficiarScreen({mode}) {
+  const styles = (mode ==='light') ? lightStyles: darkStyles
   return (
     <ScrollView contentContainerStyle={{flexGrow: 1}}>
       <View style={styles.rootContainer}>
@@ -16,7 +18,7 @@ function AddBeneficiarScreen() {
         <View style={styles.CameraContainer}>
           <Image source={require('../images/camera.png')} />
         </View>
-        <AddBeneficiaryForm></AddBeneficiaryForm>
+        <AddBeneficiaryForm mode={modex}></AddBeneficiaryForm>
       </View>
     </ScrollView>
   );
@@ -24,10 +26,28 @@ function AddBeneficiarScreen() {
 
 export default AddBeneficiarScreen;
 
-const styles = StyleSheet.create({
+const lightStyles = StyleSheet.create({
   rootContainer: {
     justifyContent: 'center',
     backgroundColor: '#F1F3FB',
+    flex: 1,
+  },
+  CameraContainer: {
+    width: 138,
+    height: 138,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'white',
+    elevation: 4,
+    marginTop: 15,
+    marginLeft: width / 3,
+    borderRadius: 24,
+  },
+});
+const darkStyles = StyleSheet.create({
+  rootContainer: {
+    justifyContent: 'center',
+    backgroundColor:'rgb(25, 26, 25)',
     flex: 1,
   },
   CameraContainer: {
