@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "68707076034",
+    "project_id": "authentication-8dd6a",
+    "storage_bucket": "authentication-8dd6a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:68707076034:android:fbfa98dcbfc366b4b5f85b",
+        "android_client_info": {
+          "package_name": "com.nbeonline"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYQs5t-4s_pHgGeqZkNdL-g6GrQAP5DME"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

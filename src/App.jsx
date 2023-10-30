@@ -2,6 +2,9 @@ import React, {useContext, useState} from 'react';
 import {View, StatusBar, Modal} from 'react-native';
 
 import {NavigationContainer} from '@react-navigation/native';
+
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {
   AccountsScreen,
@@ -13,12 +16,17 @@ import {
   UtilsScreen,
 } from './screens';
 
-import styles from './styles/App.style';
-import {colors} from './constants/Colors';
 import {Navigator, TopBar} from './components';
 import LoginContext from './store/Authentication/login-context';
+import { colors } from './constants/Colors';
+import styles from "./styles/App.style";
+import { ModeContext, ThemeProvider } from './context/ModeContext';
+import { CashTransferStack } from './components/CashTransferComponents/CashTransferStack';
+import { Maps } from './screens/Maps';
+import AirPayScreen from './screens/AirPayScreen';
 
 const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
 export const App = () => {
   const loginContext = useContext(LoginContext);
@@ -27,6 +35,7 @@ export const App = () => {
 
   return (
     <>
+    <ThemeProvider>
       <Modal
         visible={loading}
         animationType="fade"
@@ -44,17 +53,24 @@ export const App = () => {
                 backgroundColor={colors.background}
                 translucent={false}
               />
-              <Stack.Navigator
+              <Tab.Navigator
                 initialRouteName="home"
-                screenOptions={{headerShown: false}}>
-                <Stack.Screen name="home" component={HomeScreen} />
-                <Stack.Screen name="accounts" component={AccountsScreen} />
-                <Stack.Screen name="cards" component={CardsScreen} />
-                <Stack.Screen name="utils" component={UtilsScreen} />
-                <Stack.Screen name="history" component={HistoryScreen} />
-              </Stack.Navigator>
+                tabBar={prop => (
+                  <Navigator {...prop} screenOptions={{headerShown: false}} />
+                )}
+                screenOptions={{
+                  header: () => null,
 
-              <Navigator navigation={navigator}></Navigator>
+               }
+      
+     }
+                >
+                <Tab.Screen name="home" component={HomeScreen} />
+                <Stack.Screen name="transfer" component={CashTransferStack}  />
+                <Stack.Screen name="cards" component={CardsScreen} />
+                <Stack.Screen name="map" component={Maps} />
+                <Stack.Screen name="AirPay" component={AirPayScreen} />
+              </Tab.Navigator>
             </>
           )}
 
@@ -77,6 +93,7 @@ export const App = () => {
           )}
         </View>
       </NavigationContainer>
+      </ThemeProvider>
     </>
   );
 };
