@@ -12,7 +12,7 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import ButtonInlineText from '../../components/commons/ButtonInlineText';
 import ButtonInlineToggle from '../../components/commons/ButtonInlineToggle';
 import { Spacer } from '../../components/commons/Spacer';
-import { colors } from '../../constants/colors';
+import { colors } from '../../constants/Colors';
 import { beneficiaries } from '../../constants/data';
 import { IMAGES } from '../../constants/images';
 import { spacing } from '../../constants/spacing';

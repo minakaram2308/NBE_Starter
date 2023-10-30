@@ -8,7 +8,7 @@ import
     } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { Spacer } from '../../components/commons/Spacer';
-import { colors } from '../../constants/colors';
+import { colors } from '../../constants/Colors';
 // import { IMAGES } from '../../constants/images';
 
 export default function BeneficiaryCard({

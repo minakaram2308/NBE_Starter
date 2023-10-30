@@ -11,7 +11,7 @@ import
         View,
         useWindowDimensions,
     } from 'react-native';
-import { colors } from '../../constants/colors';
+import { colors } from '../../constants/Colors';
 import { Spacer } from '../../components/commons/Spacer';
 import
     {

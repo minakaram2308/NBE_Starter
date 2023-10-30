@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View } from 'react-native';
-import { colors } from '../../constants/colors';
+import { colors } from '../../constants/Colors';
 import { Spacer } from '../../components/commons/Spacer';
 import ButtonInlineText from '../../components/commons/ButtonInlineText';
 import Icon from 'react-native-vector-icons/FontAwesome5';

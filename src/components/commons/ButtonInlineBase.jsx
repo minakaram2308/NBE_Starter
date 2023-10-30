@@ -1,6 +1,6 @@
 import React from 'react';
 import {Pressable, StyleSheet, View} from 'react-native';
-import {colors} from '../../constants/colors';
+import {colors} from '../../constants/Colors';
 
 export default function ButtonInlineBase({
   children,
