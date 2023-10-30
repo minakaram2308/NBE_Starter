@@ -17,7 +17,7 @@ import {
 export const Navigator = ({navigation}) => {
   const routeName =
     navigation.getState().routes[navigation.getState().index].name;
-  console.log(routeName);
+  console.log(`current route -> ${routeName}`);
 
   return (
     <View style={styles.navigator}>
