@@ -13,8 +13,13 @@ import {
   HomeScreen,
   LoginScreen,
   SplashScreen,
-  UtilsScreen,
+  UtilsScreen
 } from './screens';
+
+import { SignUpScreen } from './screens/SignUpScreen';
+import { VerificationScreen } from './screens/VerificationScreen'
+import { PasswordScreen } from './screens/PasswordScreen';
+import { CongratulationsScreen } from './screens/CongratulationsScreen';
 
 import {Navigator, TopBar} from './components';
 import LoginContext from './store/Authentication/login-context';
@@ -90,7 +95,6 @@ export const App = () => {
                 <Stack.Screen name="verification" component={VerificationScreen} options={{ headerShown: false}} />
                 <Stack.Screen name="password" component={PasswordScreen} options={{ headerShown: false }} />
                 <Stack.Screen name="congratulations" component={CongratulationsScreen} options={{ headerShown: false }} />
-                <Stack.Screen name="app" component={App} />
                 {/* <Stack.Screen name="login" component={LoginScreen} /> */}
               </Stack.Navigator>
             </>

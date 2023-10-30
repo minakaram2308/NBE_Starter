@@ -38,7 +38,7 @@ export const CongratulationsScreen = ({ navigation }) => {
            <View>
            <TouchableOpacity 
              style={{ width: 345, height: 50, borderRadius: 10, backgroundColor: 'white', color:'green' }}
-             onPress={ () => navigation.navigate('app')}
+             onPress={ () => navigation.navigate('login')}
              >
             <Text style={styles.finishButton}>Finish</Text>
             </TouchableOpacity>
