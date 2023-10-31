@@ -63,11 +63,11 @@ export const Navigator = ({state, descriptors, navigation}) => {
         navigation.navigate('beneficiaries');}}
       >
         <View
-          style={routeName === 'Beneficiary' ? styles.activeNavBtn : styles.navBtn}>
+          style={routeName === 'beneficiaries' ? styles.activeNavBtn : styles.navBtn}>
           <Icon
             name="people"
             style={
-              routeName === 'Beneficiary' ? styles.activeNavIcon : styles.navIcon
+              routeName === 'beneficiaries' ? styles.activeNavIcon : styles.navIcon
             }
             size={25}
           />
