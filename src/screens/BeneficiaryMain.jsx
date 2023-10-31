@@ -21,7 +21,7 @@ import BenCardWrapper from './BenefMainComponents/BenCardWrapper'
 import BeneficiaryCard from './BenefMainComponents/BeneficiaryCard';
 import { EmptyScreenPlaceholder } from './BenefMainComponents/EmptyScreenPlaceholder';
 
-export function BeneficiaryMain({ navigator })
+export function BeneficiaryMain({ navigation })
 {
     const { width, height } = useWindowDimensions();
 
@@ -125,7 +125,7 @@ export function BeneficiaryMain({ navigator })
                         if (cardsPerRow === 1)
                         {
                             child = (
-                                <BenCardWrapper actionsOnPress={{'delete': () => deleteBeneficiary(key)}}>
+                                <BenCardWrapper actionsOnPress={{'view': () => navigation.navigate('beneficiaryDetails'), 'edit': () => navigation.navigate('beneficiaryEdit'),'delete': () => deleteBeneficiary(key)}}>
                                     <BeneficiaryCard
                                         cardData={item}
                                         cardsPerRow={cardsPerRow}

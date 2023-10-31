@@ -7,7 +7,7 @@ import { lightColors } from '../styles/components/Modes/LightColors';
 import { darkColors } from '../styles/components/Modes/DarkColors';
 import { ModeContext,  } from '../context/ModeContext';
 
-function Beneficiar({mode}) {
+export function Beneficiar({mode}) {
   const {darkTheme, toggle} = useContext(ModeContext);
   let  styles = darkTheme ? darkColors.darkBackgrd : lightColors.lightBackgrd
   const transactions = [
@@ -108,6 +108,4 @@ function Beneficiar({mode}) {
     </ScrollView>
   );
 }
-
-export default Beneficiar;
 

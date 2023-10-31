@@ -12,7 +12,7 @@ import { lightColors } from '../styles/components/Modes/LightColors';
 import { ModeContext } from '../context/ModeContext';
 const {width, height} = Dimensions.get('window');
 
-function AddBeneficiarScreen() {
+export function AddBeneficiarScreen() {
   const {darkTheme, toggle} = useContext(ModeContext);
   let  style = darkTheme ? darkColors.darkBackgrd : lightColors.lightBackgrd
   return (
@@ -27,8 +27,6 @@ function AddBeneficiarScreen() {
     </ScrollView>
   );
 }
-
-export default AddBeneficiarScreen;
 
 const styles = StyleSheet.create({
   rootContainer: {

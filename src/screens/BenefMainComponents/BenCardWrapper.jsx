@@ -41,7 +41,7 @@ export default function BenCardWrapper({ children, actionsOnPress })
                 >
             <RectButton
                 style={[{justifyContent: 'center', alignItems: 'center', backgroundColor: '#ECF56F', marginRight: 10, borderRadius: 10, aspectRatio: 1, height: '100%'}]}
-                onPress={() => console.log('edit')}>
+                onPress={actionsOnPress.edit}>
                 <Animated.Text
                     style={[
                         // {transform: [{ translateX: trans }]},
@@ -93,7 +93,7 @@ export default function BenCardWrapper({ children, actionsOnPress })
             // style={{ backgroundColor: 'red' }}
             >
             <Animated.View>
-                <RectButton style={[styles.cardWrapper]} onPress={() => ToastAndroid.show('View Ben.', ToastAndroid.SHORT)}>{children}</RectButton>
+                <RectButton style={[styles.cardWrapper]} onPress={actionsOnPress.view}>{children}</RectButton>
             </Animated.View>
         </Swipeable>
     );
