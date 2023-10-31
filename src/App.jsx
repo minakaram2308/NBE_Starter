@@ -30,6 +30,10 @@ import {ModeContext, ThemeProvider} from './Context/ModeContext';
 import {CashTransferStack} from './components/CashTransferComponents/CashTransferStack';
 import {Maps} from './screens/Maps';
 import AirPayScreen from './screens/AirPayScreen';
+import { DrawerScreen } from './screens/DrawerScreen';
+import AirPayDrawerScreen from './screens/AirPayDrawerScreen';
+import BenefDrawerScreen from './screens/BenefDrawerScreen';
+import MapDrawerScreen from './screens/MapDrawerScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -65,13 +69,13 @@ export const App = () => {
                     <Navigator {...prop} screenOptions={{headerShown: false}} />
                   )}
                   screenOptions={{
-                    header: () => null,
+                    headerShown: false,
                   }}>
                   <Tab.Screen name="home" component={HomeScreen} />
                   <Tab.Screen name="transfer" component={CashTransferStack} />
-                  <Tab.Screen name="beneficiaries" component={BeneficiaryMain} />
-                  <Tab.Screen name="map" component={Maps} />
-                  <Tab.Screen name="AirPay" component={AirPayScreen} />
+                  <Tab.Screen name="beneficiaries" component={BenefDrawerScreen} />
+                  <Tab.Screen name="map" component={MapDrawerScreen} />
+                  <Tab.Screen name="AirPay" component={AirPayDrawerScreen} />
                   <Tab.Group>
                     <Tab.Screen name="accounts" component={AccountsScreen} />
                     <Tab.Screen name="cards" component={CardsScreen} />

@@ -40,7 +40,7 @@ import { ModeContext } from '../Context/ModeContext';
 
 const Drawer = createDrawerNavigator();
 
-export const DrawerScreen = ({navigation}) => {
+export const DrawerScreen = ({navigation, screen, transparent}) => {
   const {darkTheme, toggle} = useContext(ModeContext);
   let backgroundStyle=darkTheme?darkColors.darkBackgrd:lightColors.lightBackgrd
   let textStyle=darkTheme?darkColors.darkText:lightColors.lightText
@@ -86,6 +86,7 @@ export const DrawerScreen = ({navigation}) => {
         }}
         screenOptions={{
           header: props => <TopBar {...props} />,
+          headerTransparent: transparent,
           drawerActiveTintColor: 'green',
           drawerStyle: {
             backgroundColor: backgroundStyle,
@@ -96,7 +97,7 @@ export const DrawerScreen = ({navigation}) => {
         }}>
         <Drawer.Screen
           name="Account Summary"
-          component={AccountSummaryNav}
+          component={screen}
           options={{
             drawerIcon: () => (
               <View style={styles.borderImageContainer}>

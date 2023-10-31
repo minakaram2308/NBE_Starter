@@ -7,13 +7,13 @@ import LoginContext from '../store/Authentication/login-context';
 export const  TopBar = (props) => {
   const loginContext = useContext(LoginContext)
 
-  // console.log('<<>>>', props);
+  console.log('<<>>>', props);
   function openDrawerHandler() {
     props.navigation.toggleDrawer();
 
   }
   return (
-    <View style={styles.topBar}>
+    <View style={[styles.topBar, {backgroundColor:"transparent"}]}>
 
       <View style={styles.user}>
 
