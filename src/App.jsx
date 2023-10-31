@@ -15,10 +15,10 @@ import {
   UtilsScreen,
 } from './screens';
 
-import { SignUpScreen } from './screens/SignUpScreen';
-import { VerificationScreen } from './screens/VerificationScreen'
-import { PasswordScreen } from './screens/PasswordScreen';
-import { CongratulationsScreen } from './screens/CongratulationsScreen';
+import {SignUpScreen} from './screens/SignUpScreen';
+import {VerificationScreen} from './screens/VerificationScreen';
+import {PasswordScreen} from './screens/PasswordScreen';
+import {CongratulationsScreen} from './screens/CongratulationsScreen';
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -72,6 +72,12 @@ export const App = () => {
                   <Tab.Screen name="Beneficiary" component={BeneficiaryMain} />
                   <Tab.Screen name="map" component={Maps} />
                   <Tab.Screen name="AirPay" component={AirPayScreen} />
+                  <Tab.Group>
+                    <Tab.Screen name="accounts" component={AccountsScreen} />
+                    <Tab.Screen name="cards" component={CardsScreen} />
+                    <Tab.Screen name="utils" component={UtilsScreen} />
+                    <Tab.Screen name="history" component={HistoryScreen} />
+                  </Tab.Group>
                 </Tab.Navigator>
               </>
             )}
@@ -88,10 +94,26 @@ export const App = () => {
                   initialRouteName="login"
                   screenOptions={{headerShown: false}}>
                   <Stack.Screen name="login" component={LoginScreen} />
-                  <Stack.Screen name="signup" component={SignUpScreen} options={{ headerShown: false }} />
-                  <Stack.Screen name="verification" component={VerificationScreen} options={{ headerShown: false}} />
-                  <Stack.Screen name="password" component={PasswordScreen} options={{ headerShown: false }} />
-                  <Stack.Screen name="congratulations" component={CongratulationsScreen} options={{ headerShown: false }} />
+                  <Stack.Screen
+                    name="signup"
+                    component={SignUpScreen}
+                    options={{headerShown: false}}
+                  />
+                  <Stack.Screen
+                    name="verification"
+                    component={VerificationScreen}
+                    options={{headerShown: false}}
+                  />
+                  <Stack.Screen
+                    name="password"
+                    component={PasswordScreen}
+                    options={{headerShown: false}}
+                  />
+                  <Stack.Screen
+                    name="congratulations"
+                    component={CongratulationsScreen}
+                    options={{headerShown: false}}
+                  />
                   {/* <Stack.Screen name="login" component={LoginScreen} /> */}
                 </Stack.Navigator>
               </>

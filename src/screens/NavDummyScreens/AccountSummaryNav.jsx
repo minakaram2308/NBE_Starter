@@ -1,9 +1,9 @@
 import { PreviewHomeScreen } from "../PreviewHomeScreen";
 import React from 'react';
 
-export  const AccountSummaryNav= () =>{
+export  const AccountSummaryNav= ({navigation}) =>{
     return(
-        <PreviewHomeScreen/>
+        <PreviewHomeScreen navigation={navigation}/>
     )
 }
 
