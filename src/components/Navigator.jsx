@@ -54,14 +54,14 @@ console.log(`current route -> ${routeName}`);
 
       <TouchableWithoutFeedback
        onPress={() => {
-        navigation.navigate('cards');}}
+        navigation.navigate('Beneficiary');}}
       >
         <View
-          style={routeName === 'cards' ? styles.activeNavBtn : styles.navBtn}>
+          style={routeName === 'Beneficiary' ? styles.activeNavBtn : styles.navBtn}>
           <Icon
             name="people"
             style={
-              routeName === 'cards' ? styles.activeNavIcon : styles.navIcon
+              routeName === 'Beneficiary' ? styles.activeNavIcon : styles.navIcon
             }
             size={25}
           />
