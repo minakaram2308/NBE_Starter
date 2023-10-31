@@ -14,7 +14,7 @@ import ButtonInlineText from '../components/commons/ButtonInlineText';
 import ButtonInlineToggle from '../components/commons/ButtonInlineToggle';
 import { Spacer } from '../components/commons/Spacer';
 import { colors } from '../constants/Colors';
-import { beneficiaries } from '../constants/data';
+import { BENEFICIARY_TABLE, TRANSACTION_TABLE, beneficiaries, databaseAPI } from '../constants/data';
 import { IMAGES } from '../constants/images';
 import { spacing } from '../constants/spacing';
 import BenCardWrapper from './BenefMainComponents/BenCardWrapper'
@@ -29,15 +29,17 @@ export function BeneficiaryMain({ navigator })
     const [compactView, setCompactView] = React.useState(false);
     const cardsPerRow = compactView ? 3 : 1;
 
-    React.useEffect(function ()
-    {
-        const timeoutID = setTimeout(function ()
-        {
-            setBeneficiariesData(beneficiaries.slice(0));
-        }, 10);
+    // console.log(databaseAPI(BENEFICARY_TABLE))
 
-        return () => clearTimeout(timeoutID);
-    }, []);
+    // React.useEffect(function ()
+    // {
+    //     const timeoutID = setTimeout(function ()
+    //     {
+    //         setBeneficiariesData(beneficiaries.slice(0));
+    //     }, 10);
+
+    //     return () => clearTimeout(timeoutID);
+    // }, []);
 
     React.useEffect(
         function ()
@@ -81,6 +83,10 @@ export function BeneficiaryMain({ navigator })
       ) {
         UIManager.setLayoutAnimationEnabledExperimental(true);
       }
+
+      React.useEffect(function(){
+        grab(BENEFICIARY_TABLE, {}, (r) => setBeneficiariesData(r), (e) => console.log('failed ', e))
+      }, [])
 
     return (
         <GestureHandlerRootView  style={styles.screen}>
@@ -238,3 +244,7 @@ const styles = StyleSheet.create({
       },
     
 });
+
+async function grab(table, query, onSuccess, onFail){
+    await databaseAPI(table, query).then(r => onSuccess(r)).catch(e => onFail(e))
+}

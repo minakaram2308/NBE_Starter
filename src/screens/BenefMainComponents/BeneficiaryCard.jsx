@@ -36,8 +36,8 @@ export default function BeneficiaryCard({
 
     const {
         id = '',
-        firstName = 'firstname',
-        lastName = 'lastname',
+        first_name: firstName = 'firstname',
+        last_name: lastName = 'lastname',
         phone = 'phone',
         email = 'email',
     } = cardData ?? {};
