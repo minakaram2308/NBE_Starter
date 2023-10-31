@@ -14,8 +14,6 @@ export default styles = StyleSheet.create({
 
     // Fixed bottom navigation @KAY
     justifyContent: 'space-between',
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
   },
 
   activeNavBtn: {

@@ -7,8 +7,12 @@ import
         useWindowDimensions
     } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import { darkColors } from '../../styles/components/Modes/DarkColors';
+import { lightColors } from '../../styles/components/Modes/LightColors';
 import { Spacer } from '../../components/commons/Spacer';
 import { colors } from '../../constants/Colors';
+import { useContext } from 'react';
+import { ModeContext } from '../../Context/ModeContext';
 // import { IMAGES } from '../../constants/images';
 
 export default function BeneficiaryCard({
@@ -33,6 +37,7 @@ export default function BeneficiaryCard({
     // }
 
     const {width, height} = useWindowDimensions()
+    const {darkTheme, toggle} = useContext(ModeContext);
 
     const {
         id = '',
@@ -47,7 +52,7 @@ export default function BeneficiaryCard({
 
     // const imageExist = id in IMAGES;
     return (
-        <View style={[styles.container, compact && styles.containerCompact, {padding: padding}, blank && styles.blank]}>
+        <View style={[styles.container, compact && styles.containerCompact, {padding: padding},{backgroundColor:darkTheme?darkColors.darkBackgrd:lightColors.lightBackgrd}, blank && styles.blank]}>
             {
                 !blank && (<>
                 <View style={[styles.imageWrapper]}>
@@ -67,12 +72,12 @@ export default function BeneficiaryCard({
                         styles.headerWrapper,
                         compact && styles.headerWrapperCompact,
                     ]}>
-                    <Text style={[styles.headingText]} numberOfLines={1}>
+                    <Text style={[styles.headingText,{color:darkTheme?darkColors.darkText:lightColors.lightText}]} numberOfLines={1}>
                         {firstName}
                     </Text>
                     <Spacer horizontal value={5} style={compact && styles.hidden} />
                     <Text
-                        style={[styles.headingText, !compact && styles.ellipsis]}
+                        style={[styles.headingText, !compact && styles.ellipsis,{color:darkTheme?darkColors.darkText:lightColors.lightText}]}
                         numberOfLines={1}>
                         {lastName}
                     </Text>

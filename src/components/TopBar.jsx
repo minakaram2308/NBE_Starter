@@ -3,9 +3,12 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { View, Image, Button, Text, Alert, TouchableOpacity, Pressable } from 'react-native';
 import styles from './../styles/components/TopBar.style'
 import LoginContext from '../store/Authentication/login-context';
-
+import { darkColors } from '../styles/components/Modes/DarkColors';
+import { lightColors } from '../styles/components/Modes/LightColors';
+import { ModeContext } from '../Context/ModeContext';
 export const  TopBar = (props) => {
   const loginContext = useContext(LoginContext)
+  const {darkTheme, toggle} = useContext(ModeContext);
 
   console.log('<<>>>', props);
   function openDrawerHandler() {
@@ -22,7 +25,7 @@ export const  TopBar = (props) => {
           onPress={openDrawerHandler}>
           <MaterialCommunityIcons
             name="menu"
-            color='#333333'
+            color={darkTheme?darkColors.darkText:lightColors.lightText}
             size={25}
           />
         </Pressable>
@@ -33,8 +36,8 @@ export const  TopBar = (props) => {
         />
 
         <View style={styles.userInfo}>
-          <Text style={styles.greeting}>Good morning</Text>
-          <Text style={styles.userName}>{loginContext.username}</Text>
+          <Text style={[styles.greeting,{color:darkTheme?darkColors.darkText:lightColors.lightText}]}>Good morning</Text>
+          <Text style={[styles.userName,{color:darkTheme?darkColors.darkText:lightColors.lightText}]}>{loginContext.username}</Text>
         </View>
         
       </View>
