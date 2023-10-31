@@ -8,13 +8,19 @@ import {AccountsScreen, CardsScreen, HistoryScreen, HomeScreen, LoginScreen, Spl
 import { lightColors } from '../styles/components/Modes/LightColors';
 import { darkColors } from '../styles/components/Modes/DarkColors';
 import { ModeContext } from '../Context/ModeContext';
-export const Navigator = ({ navigation }) => {
+export const Navigator = ({state, descriptors, navigation}) => {
   const {darkTheme, toggle} = useContext(ModeContext);
   let backgroundStyle=darkTheme?darkColors.greyBackgrd:lightColors.lightBackgrd
   let textStyle=darkTheme?darkColors.darkText:lightColors.lightText
-  const routeName =
-  navigation.getState().routes[navigation.getState().index].name;
-console.log(`current route -> ${routeName}`);
+  
+  const routeName = navigation.getState().routes[navigation.getState().index].name;
+  console.log(`current route -> ${routeName}`);
+  
+  const focusedOptions = descriptors[state.routes[state.index].key].options;
+  if(focusedOptions.tabBarStyle && focusedOptions.tabBarStyle.display === "none"){
+    return null
+  }
+
   return (
     <View style={[styles.navigator,{backgroundColor:backgroundStyle}]}>
       <TouchableWithoutFeedback

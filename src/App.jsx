@@ -68,10 +68,10 @@ export const App = () => {
                     header: () => null,
                   }}>
                   <Tab.Screen name="home" component={HomeScreen} />
-                  <Stack.Screen name="transfer" component={CashTransferStack} />
-                  <Stack.Screen name="Beneficiary" component={BeneficiaryMain} />
-                  <Stack.Screen name="map" component={Maps} />
-                  <Stack.Screen name="AirPay" component={AirPayScreen} />
+                  <Tab.Screen name="transfer" component={CashTransferStack} />
+                  <Tab.Screen name="Beneficiary" component={BeneficiaryMain} />
+                  <Tab.Screen name="map" component={Maps} />
+                  <Tab.Screen name="AirPay" component={AirPayScreen} />
                 </Tab.Navigator>
               </>
             )}
