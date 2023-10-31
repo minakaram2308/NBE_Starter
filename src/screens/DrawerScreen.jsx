@@ -85,7 +85,7 @@ export const DrawerScreen = ({navigation, screen, transparent}) => {
           );
         }}
         screenOptions={{
-          header: props => <TopBar {...props} />,
+          header: props => <TopBar {...props} transparent={transparent}/>,
           headerTransparent: transparent,
           drawerActiveTintColor: 'green',
           drawerStyle: {

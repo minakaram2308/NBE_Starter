@@ -10,13 +10,22 @@ export const  TopBar = (props) => {
   const loginContext = useContext(LoginContext)
   const {darkTheme, toggle} = useContext(ModeContext);
 
-  console.log('<<>>>', props);
+  // console.log('<<>>>', props);
   function openDrawerHandler() {
     props.navigation.toggleDrawer();
 
   }
+
+  let viewStyles = [styles.topBar]
+  if(props.transparent){
+    viewStyles.push({backgroundColor:"transparent"})
+  }
+  else{
+    viewStyles.push({backgroundColor:darkTheme?darkColors.greyBackgrd:lightColors.lightBackgrd})
+  }
+
   return (
-    <View style={[styles.topBar, {backgroundColor:"transparent"}]}>
+    <View style={viewStyles}>
 
       <View style={styles.user}>
 
@@ -25,7 +34,7 @@ export const  TopBar = (props) => {
           onPress={openDrawerHandler}>
           <MaterialCommunityIcons
             name="menu"
-            color={darkTheme?darkColors.darkText:lightColors.lightText}
+            color={(!props.transparent && darkTheme)?darkColors.darkText:lightColors.lightText}
             size={25}
           />
         </Pressable>
@@ -36,8 +45,8 @@ export const  TopBar = (props) => {
         />
 
         <View style={styles.userInfo}>
-          <Text style={[styles.greeting,{color:darkTheme?darkColors.darkText:lightColors.lightText}]}>Good morning</Text>
-          <Text style={[styles.userName,{color:darkTheme?darkColors.darkText:lightColors.lightText}]}>{loginContext.username}</Text>
+          <Text style={[styles.userName,{color:(!props.transparent && darkTheme)?darkColors.darkText:lightColors.lightText}]}>{loginContext.username}</Text>
+          <Text style={[styles.greeting,{color:(!props.transparent && darkTheme)?darkColors.darkText:lightColors.lightText}]}>Good morning</Text>
         </View>
         
       </View>
