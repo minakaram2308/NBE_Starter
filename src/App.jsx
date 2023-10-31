@@ -69,7 +69,7 @@ export const App = () => {
                   }}>
                   <Tab.Screen name="home" component={HomeScreen} />
                   <Tab.Screen name="transfer" component={CashTransferStack} />
-                  <Tab.Screen name="Beneficiary" component={BeneficiaryMain} />
+                  <Tab.Screen name="beneficiaries" component={BeneficiaryMain} />
                   <Tab.Screen name="map" component={Maps} />
                   <Tab.Screen name="AirPay" component={AirPayScreen} />
                   <Tab.Group>

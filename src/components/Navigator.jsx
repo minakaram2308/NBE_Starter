@@ -60,7 +60,7 @@ export const Navigator = ({state, descriptors, navigation}) => {
 
       <TouchableWithoutFeedback
        onPress={() => {
-        navigation.navigate('Beneficiary');}}
+        navigation.navigate('beneficiaries');}}
       >
         <View
           style={routeName === 'Beneficiary' ? styles.activeNavBtn : styles.navBtn}>
