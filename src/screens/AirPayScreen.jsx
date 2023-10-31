@@ -6,18 +6,17 @@ import Card from '../components/AirPay/Card';
 import Drop from '../components/AirPay/Drop';
 import SuccessModal from '../components/AirPay/SuccessModal';
 import FailModal from '../components/AirPay/FailModal';
-
+import { darkColors } from '../styles/components/Modes/DarkColors';
+import { lightColors } from '../styles/components/Modes/LightColors';
+import { ModeContext } from '../Context/ModeContext';
 export const AirPayScreen = ({ navigation }) => {
-
-
+  const {darkTheme, toggle} = useContext(ModeContext);
   const windowWidth = Dimensions.get('window').width;
   const [enabled,setEnabled]=useState(false)
   const [modalVisible, setModalVisible] = useState(false);
   const [successPay, setSuccessPay] = useState(false);
   const [activeDraggable, setActiveDraggable] = useState(false);
-
-   const isDarkMode=0
-  const allstyles=(isDarkMode)?darkStyles:lightStyles
+  const isDarkMode=darkTheme
 
   const cardData=
    [
@@ -65,7 +64,7 @@ export const AirPayScreen = ({ navigation }) => {
   }
 
   return (  
-    <View style={allstyles.centeredView}>
+    <View style={[allstyles.centeredView,{backgroundColor:darkTheme?darkColors.darkBackgrd:lightColors.lightBackgrd}]}>
     <Modal
       animationType="slide"
       transparent={true}
@@ -80,7 +79,7 @@ export const AirPayScreen = ({ navigation }) => {
     </Modal>
     <View style={{flex:1}}>
   <View  style={{flex:4}}>
-  <Text style={allstyles.cardsText}>Cards</Text>
+  <Text style={[allstyles.cardsText,{color:darkTheme?darkColors.darkText:lightColors.lightText}]}>Cards</Text>
 
   {/* <ThemeProvider>
     <Button title='Change' onPress={toggle}></Button>
@@ -91,12 +90,7 @@ export const AirPayScreen = ({ navigation }) => {
   <View style={{ flexDirection: 'row' }}>
     {data.map((item) => (
       <View key={item.id}>
-        <Pressable onPress={() =>{
-          if(!activeDraggable){
-            setActiveDraggable(item.id)
-          }
-        }
-           }>
+        <Pressable >
           <View
             style={{
               width: windowWidth * 0.8,
@@ -107,8 +101,11 @@ export const AirPayScreen = ({ navigation }) => {
                 <Card lower={0} data={item} />
 
             <Draggable
-              disabled={ activeDraggable !== item.id}
-              onDrag={() => {
+              disabled={!activeDraggable?false: activeDraggable !== item.id}
+              onDragRelease={() => {
+                if(!activeDraggable){
+                  setActiveDraggable(item.id)
+                }
                 setEnabled(true);
               }}
             >
@@ -149,7 +146,7 @@ export const AirPayScreen = ({ navigation }) => {
   )
 }
 
-const lightStyles = StyleSheet.create({
+const allstyles = StyleSheet.create({
   centeredView: {
     flex: 1,
     justifyContent: 'center',
@@ -174,32 +171,6 @@ const lightStyles = StyleSheet.create({
     margin:20
   }
 })
-const darkStyles = StyleSheet.create({
-  centeredView: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor:'black'
-  },
-  modalContainer: {
-    flex: 1,
-    backgroundColor: '#1C2437C4', // Semi-transparent gray background
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  textStyle: {
-    color: 'white',
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  cardsText:{
-    color:'white',
-    fontFamily:'roboto',
-    fontWeight:'700',
-    fontSize:20,
-    margin:20
-  }
-  
-})
+
 
 export default AirPayScreen;

@@ -14,17 +14,21 @@ import ButtonInlineText from '../components/commons/ButtonInlineText';
 import ButtonInlineToggle from '../components/commons/ButtonInlineToggle';
 import { Spacer } from '../components/commons/Spacer';
 import { colors } from '../constants/Colors';
+import { darkColors } from '../styles/components/Modes/DarkColors';
+import { lightColors } from '../styles/components/Modes/LightColors';
 import { BENEFICIARY_TABLE, TRANSACTION_TABLE, beneficiaries, databaseAPI } from '../constants/data';
 import { IMAGES } from '../constants/images';
 import { spacing } from '../constants/spacing';
 import BenCardWrapper from './BenefMainComponents/BenCardWrapper'
 import BeneficiaryCard from './BenefMainComponents/BeneficiaryCard';
 import { EmptyScreenPlaceholder } from './BenefMainComponents/EmptyScreenPlaceholder';
+import { useContext } from 'react';
+import { ModeContext } from '../Context/ModeContext';
 
 export function BeneficiaryMain({ navigator })
 {
     const { width, height } = useWindowDimensions();
-
+    const {darkTheme, toggle} = useContext(ModeContext);
     const [beneficiariesData, setBeneficiariesData] = React.useState([]);
     const [compactView, setCompactView] = React.useState(false);
     const cardsPerRow = compactView ? 3 : 1;
@@ -89,15 +93,15 @@ export function BeneficiaryMain({ navigator })
       }, [])
 
     return (
-        <GestureHandlerRootView  style={styles.screen}>
+        <GestureHandlerRootView  style={[styles.screen,{backgroundColor:darkTheme?darkColors.darkBackgrd:lightColors.lightBackgrd}]}>
             <View style={[styles.viewHeader]}>
-                <Text style={[styles.headerText]}>Beneficiaries</Text>
-                <ButtonInlineToggle control={[compactView, setCompactView]}>
+                <Text style={[styles.headerText,{color:darkTheme?darkColors.darkText:lightColors.lightText}]}>Beneficiaries</Text>
+                <ButtonInlineToggle  control={[compactView, setCompactView]}>
                     <Icon name="border-all" size={20} />
                     <Icon name="list" size={20} />
                 </ButtonInlineToggle>
                 <Spacer horizontal value={10} />
-                <ButtonInlineText>
+                <ButtonInlineText >
                     <Icon name="plus-circle" size={20} />
                     Add
                 </ButtonInlineText>
