@@ -48,7 +48,7 @@ console.log(`current route -> ${routeName}`);
 
       <TouchableWithoutFeedback
        onPress={() => {
-        navigation.navigate('cards');}}
+        navigation.navigate('beneficiaries');}}
       >
         <View style={styles.navBtn}>
           <Icon

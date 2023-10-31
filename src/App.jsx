@@ -5,6 +5,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import {
   AccountsScreen,
+  BeneficiaryMain,
   CardsScreen,
   HistoryScreen,
   HomeScreen,
@@ -67,7 +68,7 @@ export const App = () => {
                   }}>
                   <Tab.Screen name="home" component={HomeScreen} />
                   <Stack.Screen name="transfer" component={CashTransferStack} />
-                  <Stack.Screen name="cards" component={CardsScreen} />
+                  <Stack.Screen name="beneficiaries" component={BeneficiaryMain} />
                   <Stack.Screen name="map" component={Maps} />
                   <Stack.Screen name="AirPay" component={AirPayScreen} />
                 </Tab.Navigator>
