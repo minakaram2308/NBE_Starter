@@ -21,10 +21,11 @@ console.log(`current route -> ${routeName}`);
       onPress={() => {
         navigation.navigate('home');}}
       >
-        <View style={styles.activeNavBtn}>
+        <View
+          style={routeName === 'home' ? styles.activeNavBtn : styles.navBtn}>
           <MaterialCommunityIcons
             name="home"
-            style={styles.activeNavIcon}
+            style={routeName === 'home' ? styles.activeNavIcon : styles.navIcon}
             size={25}
           />
           <Text style={styles.activeNavText}>Home</Text>
@@ -35,10 +36,15 @@ console.log(`current route -> ${routeName}`);
        onPress={() => {
         navigation.navigate('transfer');}}
       >
-        <View style={styles.navBtn}>
+        <View
+          style={
+            routeName === 'transfer' ? styles.activeNavBtn : styles.navBtn
+          }>
           <MaterialCommunityIcons
             name="bank-transfer"
-            style={styles.navIcon}
+            style={
+              routeName === 'transfer' ? styles.activeNavIcon : styles.navIcon
+            }
             size={25}
             
           />
@@ -50,10 +56,13 @@ console.log(`current route -> ${routeName}`);
        onPress={() => {
         navigation.navigate('cards');}}
       >
-        <View style={styles.navBtn}>
+        <View
+          style={routeName === 'cards' ? styles.activeNavBtn : styles.navBtn}>
           <Icon
             name="people"
-            style={styles.navIcon}
+            style={
+              routeName === 'cards' ? styles.activeNavIcon : styles.navIcon
+            }
             size={25}
           />
           <Text style={styles.navText}>Benef.</Text>
@@ -64,10 +73,10 @@ console.log(`current route -> ${routeName}`);
        onPress={() => {
         navigation.navigate('map');}}
       >
-        <View style={styles.navBtn}>
+        <View style={routeName === 'map' ? styles.activeNavBtn : styles.navBtn}>
           <MaterialCommunityIcons
             name="map-marker-outline"
-            style={styles.navIcon}
+            style={routeName === 'map' ? styles.activeNavIcon : styles.navIcon}
             size={25}
           />
           <Text style={styles.navText}>ATMs</Text>
@@ -78,10 +87,13 @@ console.log(`current route -> ${routeName}`);
        onPress={() => {
         navigation.navigate('AirPay');}}
       >
-        <View style={styles.navBtn}>
+        <View
+          style={routeName === 'AirPay' ? styles.activeNavBtn : styles.navBtn}>
           <MaterialCommunityIcons
             name="cellphone-nfc"
-            style={styles.navIcon}
+            style={
+              routeName === 'AirPay' ? styles.activeNavIcon : styles.navIcon
+            }
             size={25}
           />
           <Text style={styles.navText}>Air Pay</Text>
