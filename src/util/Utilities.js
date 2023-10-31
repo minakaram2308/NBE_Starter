@@ -39,6 +39,9 @@ export async function saveData(key, value) {
 export async function getData(key) {
   try {
     const jsonValue = await AsyncStorage.getItem(key);
+    console.log(
+      `loaded data with key ${key} and value ${jsonValue} successfully`,
+    );
     return jsonValue != null ? JSON.parse(jsonValue) : null;
   } catch (error) {
     console.log(error);
