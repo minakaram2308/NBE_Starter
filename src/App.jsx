@@ -24,7 +24,7 @@ import {TopBar, Balance, Navigator} from './components';
 import LoginContext from './store/Authentication/login-context';
 import {colors} from './constants/Colors';
 import styles from './styles/App.style';
-import {ModeContext, ThemeProvider} from './context/ModeContext';
+import {ModeContext, ThemeProvider} from './Context/ModeContext';
 import {CashTransferStack} from './components/CashTransferComponents/CashTransferStack';
 import {Maps} from './screens/Maps';
 import AirPayScreen from './screens/AirPayScreen';

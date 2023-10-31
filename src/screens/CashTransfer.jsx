@@ -8,7 +8,7 @@ import styles from './../styles/screens/CashTransfer.style';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { darkColors } from '../styles/components/Modes/DarkColors';
 import { lightColors } from '../styles/components/Modes/LightColors';
-import { ModeContext } from '../context/ModeContext';
+import { ModeContext } from '../Context/ModeContext';
 import { text } from 'stream/consumers';
 
 const data1 = [

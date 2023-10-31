@@ -36,7 +36,7 @@ import {
 } from '../../src/constants/DrawerImages';
 import LoginContext from '../store/Authentication/login-context';
 import { colors } from '../constants/Colors';
-import { ModeContext } from '../context/ModeContext';
+import { ModeContext } from '../Context/ModeContext';
 
 const Drawer = createDrawerNavigator();
 

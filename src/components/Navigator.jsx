@@ -7,8 +7,7 @@ import styles from './../styles/components/Navigator.style'
 import {AccountsScreen, CardsScreen, HistoryScreen, HomeScreen, LoginScreen, SplashScreen, UtilsScreen} from './screens';
 import { lightColors } from '../styles/components/Modes/LightColors';
 import { darkColors } from '../styles/components/Modes/DarkColors';
-import { ModeContext } from '../context/ModeContext';
-
+import { ModeContext } from '../Context/ModeContext';
 export const Navigator = ({ navigation }) => {
   const {darkTheme, toggle} = useContext(ModeContext);
   let backgroundStyle=darkTheme?darkColors.greyBackgrd:lightColors.lightBackgrd
