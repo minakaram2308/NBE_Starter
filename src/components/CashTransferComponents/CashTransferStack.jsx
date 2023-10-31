@@ -1,11 +1,11 @@
 import React from "react";
 import StackNavigation from "./stackNavigation";
 import { NavigationContainer } from "@react-navigation/native";
-export const CashTransferStack =()=>{
+export const CashTransferStack =({navigation})=>{
 
     return (
       
-        <StackNavigation/>
+        <StackNavigation navigation={navigation}/>
       
     );
 
