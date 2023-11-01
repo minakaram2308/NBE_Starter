@@ -4,8 +4,13 @@ import TransactionCard from '../components/utils/TransactionCard';
 import { lightColors } from '../styles/components/Modes/LightColors';
 import { darkColors } from '../styles/components/Modes/DarkColors';
 import { ModeContext } from '../Context/ModeContext';
+import { databaseAPI } from '../constants/data';
+// databaseAPI(BENEFICIARY_TABLE, {ids: [1,2,3]} )
+
 let screen;
 function TransactionHistory({data}) {
+  const user = databaseAPI(BRANCH_TABLE, 2)
+  const transactions = databaseAPI(TRANSACTION_TABLE, user )
   const {darkTheme, toggle} = useContext(ModeContext);
   const style = darkTheme === true? darkColors.darkText : lightColors.lightText;
   if (data) {
