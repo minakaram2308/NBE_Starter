@@ -8,7 +8,7 @@ import {
    viewContainer:{
     flex:1,
     backgroundColor:"#F1F3FB",
-    marginHorizontal:15,
+    //marginHorizontal:15,
     padding:15,
 },
 otpText:{
@@ -16,6 +16,7 @@ otpText:{
     fontSize:20,
     fontWeight:"700",
     color:'#1C2437',
+    marginHorizontal:15,
 },
 validation:{
 fontFamily:"Roboto",
@@ -23,6 +24,7 @@ fontSize:18,
 fontWeight:"400",
 color:'#B7B7B7',
 lineHeight:25,
+marginHorizontal:15,
 },
 otpContainer:{
   marginVertical:10,

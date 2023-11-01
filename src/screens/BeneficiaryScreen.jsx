@@ -33,9 +33,9 @@ import { darkColors } from '../styles/components/Modes/DarkColors';
 import { lightColors } from '../styles/components/Modes/LightColors';
 import { ModeContext } from '../Context/ModeContext';
 
-export function BeneficiaryScreen({ navigator })
+export function BeneficiaryScreen({ navigation })
 {
-    const {darkTheme, toggle} = React.useContext(ModeContext);
+    const { darkTheme, toggle } = React.useContext(ModeContext);
     const [beneficiariesData, setBeneficiariesData] = React.useState([]);
     const [compactView, setCompactView] = React.useState(false);
     const cardsPerRow = compactView ? 3 : 1;
@@ -98,7 +98,15 @@ export function BeneficiaryScreen({ navigator })
     );
 
     return (
-        <GestureHandlerRootView style={[styles.screen,{backgroundColor:darkTheme?darkColors.darkBackgrd:lightColors.lightBackgrd}]}>
+        <GestureHandlerRootView
+            style={[
+                styles.screen,
+                {
+                    backgroundColor: darkTheme
+                        ? darkColors.darkBackgrd
+                        : lightColors.lightBackgrd,
+                },
+            ]}>
             <Header />
 
             <FlatList
@@ -130,7 +138,11 @@ export function BeneficiaryScreen({ navigator })
                     {
                         child = (
                             <SwipeableCardWrapper
-                                actionsOnPress={{ delete: () => deleteBeneficiary(key) }}>
+                                onPress={() => navigation.navigate('beneficiaryDetails')}
+                                actionsOnPress={{
+                                    edit: () => navigation.navigate('beneficiaryEdit'),
+                                    delete: () => deleteBeneficiary(key),
+                                }}>
                                 <BeneficiaryCard
                                     cardData={item}
                                     cardsPerRow={cardsPerRow}
@@ -195,8 +207,14 @@ export function BeneficiaryScreen({ navigator })
     {
         return (
             <View style={[styles.viewHeader]}>
-                <Text style={[styles.headerText,{color:darkTheme?darkColors.darkText:lightColors.lightText}]}>Beneficiaries</Text>
-                <ButtonInlineToggle  control={[compactView, setCompactView]}>
+                <Text
+                    style={[
+                        styles.headerText,
+                        { color: darkTheme ? darkColors.darkText : lightColors.lightText },
+                    ]}>
+                    Beneficiaries
+                </Text>
+                <ButtonInlineToggle control={[compactView, setCompactView]}>
                     <Icon name="border-all" size={20} />
                     <Icon name="list" size={20} />
                 </ButtonInlineToggle>
@@ -259,7 +277,7 @@ const styles = StyleSheet.create({
     },
 });
 
-async function asyncGrab(table, query={}, onSuccess, onFail)
+async function asyncGrab(table, query = {}, onSuccess, onFail)
 {
     await databaseAPI(table, query)
         .then(r => onSuccess(r))

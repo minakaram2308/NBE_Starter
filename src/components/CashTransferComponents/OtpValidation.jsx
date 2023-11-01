@@ -1,14 +1,17 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState,useEffect,useContext } from 'react';
 import {  TextInput, View, Text,Pressable,StatusBar,TouchableOpacity,TouchableWithoutFeedback,Keyboard } from 'react-native';
 import {useRoute} from '@react-navigation/native';
 import TransferModal from './TransferModal';
 import CountdownTimer from './CountdownTimer';
 import ErrorModal from './ErrorModal';
 import styles from '../../styles/components/CashTransferStyles/OtpValidation.style';
+import { darkColors } from '../../styles/components/Modes/DarkColors';
+import { lightColors } from '../../styles/components/Modes/LightColors';
+import { ModeContext } from '../../Context/ModeContext';
 export default function OtpValidation({navigation}) {
     
     const [confirm, setConfirm] = useState(null);
-  
+    const {darkTheme, toggle} = useContext(ModeContext);
 
   const[confirm2,setconfirm2]=useState('');
   const route=useRoute();
@@ -60,7 +63,7 @@ export default function OtpValidation({navigation}) {
 
   return (
    <TouchableWithoutFeedback onPress={()=>Keyboard.dismiss()}>
-    <View style={styles.viewContainer}>
+    <View style={[styles.viewContainer,{backgroundColor:darkTheme?darkColors.darkBackgrd:lightColors.lightBackgrd}]}>
     <Text style={styles.otpText}>OTP</Text>
     <Text style={styles.validation}>Enter 5 digit code we sent to {phoneNumber}</Text>
 <View  style={styles.otpContainer}>

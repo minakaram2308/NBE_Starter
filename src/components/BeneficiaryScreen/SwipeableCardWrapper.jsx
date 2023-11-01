@@ -11,7 +11,11 @@ import
 import { RectButton, Swipeable } from 'react-native-gesture-handler';
 import { colors } from '../../constants/Colors';
 
-export default function SwipeableCardWrapper({ children, actionsOnPress })
+export default function SwipeableCardWrapper({
+  children,
+  actionsOnPress,
+  onPress,
+})
 {
   const [showLoading, setShowLoading] = React.useState(false);
 
@@ -24,12 +28,22 @@ export default function SwipeableCardWrapper({ children, actionsOnPress })
     <View style={styles.container}>
       <Swipeable
         renderLeftActions={(progress, dragX) =>
-          actionsRenderer('left', [{ label: 'Edit', color: '#ECF56F' }], progress)
+          actionsRenderer(
+            'left',
+            [{ label: 'Edit', color: '#ECF56F', onPress: actionsOnPress.edit }],
+            progress,
+          )
         }
         renderRightActions={(progress, dragX) =>
           actionsRenderer(
             'right',
-            [{ label: 'Delete', color: '#E95858' }],
+            [
+              {
+                label: 'Delete',
+                color: '#E95858',
+                onPress: actionsOnPress.delete,
+              },
+            ],
             progress,
           )
         }
@@ -38,9 +52,7 @@ export default function SwipeableCardWrapper({ children, actionsOnPress })
         dragOffsetFromRightEdge={30}
         overshootFriction={8}>
         <Animated.View>
-          <RectButton
-            style={[styles.cardWrapper]}
-            onPress={() => ToastAndroid.show('View Ben.', ToastAndroid.SHORT)}>
+          <RectButton style={[styles.cardWrapper]} onPress={onPress}>
             {children}
           </RectButton>
         </Animated.View>
@@ -88,14 +100,14 @@ export default function SwipeableCardWrapper({ children, actionsOnPress })
           style={{ transform: [{ translateX: trans }], flexDirection: 'row' }}>
           {children.map(function (item, i)
           {
-            return <Action {...item} key={i} />;
+            return <Action {...item} key={i}/>;
           })}
         </Animated.View>
       </Animated.View>
     );
   }
 
-  function Action({ label, color })
+  function Action({ label, color, onPress })
   {
     return (
       <RectButton
@@ -109,7 +121,7 @@ export default function SwipeableCardWrapper({ children, actionsOnPress })
             backgroundColor: color,
           },
         ]}
-        onPress={() => console.log('edit')}>
+        onPress={onPress}>
         <Text style={[{ color: colors.textDark, fontSize: 18 }]}>{label}</Text>
       </RectButton>
     );

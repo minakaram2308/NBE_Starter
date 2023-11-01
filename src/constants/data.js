@@ -4,6 +4,9 @@ export const BRANCH_TABLE = 'branch';
 
 export function databaseAPI(table, query)
 {
+  // table: one-off [BENEFICIARY_TABLE | TRANSACTION_TABLE | BRANCH_TABLE]
+  // query: optional - shape {count: number, ids: [number...]}
+  
   return new Promise((resolve, reject) =>
   {
     try
