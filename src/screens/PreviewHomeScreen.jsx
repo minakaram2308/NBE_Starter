@@ -1,7 +1,7 @@
 import React, {useState,useContext} from 'react';
 import {TouchableOpacity, View, StyleSheet} from 'react-native';
 import {Balance, More, SendMoney} from './../components';
-import { ModeContext } from '../context/ModeContext';
+import { ModeContext } from '../Context/ModeContext';
 import {HomePageFooter} from './HomePageFooter';
 import Card from '../components/Card';
 import { darkColors } from '../styles/components/Modes/DarkColors';

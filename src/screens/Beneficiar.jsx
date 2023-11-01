@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 import {Text, View, StatusBar, StyleSheet, ScrollView} from 'react-native';
 import {TopBar} from '../components';
-import {UserBar} from '../components/UserBar';
+import {UserBar} from './NavDummyScreens/UserBar';
 import TransactionHistory from './TransactionHistory';
 import { lightColors } from '../styles/components/Modes/LightColors';
 import { darkColors } from '../styles/components/Modes/DarkColors';
-import { ModeContext,  } from '../context/ModeContext';
+import { ModeContext,  } from '../Context/ModeContext';
 
 export function Beneficiar({mode}) {
   const {darkTheme, toggle} = useContext(ModeContext);

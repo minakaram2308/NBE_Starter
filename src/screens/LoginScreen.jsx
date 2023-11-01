@@ -53,7 +53,7 @@ export const LoginScreen = props => {
                     {/* //TODO - link to sign up page} */}
                     <TextButton
                       style={[styles.footerLinks, {fontSize: 14}]}
-                      onPress={null}>
+                      onPress={()=>props.navigation.navigate('signup')}>
                       Sign up
                     </TextButton>
                   </View>

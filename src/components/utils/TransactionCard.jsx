@@ -2,7 +2,7 @@ import React,{useContext} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import { darkColors } from '../../styles/components/Modes/DarkColors';
 import { lightColors } from '../../styles/components/Modes/LightColors';
-import { ModeContext, ThemeProvider } from '../../context/ModeContext';
+import { ModeContext, ThemeProvider } from '../../Context/ModeContext';
 
 function TransactionCard({data,mode}) {
   const {darkTheme, toggle} = useContext(ModeContext);

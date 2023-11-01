@@ -1,28 +1,31 @@
-import React,{useContext,useState} from 'react';
+import React, { useContext } from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { View, Image, Button, Text, Alert, TouchableOpacity, Pressable } from 'react-native';
 import styles from './../styles/components/TopBar.style'
-import { ModeContext, ThemeProvider } from '../context/ModeContext';
+import LoginContext from '../store/Authentication/login-context';
 import { darkColors } from '../styles/components/Modes/DarkColors';
 import { lightColors } from '../styles/components/Modes/LightColors';
-import LoginContext from '../store/Authentication/login-context';
-
-
-export const TopBar = (props) => {
-  const {darkTheme, toggle} = useContext(ModeContext);
-  let backgroundStyle=darkTheme?darkColors.darkBackgrd:lightColors.lightBackgrd
-  let textStyle=darkTheme?darkColors.darkText:lightColors.lightText
-
-
+import { ModeContext } from '../Context/ModeContext';
+export const  TopBar = (props) => {
   const loginContext = useContext(LoginContext)
+  const {darkTheme, toggle} = useContext(ModeContext);
 
   // console.log('<<>>>', props);
   function openDrawerHandler() {
     props.navigation.toggleDrawer();
 
   }
+
+  let viewStyles = [styles.topBar]
+  if(props.transparent){
+    viewStyles.push({backgroundColor:"transparent"})
+  }
+  else{
+    viewStyles.push({backgroundColor:darkTheme?darkColors.greyBackgrd:lightColors.lightBackgrd})
+  }
+
   return (
-    <View style={[styles.topBar,{backgroundColor:backgroundStyle}]}>
+    <View style={viewStyles}>
 
       <View style={styles.user}>
 
@@ -31,7 +34,7 @@ export const TopBar = (props) => {
           onPress={openDrawerHandler}>
           <MaterialCommunityIcons
             name="menu"
-            color={darkTheme?'white':'#333333'}
+            color={(!props.transparent && darkTheme)?darkColors.darkText:lightColors.lightText}
             size={25}
           />
         </Pressable>
@@ -42,8 +45,8 @@ export const TopBar = (props) => {
         />
 
         <View style={styles.userInfo}>
-          <Text style={[styles.greeting,{color:textStyle}]}>Good morning</Text>
-          <Text style={[styles.userName,{color:textStyle}]}>{loginContext.username}</Text>
+          <Text style={[styles.userName,{color:(!props.transparent && darkTheme)?darkColors.darkText:lightColors.lightText}]}>{loginContext.username}</Text>
+          <Text style={[styles.greeting,{color:(!props.transparent && darkTheme)?darkColors.darkText:lightColors.lightText}]}>Good morning</Text>
         </View>
         
       </View>

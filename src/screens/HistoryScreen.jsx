@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, Image, ScrollView , StyleSheet} from 'react-native';
 import { useContext } from 'react';
-import { ModeContext } from '../context/ModeContext';
+import { ModeContext } from '../Context/ModeContext';
 
 // function wait(ms) {
 //   const start = new Date().getTime();

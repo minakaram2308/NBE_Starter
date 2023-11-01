@@ -7,21 +7,26 @@ import styles from './../styles/components/Navigator.style'
 import {AccountsScreen, CardsScreen, HistoryScreen, HomeScreen, LoginScreen, SplashScreen, UtilsScreen} from './screens';
 import { lightColors } from '../styles/components/Modes/LightColors';
 import { darkColors } from '../styles/components/Modes/DarkColors';
-import { ModeContext } from '../context/ModeContext';
-
-export const Navigator = ({ navigation }) => {
+import { ModeContext } from '../Context/ModeContext';
+export const Navigator = ({state, descriptors, navigation}) => {
   const {darkTheme, toggle} = useContext(ModeContext);
   let backgroundStyle=darkTheme?darkColors.greyBackgrd:lightColors.lightBackgrd
   let textStyle=darkTheme?darkColors.darkText:lightColors.lightText
-  const routeName =
-  navigation.getState().routes[navigation.getState().index].name;
-console.log(`current route -> ${routeName}`);
+  
+  const routeName = navigation.getState().routes[navigation.getState().index].name;
+  console.log(`current route -> ${routeName}`);
+  
+  const focusedOptions = descriptors[state.routes[state.index].key].options;
+  if(focusedOptions.tabBarStyle && focusedOptions.tabBarStyle.display === "none"){
+    return null
+  }
+
   return (
     <View style={[styles.navigator,{backgroundColor:backgroundStyle}]}>
       <TouchableWithoutFeedback
-        onPress={() => {
-          navigation.navigate('home');
-        }}>
+      onPress={() => {
+        navigation.navigate('home');}}
+      >
         <View
           style={routeName === 'home' ? styles.activeNavBtn : styles.navBtn}>
           <MaterialCommunityIcons
@@ -34,9 +39,9 @@ console.log(`current route -> ${routeName}`);
       </TouchableWithoutFeedback>
 
       <TouchableWithoutFeedback
-        onPress={() => {
-          navigation.navigate('transfer');
-        }}>
+       onPress={() => {
+        navigation.navigate('transfer');}}
+      >
         <View
           style={
             routeName === 'transfer' ? styles.activeNavBtn : styles.navBtn
@@ -47,6 +52,7 @@ console.log(`current route -> ${routeName}`);
               routeName === 'transfer' ? styles.activeNavIcon : styles.navIcon
             }
             size={25}
+            
           />
           <Text style={styles.navText}>Transfer</Text>
         </View>
@@ -57,11 +63,11 @@ console.log(`current route -> ${routeName}`);
           navigation.navigate('beneficiaries');
         }}>
         <View
-          style={[routeName === 'beneficiaries' && styles.activeNavBtn, styles.navBtn]}>
+          style={[styles.navBtn, routeName === 'beneficiaries' && styles.activeNavBtn]}>
           <Icon
             name="people"
             style={
-              [routeName === 'beneficiaries' && styles.activeNavIcon, styles.navIcon]
+              [styles.navIcon, routeName === 'beneficiaries' && styles.activeNavIcon]
             }
             size={25}
           />
@@ -70,9 +76,9 @@ console.log(`current route -> ${routeName}`);
       </TouchableWithoutFeedback>
 
       <TouchableWithoutFeedback
-        onPress={() => {
-          navigation.navigate('map');
-        }}>
+       onPress={() => {
+        navigation.navigate('map');}}
+      >
         <View style={routeName === 'map' ? styles.activeNavBtn : styles.navBtn}>
           <MaterialCommunityIcons
             name="map-marker-outline"
@@ -84,9 +90,9 @@ console.log(`current route -> ${routeName}`);
       </TouchableWithoutFeedback>
 
       <TouchableWithoutFeedback
-        onPress={() => {
-          navigation.navigate('AirPay');
-        }}>
+       onPress={() => {
+        navigation.navigate('AirPay');}}
+      >
         <View
           style={routeName === 'AirPay' ? styles.activeNavBtn : styles.navBtn}>
           <MaterialCommunityIcons
@@ -99,6 +105,8 @@ console.log(`current route -> ${routeName}`);
           <Text style={styles.navText}>Air Pay</Text>
         </View>
       </TouchableWithoutFeedback>
+
     </View>
-  );
-};
+  )
+}
+

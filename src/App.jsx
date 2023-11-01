@@ -7,8 +7,9 @@ import {
   AccountsScreen,
   AddBeneficiarScreen,
   Beneficiar,
-  BeneficiaryMain,
+  BeneficiaryScreen,
   CardsScreen,
+  CashTransfer,
   HistoryScreen,
   HomeScreen,
   LoginScreen,
@@ -16,16 +17,25 @@ import {
   UtilsScreen,
 } from './screens';
 
+import {SignUpScreen} from './screens/SignUpScreen';
+import {VerificationScreen} from './screens/VerificationScreen';
+import {PasswordScreen} from './screens/PasswordScreen';
+import {CongratulationsScreen} from './screens/CongratulationsScreen';
+
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {TopBar, Balance, Navigator} from './components';
 import LoginContext from './store/Authentication/login-context';
 import {colors} from './constants/Colors';
 import styles from './styles/App.style';
-import {ModeContext, ThemeProvider} from './context/ModeContext';
+import {ModeContext, ThemeProvider} from './Context/ModeContext';
 import {CashTransferStack} from './components/CashTransferComponents/CashTransferStack';
 import {Maps} from './screens/Maps';
 import AirPayScreen from './screens/AirPayScreen';
+import { DrawerScreen } from './screens/DrawerScreen';
+import AirPayDrawerScreen from './screens/AirPayDrawerScreen';
+import BenefDrawerScreen from './screens/BenefDrawerScreen';
+import MapDrawerScreen from './screens/MapDrawerScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -56,20 +66,26 @@ export const App = () => {
                   translucent={false}
                 />
                 <Tab.Navigator
-                  initialRouteName="home"
+                  initialRouteName="beneficiaries"
                   tabBar={prop => (
                     <Navigator {...prop} screenOptions={{headerShown: false}} />
                   )}
                   screenOptions={{
-                    header: () => null,
+                    headerShown: false,
                   }}>
                   <Tab.Screen name="home" component={HomeScreen} />
-                  <Stack.Screen name="transfer" component={CashTransferStack} />
-                  <Stack.Screen name="beneficiaries" component={BeneficiaryMain} />
-                  <Stack.Screen name="map" component={Maps} />
-                  <Stack.Screen name="AirPay" component={AirPayScreen} />
+                  <Tab.Screen name="transfer" component={CashTransferStack} />
+                  <Tab.Screen name="beneficiaries" component={BenefDrawerScreen} />
+                  <Tab.Screen name="map" component={MapDrawerScreen} />
+                  <Tab.Screen name="AirPay" component={AirPayDrawerScreen} />
                   <Stack.Screen name="beneficiaryDetails" component={Beneficiar} />
                   <Stack.Screen name="beneficiaryEdit" component={AddBeneficiarScreen} />
+                  <Tab.Group>
+                    <Tab.Screen name="accounts" component={AccountsScreen} />
+                    <Tab.Screen name="cards" component={CardsScreen} />
+                    <Tab.Screen name="utils" component={UtilsScreen} />
+                    <Tab.Screen name="history" component={HistoryScreen} />
+                  </Tab.Group>
                 </Tab.Navigator>
               </>
             )}
@@ -86,7 +102,26 @@ export const App = () => {
                   initialRouteName="login"
                   screenOptions={{headerShown: false}}>
                   <Stack.Screen name="login" component={LoginScreen} />
-                  {/* //TODO - Add signup here */}
+                  <Stack.Screen
+                    name="signup"
+                    component={SignUpScreen}
+                    options={{headerShown: false}}
+                  />
+                  <Stack.Screen
+                    name="verification"
+                    component={VerificationScreen}
+                    options={{headerShown: false}}
+                  />
+                  <Stack.Screen
+                    name="password"
+                    component={PasswordScreen}
+                    options={{headerShown: false}}
+                  />
+                  <Stack.Screen
+                    name="congratulations"
+                    component={CongratulationsScreen}
+                    options={{headerShown: false}}
+                  />
                   {/* <Stack.Screen name="login" component={LoginScreen} /> */}
                 </Stack.Navigator>
               </>

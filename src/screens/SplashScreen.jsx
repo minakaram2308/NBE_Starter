@@ -1,10 +1,10 @@
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import {Image, View} from 'react-native';
 import LottieView from 'lottie-react-native';
 import splashScreen from '../../assets/SplashScreen.json';
 import logoText from '../../assets/media/logoText.png';
 import styles from '../styles/components/SplashScreen.style';
-import {ModeContext} from '../context/ModeContext';
+import { ModeContext } from '../Context/ModeContext';
 
 export const SplashScreen = props => {
   //NOTE - replace dark with the actual dark context

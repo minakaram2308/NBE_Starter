@@ -18,6 +18,7 @@ export default function OtpValidation({navigation}) {
  const {confirmation,phoneNumber}=route.params;
  useEffect(() => {
     setConfirm(confirmation);
+    navigation.getParent().setOptions({tabBarStyle:{display:"none"}});
   }, []); 
          console.log("confirm is"+confirm);
   const handleTextInputChange = (text, index) => {

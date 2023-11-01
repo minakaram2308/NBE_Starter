@@ -6,7 +6,7 @@ import styles from './../styles/components/Balance.style';
 
 export const Balance = () => {
   return (
-    <View style={{height: 132, flexDirection: 'row', padding: 0,marginVertical:5}}>
+    <View style={{height: 132, flexDirection: 'row', padding: 0}}>
       <ImageBackground
         style={styles.balance}
         source={require('../../assets/media/creditcard.png')}>
