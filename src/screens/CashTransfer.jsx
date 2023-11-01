@@ -165,7 +165,7 @@ const handleBlurtext2=()=>{
    
     <KeyboardAwareScrollView contentContainerStyle={{ flexGrow: 1 }}>
     
-   <View style={[styles.container,{backgroundColor:backgroundStyle.darkBackgrd}]}>
+   <View style={[styles.container,{backgroundColor:darkTheme?darkColors.darkBackgrd:lightColors.lightBackgrd}]}>
   
     <StatusBar backgroundColor='#F1F3FB'/>
    
