@@ -1,11 +1,11 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import { colors } from '../../constants/Colors';
-import { Spacer } from '../../components/commons/Spacer';
-import ButtonInlineText from '../../components/commons/ButtonInlineText';
+import { Spacer } from '../commons/Spacer';
+import ButtonInlineText from '../commons/ButtonInlineText';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
-export function EmptyScreenPlaceholder({ })
+export function NoBeneficiariesScreen({ })
 {
     return (
         <View
@@ -14,15 +14,12 @@ export function EmptyScreenPlaceholder({ })
                 flex: 1,
                 alignItems: 'center',
                 width: '100%',
-                // bottom: 0,
                 height: '100%',
-                // alignSelf: 'stretch',
                 justifyContent: 'center',
             }}>
             <View
                 style={{
                     flexDirection: 'column',
-                    // flex: 1,
                     backgroundColor: '#E3ECFA',
                     borderRadius: 10,
                     width: '55%',
@@ -86,7 +83,6 @@ export function EmptyScreenPlaceholder({ })
                     style={{
                         backgroundColor: colors.primary,
                         aspectRatio: 1,
-                        // padding: 10,
                         borderRadius: 100,
                         justifyContent: 'center',
                     }}>
