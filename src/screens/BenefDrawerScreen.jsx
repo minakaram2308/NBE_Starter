@@ -1,9 +1,9 @@
 import React from "react";
 import { DrawerScreen } from "./DrawerScreen";
-import { BeneficiaryMain } from "./BeneficiaryMain";
+import { BeneficiaryScreen } from "./BeneficiaryScreen";
 
 const BenefDrawerScreen = (props) => {
-    return <DrawerScreen navigation={props.navigation} screen={BeneficiaryMain}/>
+    return <DrawerScreen navigation={props.navigation} screen={BeneficiaryScreen}/>
 }
 
 export default BenefDrawerScreen
