@@ -5,7 +5,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import {
   AccountsScreen,
-  BeneficiaryMain,
+  BeneficiaryScreen,
   CardsScreen,
   CashTransfer,
   HistoryScreen,
