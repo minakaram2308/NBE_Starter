@@ -167,7 +167,7 @@ const handleBlurtext2=()=>{
     
    <View style={[styles.container,{backgroundColor:darkTheme?darkColors.darkBackgrd:lightColors.lightBackgrd}]}>
   
-    <StatusBar backgroundColor='#F1F3FB'/>
+    {/* <StatusBar backgroundColor='#F1F3FB'/> */}
    
       
     <Text style={[styles.transferText,{color: textStyle}]}>Transfer</Text>

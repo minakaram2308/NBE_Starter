@@ -8,6 +8,7 @@ export default styles = StyleSheet.create({
 
   accounts: {
     padding: 10,
+    paddingTop: "8%",
   },
 
   title: {

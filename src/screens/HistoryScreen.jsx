@@ -57,7 +57,7 @@ export const HistoryScreen = () => {
 
   
   return (
-    <View style={styles.leafContainer}>
+    <View style={[styles.leafContainer,{backgroundColor:backgroundStyle}]}>
     <ScrollView>
       {users.map((user, i) => {
         return (
@@ -83,10 +83,16 @@ export const HistoryScreen = () => {
 }
 
 const styles = StyleSheet.create({
-  
+  title: {
+    color: '#222222',
+    fontSize: 20,
+    fontWeight: '700',
+    marginBottom: 10,
+  },
   leafContainer: {
     flex: 1,
-     marginEnd: 20,
+    //  marginEnd: 20,
+     paddingTop: 25,
     },
   image: {
     width: 70,

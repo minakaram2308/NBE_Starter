@@ -1,5 +1,5 @@
 import React, {useState,useContext} from 'react';
-import { View, Text, TouchableWithoutFeedback } from 'react-native';
+import { View, Text, TouchableWithoutFeedback, StatusBar } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -23,6 +23,7 @@ export const Navigator = ({state, descriptors, navigation}) => {
 
   return (
     <View style={[styles.navigator,{backgroundColor:backgroundStyle}]}>
+      <StatusBar barStyle={`${routeName === "map"? "dark": darkTheme? "light": "dark"}-content`} />
       <TouchableWithoutFeedback
       onPress={() => {
         navigation.navigate('home');}}

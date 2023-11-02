@@ -21,7 +21,7 @@ export const CongratulationsScreen = ({ navigation }) => {
     style={{flex:1, paddingTop:50, paddingHorizontal:24, backgroundColor:"#007236"}}
     imageStyle={{width:"85%", height:"85%", resizeMode: 'cover', position:"absolute", top:160, left:0}}
     >
-            <StatusBar barStyle='dark-content' backgroundColor='#007236' />
+            {/* <StatusBar barStyle='dark-content' backgroundColor='#007236' /> */}
             <View style={styles.finishFirstContainer}>
             <Image
         style={styles.finishLogo}

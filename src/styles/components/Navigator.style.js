@@ -23,7 +23,7 @@ export default styles = StyleSheet.create({
     borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    marginEnd: 5,
+    // marginEnd: 5,
   },
 
   activeNavIcon: {
@@ -41,9 +41,9 @@ export default styles = StyleSheet.create({
     borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    marginEnd: 5,
+    // marginEnd: 5,
     borderRadius: 20,
-    marginHorizontal:10
+    // marginHorizontal:10
   },
 
   navIcon: {

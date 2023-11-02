@@ -4,6 +4,9 @@ import TransactionCard from '../components/utils/TransactionCard';
 import { lightColors } from '../styles/components/Modes/LightColors';
 import { darkColors } from '../styles/components/Modes/DarkColors';
 import { ModeContext } from '../Context/ModeContext';
+import { databaseAPI } from '../constants/data';
+// databaseAPI(BENEFICIARY_TABLE, {ids: [1,2,3]} )
+
 let screen;
 function TransactionHistory({data}) {
   const {darkTheme, toggle} = useContext(ModeContext);
