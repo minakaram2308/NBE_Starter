@@ -1,5 +1,5 @@
 import React, {useState,useContext} from 'react';
-import { View, Text, TouchableWithoutFeedback, StatusBar } from 'react-native';
+import { View, Text, TouchableWithoutFeedback, StatusBar, Keyboard } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -8,6 +8,7 @@ import {AccountsScreen, CardsScreen, HistoryScreen, HomeScreen, LoginScreen, Spl
 import { lightColors } from '../styles/components/Modes/LightColors';
 import { darkColors } from '../styles/components/Modes/DarkColors';
 import { ModeContext } from '../Context/ModeContext';
+import { useKeyboardVisible } from '../hooks/useKeyboard';
 export const Navigator = ({state, descriptors, navigation}) => {
   const {darkTheme, toggle} = useContext(ModeContext);
   let backgroundStyle=darkTheme?darkColors.greyBackgrd:lightColors.lightBackgrd
@@ -17,7 +18,8 @@ export const Navigator = ({state, descriptors, navigation}) => {
   console.log(`current route -> ${routeName}`);
   
   const focusedOptions = descriptors[state.routes[state.index].key].options;
-  if(focusedOptions.tabBarStyle && focusedOptions.tabBarStyle.display === "none"){
+  const isKeyboardVisible = useKeyboardVisible();
+  if(isKeyboardVisible || focusedOptions.tabBarStyle && focusedOptions.tabBarStyle.display === "none"){
     return null
   }
 

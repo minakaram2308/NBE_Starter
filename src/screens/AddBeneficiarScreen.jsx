@@ -16,15 +16,17 @@ export function AddBeneficiarScreen({navigation}) {
   const {darkTheme, toggle} = useContext(ModeContext);
   let  style = darkTheme ? darkColors.darkBackgrd : lightColors.lightBackgrd
   return (
+    <>
+    <BeneficiaryTwoNav navigation={navigation} />
     <ScrollView contentContainerStyle={{flexGrow: 1}}>
       <View style={[styles.rootContainer, {backgroundColor: style}]}>
-        <BeneficiaryTwoNav navigation={navigation} />
         <View style={styles.CameraContainer}>
           <Image source={require('../images/camera.png')} />
         </View>
         <AddBeneficiaryForm />
       </View>
     </ScrollView>
+    </>
   );
 }
 
