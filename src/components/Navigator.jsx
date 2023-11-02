@@ -23,6 +23,14 @@ export const Navigator = ({state, descriptors, navigation}) => {
     return null
   }
 
+  const flingLeft = Gesture.Fling()
+    .direction(Directions.LEFT)
+    .runOnJS(true)
+    .onEnd(() => {
+      if (navigation.getState().index < 4) {
+        navigation.navigate(
+          navigation.getState().routes[navigation.getState().index + 1].name,
+        );
   return (
     <View style={[styles.navigator,{backgroundColor:backgroundStyle}]}>
       <StatusBar barStyle={`${routeName === "map"? "dark": darkTheme? "light": "dark"}-content`} />
@@ -40,6 +48,16 @@ export const Navigator = ({state, descriptors, navigation}) => {
           <Text style={styles.activeNavText}>Home</Text>
         </View>
       </TouchableWithoutFeedback>
+                ['home', 'accounts', 'cards', 'utils', 'history'].includes(
+                  routeName,
+                )
+                  ? styles.activeNavBtn
+                  : styles.navBtn
+              }>
+              <MaterialCommunityIcons
+                name="home"
+                style={
+                  ['home', 'accounts', 'cards', 'utils', 'history'].includes(
 
       <TouchableWithoutFeedback
        onPress={() => {
