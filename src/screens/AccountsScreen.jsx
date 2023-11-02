@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState,useContext } from 'react';
 import { View, Text, Image, ScrollView } from 'react-native';
 
 import styles from './../styles/screens/AccountsScreen.style'
+import { ModeContext } from '../Context/ModeContext';
+import { lightColors } from '../styles/components/Modes/LightColors';
+import { darkColors } from '../styles/components/Modes/DarkColors';
 
 // function wait(ms) {
 //   const start = new Date().getTime();
@@ -15,6 +18,10 @@ import styles from './../styles/screens/AccountsScreen.style'
 // wait(1000);
 
 export const AccountsScreen = () => {
+  const {darkTheme, toggle} = useContext(ModeContext);
+  const style = darkTheme === true? darkColors.darkBackgrd : lightColors.lightBackgrd;
+  const textStyle = darkTheme === true? darkColors.darkText : lightColors.lightText;
+
 
   const [users, setUsers] = useState([
     { name: 'Alexandar', image: require('./../../assets/media/picture.jpg') },
@@ -53,9 +60,9 @@ export const AccountsScreen = () => {
 
   
   return (
-    <View style={styles.accounts}>
+    <View style={[styles.accounts,{backgroundColor: style}]}>
 
-      <Text style={styles.title}>Beneficiaries</Text>
+      <Text style={[styles.title, {color: textStyle}]}>Beneficiaries</Text>
 
       <ScrollView contentContainerStyle={styles.scrollArea}>
         {
