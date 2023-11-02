@@ -1,4 +1,5 @@
 import {
+  StatusBar,
   StyleSheet
 } from 'react-native';
 
@@ -9,7 +10,7 @@ export default styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     padding: 10,
-    paddingTop: "8%",
+    paddingTop: StatusBar.currentHeight,
   },
 
   menu: {
