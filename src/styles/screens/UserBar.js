@@ -10,6 +10,15 @@ export default styles = StyleSheet.create({
     margin: 10,
     borderRadius: 24,
   },
+  userBar: {
+    flexDirection: 'row',
+    // justifyContent: 'space-between',
+    padding: 5,
+    width: 280,
+    backgroundColor: 'white',
+    margin: 10,
+    borderRadius: 24,
+  },
 
   user: {
     height: 60,

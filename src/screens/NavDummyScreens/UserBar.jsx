@@ -9,7 +9,7 @@ export const UserBar = () => {
   const loginContext = useContext(LoginContext);
 
   return (
-    <View style={styles.topBar}>
+    <View style={styles.userBar}>
       <View style={styles.user}>
         <Image
           style={styles.userImage}
