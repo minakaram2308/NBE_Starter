@@ -11,18 +11,20 @@ import {Dimensions} from 'react-native';
 import ModalDropdown from 'react-native-modal-dropdown';
 import ErrorIcon from 'react-native-vector-icons/MaterialIcons';
 import CorrectIcon from 'react-native-vector-icons/AntDesign';
-import { darkColors } from '../../styles/components/Modes/DarkColors';
-import { lightColors } from '../../styles/components/Modes/LightColors';
-import { ModeContext, ThemeProvider } from '../../Context/ModeContext';
-import { useRoute } from '@react-navigation/native';
+import {darkColors} from '../../styles/components/Modes/DarkColors';
+import {lightColors} from '../../styles/components/Modes/LightColors';
+import {ModeContext, ThemeProvider} from '../../Context/ModeContext';
+import {useRoute} from '@react-navigation/native';
 
 const {width, height} = Dimensions.get('window');
 function AddBeneficiaryForm() {
   const route = useRoute();
-  const userData = route.params.data;
-  console.log('line 23' + userData.id)
+  let userData;
+  if (route.params.data) {
+    userData = route.params.data;
+  }
   const {darkTheme, toggle} = useContext(ModeContext);
-  let  style = darkTheme ? darkColors.darkBackgrd : lightColors.lightBackgrd
+  let style = darkTheme ? darkColors.darkBackgrd : lightColors.lightBackgrd;
 
   const data = ['Option 1', 'Option 2', 'Option 3'];
   const [isFocused, setIsFocused] = useState(false);
@@ -34,15 +36,17 @@ function AddBeneficiaryForm() {
     phoneNumber: '',
     email: '',
   });
-  useEffect(()=>{
-    setFormData({
-      firstName: userData.first_name,
-    lastName:userData.last_name,
-    accountNumber: userData.accountNumber,
-    phoneNumber: userData.phone,
-    email: userData.email,
-    })
-  },[userData])
+  useEffect(() => {
+    if (userData) {
+      setFormData({
+        firstName: userData.first_name,
+        lastName: userData.last_name,
+        accountNumber: userData.accountNumber,
+        phoneNumber: userData.phone,
+        email: userData.email,
+      });
+    }
+  }, [userData]);
   const handleInputFocus = id => {
     setIsFocused(id);
   };
@@ -89,7 +93,7 @@ function AddBeneficiaryForm() {
 
   function AddBeneficiarHandler() {}
   return (
-    <View style={[styles.rootContainer,]}>
+    <View style={[styles.rootContainer]}>
       <View style={{flexDirection: 'row', justifyContent: 'center'}}>
         <View
           style={[
@@ -115,10 +119,12 @@ function AddBeneficiaryForm() {
                   style={{marginTop: 5}}
                 />
               </View>
+            ) : formData.firstName.length > 0 ? (
+              <View style={{marginTop: 5}}>
+                <ErrorIcon name="error" size={24} color={'rgb(255, 161, 0)'} />
+              </View>
             ) : (
-              formData.firstName.length > 0? <View style={{marginTop: 5}}>
-              <ErrorIcon name="error" size={24} color={'rgb(255, 161, 0)'} />
-            </View> : <View></View>
+              <View></View>
             )}
           </View>
         </View>
@@ -137,7 +143,7 @@ function AddBeneficiaryForm() {
               onFocus={handleInputFocus.bind(null, 2)}
               onBlur={handleInputBlur}
             />
-            {(formData.lastName && formData.lastName.length > 3) ? (
+            {formData.lastName && formData.lastName.length > 3 ? (
               <View>
                 <CorrectIcon
                   name="check"
@@ -146,11 +152,12 @@ function AddBeneficiaryForm() {
                   style={{marginTop: 5}}
                 />
               </View>
+            ) : formData.lastName.length > 0 ? (
+              <View style={{marginTop: 5}}>
+                <ErrorIcon name="error" size={24} color={'rgb(255, 161, 0)'} />
+              </View>
             ) : (
-              formData.lastName.length > 0? <View style={{marginTop: 5}}>
-              <ErrorIcon name="error" size={24} color={'rgb(255, 161, 0)'} />
-            </View> : <View></View>
-              
+              <View></View>
             )}
           </View>
         </View>
@@ -172,13 +179,12 @@ function AddBeneficiaryForm() {
                 fontSize: 18,
                 backgroundColor: 'rgba(255, 255, 255,0.9)',
               }}
-              
               onSelect={element => {
                 setBankBranch(element + 1);
               }}
               style={{width: 700, marginLeft: 9}}
               options={data}
-              textStyle={{fontSize: 16, color:'black'}}
+              textStyle={{fontSize: 16, color: 'black'}}
             />
           </View>
           {bankBranch ? (
@@ -190,10 +196,12 @@ function AddBeneficiaryForm() {
                 style={{marginTop: 5, marginLeft: 34}}
               />
             </View>
-          ) : (
-            bankBranch.length > 0? <View style={{marginTop: 5}}>
+          ) : bankBranch.length > 0 ? (
+            <View style={{marginTop: 5}}>
               <ErrorIcon name="error" size={24} color={'rgb(255, 161, 0)'} />
-            </View> : <View></View>
+            </View>
+          ) : (
+            <View></View>
           )}
         </View>
       </View>
@@ -222,10 +230,12 @@ function AddBeneficiaryForm() {
                 style={{marginTop: 5, marginLeft: 34}}
               />
             </View>
-          ) : (
-            formData.accountNumber.length > 0? <View style={{marginTop: 5}}>
+          ) : formData.accountNumber.length > 0 ? (
+            <View style={{marginTop: 5}}>
               <ErrorIcon name="error" size={24} color={'rgb(255, 161, 0)'} />
-            </View> : <View></View>
+            </View>
+          ) : (
+            <View></View>
           )}
         </View>
       </View>
@@ -254,10 +264,12 @@ function AddBeneficiaryForm() {
                 style={{marginTop: 5, marginLeft: 34}}
               />
             </View>
-          ) : (
-            formData.phoneNumber.length > 0? <View style={{marginTop: 5}}>
+          ) : formData.phoneNumber.length > 0 ? (
+            <View style={{marginTop: 5}}>
               <ErrorIcon name="error" size={24} color={'rgb(255, 161, 0)'} />
-            </View> : <View></View>
+            </View>
+          ) : (
+            <View></View>
           )}
         </View>
       </View>
@@ -286,10 +298,12 @@ function AddBeneficiaryForm() {
                 style={{marginTop: 5, marginLeft: 34}}
               />
             </View>
-          ) : (
-            formData.email.length > 0? <View style={{marginTop: 5}}>
+          ) : formData.email.length > 0 ? (
+            <View style={{marginTop: 5}}>
               <ErrorIcon name="error" size={24} color={'rgb(255, 161, 0)'} />
-            </View> : <View></View>
+            </View>
+          ) : (
+            <View></View>
           )}
         </View>
       </View>
@@ -301,7 +315,6 @@ function AddBeneficiaryForm() {
             styles.formSubmitButton,
             isFormValid() && {backgroundColor: '#007236'},
           ]}
-          
           onPress={AddBeneficiarHandler}>
           <Text style={[isFormValid() && {color: 'white'}]}>
             Add Beneficiar
@@ -340,7 +353,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   TextInput: {
-    color:'#1C2437',
+    color: '#1C2437',
     marginBottom: 5,
     padding: 8,
     width: '80%',
@@ -348,7 +361,7 @@ const styles = StyleSheet.create({
   },
 
   label: {
-    color:'#1C2437',
+    color: '#1C2437',
     padding: 8,
     paddingBottom: 0,
     fontWeight: 'bold',

@@ -219,7 +219,7 @@ export function BeneficiaryScreen({ navigation })
                     <Icon name="list" size={20} />
                 </ButtonInlineToggle>
                 <Spacer horizontal value={10} />
-                <ButtonInlineText onPress={() => {navigation.getParent().navigate('beneficiaryEdit')}}>
+                <ButtonInlineText onPress={() => {navigation.getParent().navigate('beneficiaryEdit',{data: null})}}>
                     <Icon name="plus-circle" size={20} />
                     Add
                 </ButtonInlineText>
