@@ -75,10 +75,7 @@ export const App = () => {
                 }}>
                 <Tab.Screen name="home" component={HomeScreen} />
                 <Tab.Screen name="transfer" component={CashTransferStack} />
-                <Tab.Screen
-                  name="beneficiaries"
-                  component={BenefDrawerScreen}
-                />
+                <Tab.Screen name="beneficiaries" component={BenefDrawerScreen} />
                 <Tab.Screen name="map" component={MapDrawerScreen} />
                 <Tab.Screen name="AirPay" component={AirPayDrawerScreen} />
                 <Stack.Screen name="beneficiaryDetails" component={Beneficiar} />

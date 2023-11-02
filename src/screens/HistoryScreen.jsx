@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
   },
   leafContainer: {
     flex: 1,
-     marginEnd: 20,
+    //  marginEnd: 20,
      paddingTop: 25,
     },
   image: {

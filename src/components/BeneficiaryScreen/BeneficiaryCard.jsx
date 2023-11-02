@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Image, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { colors } from '../../constants/Colors';
+import { darkColors } from '../../styles/components/Modes/DarkColors';
+import { lightColors } from '../../styles/components/Modes/LightColors';
 import { Spacer } from '../commons/Spacer';
+import { ModeContext } from '../../Context/ModeContext';
 
 export default function BeneficiaryCard({
     cardData,
@@ -13,6 +16,7 @@ export default function BeneficiaryCard({
 })
 {
     const { width, height } = useWindowDimensions();
+    const {darkTheme, toggle} = useContext(ModeContext);
 
     const {
         id = '',
@@ -31,7 +35,7 @@ export default function BeneficiaryCard({
             style={[
                 styles.container,
                 compact && styles.containerCompact,
-                { padding: padding },
+                { padding: padding,backgroundColor:darkTheme?darkColors.darkBackgrd:lightColors.lightBackgrd },
                 blank && styles.blank,
             ]}>
             {!blank && (
@@ -54,12 +58,12 @@ export default function BeneficiaryCard({
                                 styles.headerWrapper,
                                 compact && styles.headerWrapperCompact,
                             ]}>
-                            <Text style={[styles.headingText]} numberOfLines={1}>
+                            <Text style={[styles.headingText,{color:darkTheme?darkColors.darkText:lightColors.lightText}]} numberOfLines={1}>
                                 {firstName}
                             </Text>
                             <Spacer horizontal value={5} style={compact && styles.hidden} />
                             <Text
-                                style={[styles.headingText, !compact && styles.ellipsis]}
+                                style={[styles.headingText, !compact && styles.ellipsis,{color:darkTheme?darkColors.darkText:lightColors.lightText}]}
                                 numberOfLines={1}>
                                 {lastName}
                             </Text>
