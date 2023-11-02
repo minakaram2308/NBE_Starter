@@ -140,7 +140,7 @@ export function BeneficiaryScreen({ navigation })
                             <SwipeableCardWrapper
                                 onPress={() => navigation.navigate('beneficiaryDetails')}
                                 actionsOnPress={{
-                                    edit: () => navigation.navigate('beneficiaryEdit'),
+                                    edit: () => navigation.navigate('beneficiaryEdit', {data: item}),
                                     delete: () => deleteBeneficiary(key),
                                 }}>
                                 <BeneficiaryCard

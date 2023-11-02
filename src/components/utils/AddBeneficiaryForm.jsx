@@ -14,17 +14,16 @@ import CorrectIcon from 'react-native-vector-icons/AntDesign';
 import { darkColors } from '../../styles/components/Modes/DarkColors';
 import { lightColors } from '../../styles/components/Modes/LightColors';
 import { ModeContext, ThemeProvider } from '../../Context/ModeContext';
+import { useRoute } from '@react-navigation/native';
+
 const {width, height} = Dimensions.get('window');
 function AddBeneficiaryForm() {
+  const route = useRoute();
+  const userData = route.params.data;
+  console.log('line 23' + userData.id)
   const {darkTheme, toggle} = useContext(ModeContext);
   let  style = darkTheme ? darkColors.darkBackgrd : lightColors.lightBackgrd
-  const userData = {
-    firstName: '',
-    lastName: '',
-    accountNumber: '',
-    phoneNumber: '',
-    email: '',
-  }
+
   const data = ['Option 1', 'Option 2', 'Option 3'];
   const [isFocused, setIsFocused] = useState(false);
   const [bankBranch, setBankBranch] = useState(0);
@@ -35,15 +34,15 @@ function AddBeneficiaryForm() {
     phoneNumber: '',
     email: '',
   });
-  // useEffect(()=>{
-  //   setFormData({
-  //     firstName: userData.firstName,
-  //   lastName:userData.lastName,
-  //   accountNumber: userData.accountNumber,
-  //   phoneNumber: userData.phoneNumber,
-  //   email: userData.email,
-  //   })
-  // },[userData])
+  useEffect(()=>{
+    setFormData({
+      firstName: userData.first_name,
+    lastName:userData.last_name,
+    accountNumber: userData.accountNumber,
+    phoneNumber: userData.phone,
+    email: userData.email,
+    })
+  },[userData])
   const handleInputFocus = id => {
     setIsFocused(id);
   };
@@ -61,7 +60,7 @@ function AddBeneficiaryForm() {
 
   const isValidPhoneNumber = phoneNumber => {
     // Define a regular expression for a simple phone number pattern
-    const phonePattern = /^\d{11}$/; // Assumes a 10-digit phone number without spaces or other characters
+    const phonePattern = /^(\+2)?\d{11}$/; // Assumes a 10-digit phone number without spaces or other characters
 
     return phonePattern.test(phoneNumber);
   };
