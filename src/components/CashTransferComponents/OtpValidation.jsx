@@ -81,7 +81,7 @@ export default function OtpValidation({navigation}) {
 
 
 <View style={styles.pressableView}>
-      <StatusBar backgroundColor='#F1F3FB'/>
+      {/* <StatusBar backgroundColor='#F1F3FB'/> */}
 
    
 

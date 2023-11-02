@@ -127,7 +127,7 @@ export const PasswordScreen = ({ navigation }) => {
         }
       }>
         <View style={[styles.background,{backgroundColor:darkTheme?darkColors.darkBackgrd:lightColors.lightBackgrd}]}>
-        <StatusBar barStyle='dark-content' backgroundColor='#F1F3FB' />
+        {/* <StatusBar barStyle='dark-content' backgroundColor='#F1F3FB' /> */}
             <View style={styles.firstContainer}>
             <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
           <Text style={styles.buttonText}>{'<'}</Text>
