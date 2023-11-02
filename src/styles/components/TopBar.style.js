@@ -9,7 +9,7 @@ export default styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     padding: 10,
-    paddingTop: 25,
+    paddingTop: "8%",
   },
 
   menu: {
