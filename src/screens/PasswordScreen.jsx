@@ -1,5 +1,7 @@
 import React from 'react';
 import { useState, useRef, useEffect } from 'react';
+import { darkColors } from '../styles/components/Modes/DarkColors';
+import { lightColors } from '../styles/components/Modes/LightColors';
 import {  
   View,
   Image,
@@ -13,9 +15,12 @@ import {
 } from 'react-native';
 
 import styles from './../styles/screens/SignUpScreen.style'
+import { useContext } from 'react';
+import { ModeContext } from '../Context/ModeContext';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 export const PasswordScreen = ({ navigation }) => {
-
+  const {darkTheme, toggle} = useContext(ModeContext);
   const [isDisabled, setIsDisabled] = useState(true);
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('')
@@ -121,7 +126,7 @@ export const PasswordScreen = ({ navigation }) => {
           setBorder1(false)
         }
       }>
-        <View style={styles.background}>
+        <View style={[styles.background,{backgroundColor:darkTheme?darkColors.darkBackgrd:lightColors.lightBackgrd}]}>
         <StatusBar barStyle='dark-content' backgroundColor='#F1F3FB' />
             <View style={styles.firstContainer}>
             <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
@@ -136,7 +141,7 @@ export const PasswordScreen = ({ navigation }) => {
             <View style={styles.secContainer}>
 
             <View>
-            <Text style={styles.mobileTxt1}>Set your password</Text>
+            <Text style={[styles.mobileTxt1,{color:darkTheme?darkColors.darkText:lightColors.lightText}]}>Set your password</Text>
             <Text style={styles.desText}>Enter a strong password for your online banking account</Text>
 
             <View style={border? styles.mobInput : styles.mobInputFalse}>
@@ -217,25 +222,25 @@ source={require('../signupImages/Vector.png')}
             <View style={styles.checksContainer}>
               <View style={styles.check}>
                 <View style={lowercase? styles.circle:styles.circleGray}></View>
-                <Text style={styles.checkText}>Lower case letter</Text>
+                <Text style={[styles.checkText,{color:darkTheme?darkColors.darkText:lightColors.lightText}]}>Lower case letter</Text>
               </View>
               <View style={styles.check}>
                 <View style={characters? styles.circle:styles.circleGray}></View>
-                <Text style={styles.checkText}>Minimum 8 characters</Text>
+                <Text style={[styles.checkText,{color:darkTheme?darkColors.darkText:lightColors.lightText}]}>Minimum 8 characters</Text>
               </View>
               <View style={styles.check}>
                 <View style={specialChar? styles.circle:styles.circleGray}></View>
-                <Text style={styles.checkText}>Special character</Text>
+                <Text style={[styles.checkText,{color:darkTheme?darkColors.darkText:lightColors.lightText}]}>Special character</Text>
               </View>
             </View>
             <View style={styles.checksContainer}>
             <View style={styles.check}>
                 <View style={uppercase? styles.circle:styles.circleGray}></View>
-                <Text style={styles.checkText}>Upper case letter</Text>
+                <Text style={[styles.checkText,{color:darkTheme?darkColors.darkText:lightColors.lightText}]}>Upper case letter</Text>
               </View>
               <View style={styles.check}>
                 <View style={number? styles.circle:styles.circleGray}></View>
-                <Text style={styles.checkText}>Number</Text>
+                <Text style={[styles.checkText,{color:darkTheme?darkColors.darkText:lightColors.lightText}]}>Number</Text>
               </View>
             </View>
             </View>

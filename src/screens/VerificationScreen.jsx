@@ -1,5 +1,7 @@
 import React from 'react';
 import { useState, useRef, useEffect } from 'react';
+import { darkColors } from '../styles/components/Modes/DarkColors';
+import { lightColors } from '../styles/components/Modes/LightColors';
 import {  
   View,
   Image,
@@ -14,8 +16,11 @@ import {
 
 import Popup from './Popup'; 
 import styles from './../styles/screens/SignUpScreen.style'
+import { useContext } from 'react';
+import { ModeContext } from '../Context/ModeContext';
 
 export const VerificationScreen = ({ route, navigation}) => {
+  const {darkTheme, toggle} = useContext(ModeContext);
 
   const [isDisabled, setIsDisabled] = useState(true);
   const [receive, setReceive] = useState(true);
@@ -144,7 +149,7 @@ export const VerificationScreen = ({ route, navigation}) => {
           setBorder(false);
         }
       }>
-        <View style={styles.background}>
+        <View style={[styles.background,{backgroundColor:darkTheme?darkColors.darkBackgrd:lightColors.lightBackgrd}]}>
         <StatusBar barStyle='dark-content' backgroundColor='#F1F3FB' />
             <View style={styles.firstContainer}>
             <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
@@ -159,7 +164,7 @@ export const VerificationScreen = ({ route, navigation}) => {
             <View style={styles.secContainer}>
 
             <View>
-            <Text style={styles.mobileTxt1}>Verification</Text>
+            <Text style={[styles.mobileTxt1,{color:darkTheme?darkColors.darkText:lightColors.lightText}]}>Verification</Text>
             <Text style={styles.desText}>Enter 5 digit code we sent to {phoneNumber}</Text>
            
             <View style={styles.verificationContainer}>
