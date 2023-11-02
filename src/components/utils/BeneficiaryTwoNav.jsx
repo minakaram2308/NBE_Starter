@@ -4,8 +4,10 @@ import {Text, View, StyleSheet, Image} from 'react-native';
 import {Dimensions} from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import PressableNavItem from './PressableNavItem';
-function BeneficiaryTwoNav() {
-    function onPressFunction() {}
+function BeneficiaryTwoNav({navigation}) {
+    function onPressFunction() {
+        navigation.navigate("beneficiaries")
+    }
 
   return (
     <View style={style.rootContainer}>

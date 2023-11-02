@@ -1,4 +1,4 @@
-import React,{useContext} from 'react';
+import React,{useContext, useEffect} from 'react';
 import {Pressable, ScrollView} from 'react-native';
 import {Text, View, StyleSheet, Image} from 'react-native';
 import {Dimensions} from 'react-native';
@@ -12,13 +12,13 @@ import { lightColors } from '../styles/components/Modes/LightColors';
 import { ModeContext } from '../Context/ModeContext';
 const {width, height} = Dimensions.get('window');
 
-export function AddBeneficiarScreen() {
+export function AddBeneficiarScreen({navigation}) {
   const {darkTheme, toggle} = useContext(ModeContext);
   let  style = darkTheme ? darkColors.darkBackgrd : lightColors.lightBackgrd
   return (
     <ScrollView contentContainerStyle={{flexGrow: 1}}>
       <View style={[styles.rootContainer, {backgroundColor: style}]}>
-        <BeneficiaryTwoNav></BeneficiaryTwoNav>
+        <BeneficiaryTwoNav navigation={navigation} />
         <View style={styles.CameraContainer}>
           <Image source={require('../images/camera.png')} />
         </View>

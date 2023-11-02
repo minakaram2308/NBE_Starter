@@ -92,6 +92,8 @@ const styles = StyleSheet.create({
   leafContainer: {
     flex: 1,
     //  marginEnd: 20,
+    paddingStart: 5,
+    paddingEnd: 10,
     paddingTop: StatusBar.currentHeight,
   },
   image: {
