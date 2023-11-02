@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import {
   Text,
   View,
@@ -18,7 +18,13 @@ const {width, height} = Dimensions.get('window');
 function AddBeneficiaryForm() {
   const {darkTheme, toggle} = useContext(ModeContext);
   let  style = darkTheme ? darkColors.darkBackgrd : lightColors.lightBackgrd
-
+  const userData = {
+    firstName: '',
+    lastName: '',
+    accountNumber: '',
+    phoneNumber: '',
+    email: '',
+  }
   const data = ['Option 1', 'Option 2', 'Option 3'];
   const [isFocused, setIsFocused] = useState(false);
   const [bankBranch, setBankBranch] = useState(0);
@@ -29,7 +35,15 @@ function AddBeneficiaryForm() {
     phoneNumber: '',
     email: '',
   });
-
+  // useEffect(()=>{
+  //   setFormData({
+  //     firstName: userData.firstName,
+  //   lastName:userData.lastName,
+  //   accountNumber: userData.accountNumber,
+  //   phoneNumber: userData.phoneNumber,
+  //   email: userData.email,
+  //   })
+  // },[userData])
   const handleInputFocus = id => {
     setIsFocused(id);
   };
