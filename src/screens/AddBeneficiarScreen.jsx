@@ -22,7 +22,7 @@ export function AddBeneficiarScreen() {
         <View style={styles.CameraContainer}>
           <Image source={require('../images/camera.png')} />
         </View>
-        <AddBeneficiaryForm ></AddBeneficiaryForm>
+        <AddBeneficiaryForm />
       </View>
     </ScrollView>
   );
@@ -46,21 +46,4 @@ const styles = StyleSheet.create({
     borderRadius: 24,
   },
 });
-const darkStyles = StyleSheet.create({
-  rootContainer: {
-    justifyContent: 'center',
-    backgroundColor:'rgb(25, 26, 25)',
-    flex: 1,
-  },
-  CameraContainer: {
-    width: 138,
-    height: 138,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'white',
-    elevation: 4,
-    marginTop: 15,
-    marginLeft: width / 3,
-    borderRadius: 24,
-  },
-});
+
