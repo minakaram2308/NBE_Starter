@@ -58,7 +58,6 @@ export const HistoryScreen = () => {
   
   return (
     <View style={styles.leafContainer}>
-      <Text style={styles.title}>History</Text>
     <ScrollView>
       {users.map((user, i) => {
         return (
