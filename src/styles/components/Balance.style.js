@@ -2,7 +2,7 @@ import {StyleSheet} from 'react-native';
 
 export default styles = StyleSheet.create({
   balance: {
-    backgroundColor: '#f00',
+    // backgroundColor: '#f00',
     height: 132,
     flex: 1,
     width: '100%',
