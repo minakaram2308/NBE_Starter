@@ -36,6 +36,8 @@ import {DrawerScreen} from './screens/DrawerScreen';
 import AirPayDrawerScreen from './screens/AirPayDrawerScreen';
 import BenefDrawerScreen from './screens/BenefDrawerScreen';
 import MapDrawerScreen from './screens/MapDrawerScreen';
+import AddBeneficiarDrawer from './screens/AddBeneficiarDrawer';
+import BeneficiarDetailsDrawer from './screens/BeneficiarDetailsDrawer';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -78,8 +80,8 @@ export const App = () => {
                 <Tab.Screen name="beneficiaries" component={BenefDrawerScreen} />
                 <Tab.Screen name="map" component={MapDrawerScreen} />
                 <Tab.Screen name="AirPay" component={AirPayDrawerScreen} />
-                <Stack.Screen name="beneficiaryDetails" component={Beneficiar} />
-                <Stack.Screen name="beneficiaryEdit" component={AddBeneficiarScreen} />
+                <Tab.Screen name="beneficiaryDetails" component={BeneficiarDetailsDrawer} />
+                <Tab.Screen name="beneficiaryEdit" component={AddBeneficiarDrawer} />
                 <Tab.Group>
                   <Tab.Screen name="accounts" component={AccountsScreen} />
                   <Tab.Screen name="cards" component={CardsScreen} />

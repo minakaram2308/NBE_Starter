@@ -138,9 +138,9 @@ export function BeneficiaryScreen({ navigation })
                     {
                         child = (
                             <SwipeableCardWrapper
-                                onPress={() => navigation.navigate('beneficiaryDetails')}
+                                onPress={() => navigation.getParent().navigate('beneficiaryDetails')}
                                 actionsOnPress={{
-                                    edit: () => navigation.navigate('beneficiaryEdit'),
+                                    edit: () => navigation.getParent().navigate('beneficiaryEdit'),
                                     delete: () => deleteBeneficiary(key),
                                 }}>
                                 <BeneficiaryCard
