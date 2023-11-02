@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Image, ScrollView , StyleSheet} from 'react-native';
+import { View, Text, Image, ScrollView , StyleSheet, StatusBar} from 'react-native';
 import { useContext } from 'react';
 import { ModeContext } from '../Context/ModeContext';
 
@@ -92,8 +92,10 @@ const styles = StyleSheet.create({
   leafContainer: {
     flex: 1,
     //  marginEnd: 20,
-     paddingTop: 25,
-    },
+    paddingStart: 5,
+    paddingEnd: 10,
+    paddingTop: StatusBar.currentHeight,
+  },
   image: {
     width: 70,
     height: 60,

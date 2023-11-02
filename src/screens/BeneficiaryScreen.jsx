@@ -138,9 +138,9 @@ export function BeneficiaryScreen({ navigation })
                     {
                         child = (
                             <SwipeableCardWrapper
-                                onPress={() => navigation.navigate('beneficiaryDetails')}
+                                onPress={() => navigation.getParent().navigate('beneficiaryDetails')}
                                 actionsOnPress={{
-                                    edit: () => navigation.navigate('beneficiaryEdit', {data: item}),
+                                    edit: () => navigation.getParent().navigate('beneficiaryEdit', {data: item}),
                                     delete: () => deleteBeneficiary(key),
                                 }}>
                                 <BeneficiaryCard
@@ -219,7 +219,7 @@ export function BeneficiaryScreen({ navigation })
                     <Icon name="list" size={20} />
                 </ButtonInlineToggle>
                 <Spacer horizontal value={10} />
-                <ButtonInlineText>
+                <ButtonInlineText onPress={() => {navigation.getParent().navigate('beneficiaryEdit')}}>
                     <Icon name="plus-circle" size={20} />
                     Add
                 </ButtonInlineText>

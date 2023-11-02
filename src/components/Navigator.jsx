@@ -29,10 +29,10 @@ export const Navigator = ({state, descriptors, navigation}) => {
         navigation.navigate('home');}}
       >
         <View
-          style={routeName === 'home' ? styles.activeNavBtn : styles.navBtn}>
+          style={['home', "accounts", "cards", "utils", "history"].includes(routeName)? styles.activeNavBtn : styles.navBtn}>
           <MaterialCommunityIcons
             name="home"
-            style={routeName === 'home' ? styles.activeNavIcon : styles.navIcon}
+            style={['home', "accounts", "cards", "utils", "history"].includes(routeName)? styles.activeNavIcon : styles.navIcon}
             size={25}
           />
           <Text style={styles.activeNavText}>Home</Text>
@@ -64,12 +64,10 @@ export const Navigator = ({state, descriptors, navigation}) => {
           navigation.navigate('beneficiaries');
         }}>
         <View
-          style={[styles.navBtn, routeName === 'beneficiaries' && styles.activeNavBtn]}>
-          <Icon
+            style={['beneficiaries', "beneficiaryDetails", "beneficiaryEdit"].includes(routeName)? styles.activeNavBtn : styles.navBtn}>
+            <Icon
             name="people"
-            style={
-              [styles.navIcon, routeName === 'beneficiaries' && styles.activeNavIcon]
-            }
+            style={['beneficiaries', "beneficiaryDetails", "beneficiaryEdit"].includes(routeName)? styles.activeNavIcon : styles.navIcon}
             size={25}
           />
           <Text style={styles.navText}>Benef.</Text>
