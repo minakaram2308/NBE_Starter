@@ -9,8 +9,6 @@ import { databaseAPI } from '../constants/data';
 
 let screen;
 function TransactionHistory({data}) {
-  const user = databaseAPI(BRANCH_TABLE, 2)
-  const transactions = databaseAPI(TRANSACTION_TABLE, user )
   const {darkTheme, toggle} = useContext(ModeContext);
   const style = darkTheme === true? darkColors.darkText : lightColors.lightText;
   if (data) {
