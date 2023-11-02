@@ -91,7 +91,7 @@ export function Beneficiar({mode}) {
   ];
   return (
     <ScrollView style={{backgroundColor:  styles}}>
-      <StatusBar barStyle="dark-content" backgroundColor="#F1F3FB" />
+      {/* <StatusBar barStyle="dark-content" backgroundColor="#F1F3FB" /> */}
       <TopBar/>
       <View
         style={{
