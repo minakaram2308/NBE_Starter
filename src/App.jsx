@@ -66,7 +66,7 @@ export const App = () => {
                   translucent={false}
                 />
                 <Tab.Navigator
-                  initialRouteName="home"
+                  initialRouteName="beneficiaries"
                   tabBar={prop => (
                     <Navigator {...prop} screenOptions={{headerShown: false}} />
                   )}

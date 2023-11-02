@@ -18,6 +18,17 @@ export const colors = {
         light_1: hex('EDEDED'),
         base: hex('E6E6E6'),
         dark_1: hex('CCCCCC')
+    },
+    text:{
+        dark: hex('#1C2347'),
+        muted: hex('#949494'),
+    },
+    surface:{
+        base: hex('#FFFFFF'),
+        light95: hex('#F2F2F2'),
+    },
+    border:{
+        base: hex('#EDEDED')
     }
   };
   

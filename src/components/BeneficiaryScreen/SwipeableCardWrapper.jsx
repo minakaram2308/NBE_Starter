@@ -5,16 +5,19 @@ import
     Animated,
     StyleSheet,
     Text,
-    ToastAndroid,
     View,
   } from 'react-native';
 import { RectButton, Swipeable } from 'react-native-gesture-handler';
 import { colors } from '../../constants/Colors';
 
+
+//===========
 export default function SwipeableCardWrapper({
   children,
   actionsOnPress,
   onPress,
+  width,
+  height,
 })
 {
   const [showLoading, setShowLoading] = React.useState(false);
@@ -25,12 +28,12 @@ export default function SwipeableCardWrapper({
   }, [showLoading]);
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, {width: width, height: height}]}>
       <Swipeable
         renderLeftActions={(progress, dragX) =>
           actionsRenderer(
             'left',
-            [{ label: 'Edit', color: '#ECF56F', onPress: actionsOnPress.edit }],
+            [{ label: 'Edit', color: '#ECF56F', onPress: actionsOnPress?.edit }],
             progress,
           )
         }
@@ -41,7 +44,7 @@ export default function SwipeableCardWrapper({
               {
                 label: 'Delete',
                 color: '#E95858',
-                onPress: actionsOnPress.delete,
+                onPress: actionsOnPress?.delete,
               },
             ],
             progress,
@@ -51,7 +54,7 @@ export default function SwipeableCardWrapper({
         dragOffsetFromLeftEdge={30}
         dragOffsetFromRightEdge={30}
         overshootFriction={8}>
-        <Animated.View>
+        <Animated.View style={{height: height}}>
           <RectButton style={[styles.cardWrapper]} onPress={onPress}>
             {children}
           </RectButton>
@@ -95,9 +98,9 @@ export default function SwipeableCardWrapper({
     });
 
     return (
-      <Animated.View style={[{ height: '100%' }, directionalPadding]}>
+      <Animated.View style={[directionalPadding]}>
         <Animated.View
-          style={{ transform: [{ translateX: trans }], flexDirection: 'row' }}>
+          style={{ transform: [{ translateX: trans }], flexDirection: 'row', }}>
           {children.map(function (item, i)
           {
             return <Action {...item} key={i}/>;

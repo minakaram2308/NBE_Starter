@@ -1,6 +1,7 @@
 import React from 'react';
 import
     {
+        Dimensions,
         FlatList,
         LayoutAnimation,
         Pressable,
@@ -32,7 +33,12 @@ import { NoBeneficiariesScreen } from '../components/BeneficiaryScreen/NoBenefic
 import { darkColors } from '../styles/components/Modes/DarkColors';
 import { lightColors } from '../styles/components/Modes/LightColors';
 import { ModeContext } from '../Context/ModeContext';
-
+import BeneficiaryCardLight from '../components/BeneficiaryScreen/BeneficiaryCardLight';
+import { PixelRatio } from 'react-native';
+import { logObject } from '../utils/logging';
+import { RDP, RFS, wScale } from '../utils/scaling';
+import BeneficiaryCardSmallLight from '../components/BeneficiaryScreen/BeneficiaryCardSmallLight';
+// import { dWidth, dHight } from '../utils/scaling';
 export function BeneficiaryScreen({ navigation })
 {
     const { darkTheme, toggle } = React.useContext(ModeContext);
@@ -73,26 +79,37 @@ export function BeneficiaryScreen({ navigation })
         );
     }, []);
 
-    // fill the grid with blank cards to maintain its shape
-    React.useEffect(
-        function ()
+    // Flat list related
+    const { width, height } = useWindowDimensions();
+    const listWidth = width - spacing.screenPadding * 2;
+    const cardDimensions = {
+        width: compactView ? RDP(listWidth / 3, true, 10) - RDP(5, true, 0)*wScale**10: listWidth,
+        height: compactView ? RDP(160, true, 0) : RDP(80),
+    };
+    const cardsPerWindow = Math.ceil(1/(cardDimensions.height / (height*0.8)))
+    console.log(1/(cardDimensions.height / (height*0.8)))
+
+    const renderItem = React.useCallback(
+        function ({ item, index, separators })
         {
-            if (!compactView) return;
-
-            const diff = cardsPerRow - (beneficiariesData.length % cardsPerRow);
-            if (diff !== cardsPerRow)
-            {
-                setBeneficiariesData(function (prev)
-                {
-                    let fixed = [...prev];
-                    for (let i = 0; i < diff; i++)
-                    {
-                        fixed.push({ id: 'blankCard' + i, blank: true });
-                    }
-
-                    return fixed;
-                });
-            }
+            return compactView ? (
+                <BeneficiaryCardSmallLight
+                    firstName={item.first_name}
+                    lastName={item.last_name}
+                    width={cardDimensions.width}
+                    height={cardDimensions.height}
+                    image={IMAGES[item.id]}
+                />
+            ) : (
+                <SwipeableCardWrapper width={cardDimensions.width} height={cardDimensions.height}>
+                    <BeneficiaryCardLight
+                    cardData={item}
+                    width={cardDimensions.width}
+                    height={cardDimensions.height}
+                    image={IMAGES[item.id]}
+                />
+                </SwipeableCardWrapper>
+            );
         },
         [compactView],
     );
@@ -110,81 +127,100 @@ export function BeneficiaryScreen({ navigation })
             <Header />
 
             <FlatList
-                style={[styles.cardGridScrollView, {}]}
-                horizontal={false}
-                numColumns={cardsPerRow}
-                data={beneficiariesData}
-                keyExtractor={item => item.id}
-                extraData={compactView}
                 key={compactView}
+                data={beneficiariesData}
+                horizontal={false}
+                numColumns={compactView ? 3 : 1}
+                keyExtractor={item => item.id}
+                
+                initialNumToRender={cardsPerRow}
                 removeClippedSubviews={true}
-                initialNumToRender={5}
+                windowSize={9}
+                getItemLayout={(data, index) => ({
+                    length: cardDimensions.width,
+                    offset: cardDimensions.height * index,
+                    index,
+                })}
                 ListEmptyComponent={<NoBeneficiariesScreen />}
-                columnWrapperStyle={cardsPerRow > 1 && {}}
-                ItemSeparatorComponent={args => <Spacer vertical value={10} />}
-                contentContainerStyle={[
-                    !beneficiariesData.length && {
-                        flex: 1,
-                    },
-                    { paddingBottom: 10 },
-                ]}
-                renderItem={function ({ item, index, separators })
-                {
-                    let key = item?.id;
-                    let child;
-                    let spacing;
+                columnWrapperStyle={compactView && { justifyContent: 'space-between' }}
+                ItemSeparatorComponent={args => <View style={{ height: RDP(5) }} />}
+                // contentContainerStyle={[
+                //     !beneficiariesData.length && {
+                //         flex: 1,
+                //     },
+                //     { paddingBottom: 10 },
+                // ]}
 
-                    if (cardsPerRow === 1)
-                    {
-                        child = (
-                            <SwipeableCardWrapper
-                                onPress={() => navigation.navigate('beneficiaryDetails')}
-                                actionsOnPress={{
-                                    edit: () => navigation.navigate('beneficiaryEdit'),
-                                    delete: () => deleteBeneficiary(key),
-                                }}>
-                                <BeneficiaryCard
-                                    cardData={item}
-                                    cardsPerRow={cardsPerRow}
-                                    compact={compactView}
-                                    image={IMAGES[key]}
-                                />
-                            </SwipeableCardWrapper>
-                        );
-                    } else
-                    {
-                        if (item?.blank)
-                        {
-                            child = (
-                                <BeneficiaryCard
-                                    cardsPerRow={cardsPerRow}
-                                    compact={compactView}
-                                    blank
-                                />
-                            );
-                        } else
-                        {
-                            child = (
-                                <BeneficiaryCard
-                                    cardData={item}
-                                    cardsPerRow={cardsPerRow}
-                                    compact={compactView}
-                                    image={IMAGES[key]}
-                                />
-                            );
-                        }
-
-                        if ((index + 1) % 3 !== 0)
-                            spacing = <Spacer horizontal value={10} />;
-                    }
-
-                    return (
-                        <React.Fragment key={key}>
-                            {child}
-                            {spacing}
-                        </React.Fragment>
-                    );
+                contentContainerStyle={{
+                    paddingVertical: RDP(5),
+                    paddingHorizontal: spacing.screenPadding,
+                    backgroundColor: null,
                 }}
+                // renderItem={BeneficiaryCardLight}
+
+                renderItem={renderItem}
+
+            // renderItem={function ({ item, index, separators })
+            // {
+            //     return <BeneficiaryCardLight cardData={item} width={width}/>
+
+            //     // let key = item?.id;
+            //     // let child;
+            //     // let spacing;
+
+            //     // if (cardsPerRow === 1)
+            //     // {
+            //     //     child = (
+            //     //         <SwipeableCardWrapper
+            //     //             onPress={() => navigation.navigate('beneficiaryDetails')}
+            //     //             actionsOnPress={{
+            //     //                 edit: () => navigation.navigate('beneficiaryEdit'),
+            //     //                 delete: () => deleteBeneficiary(key),
+            //     //             }}>
+            //     //             <BeneficiaryCard
+            //     //                 cardData={item}
+            //     //                 cardsPerRow={cardsPerRow}
+            //     //                 compact={compactView}
+            //     //                 image={IMAGES[key]}
+            //     //             />
+            //     //         </SwipeableCardWrapper>
+            //     //     );
+            //     // } else
+            //     // {
+            //     //     if (item?.blank)
+            //     //     {
+            //     //         child = (
+            //     //             <BeneficiaryCard
+            //     //                 cardsPerRow={cardsPerRow}
+            //     //                 compact={compactView}
+            //     //                 blank
+            //     //             />
+            //     //         );
+            //     //     } else
+            //     //     {
+            //     //         child = (
+            //     //             <BeneficiaryCard
+            //     //                 cardData={item}
+            //     //                 cardsPerRow={cardsPerRow}
+            //     //                 compact={compactView}
+            //     //                 image={IMAGES[key]}
+            //     //             />
+            //     //         );
+            //     //     }
+
+            //     //     if ((index + 1) % 3 !== 0)
+            //     //         spacing = <Spacer horizontal value={10} />;
+            //     // }
+
+            //     // return (
+            //     //     <React.Fragment key={key}>
+            //     //         {child}
+            //     //         {spacing}
+            //     //     </React.Fragment>
+            //     // );
+            // }}
+
+            // debug={beneficiariesData.length}
             />
         </GestureHandlerRootView>
     );
@@ -215,12 +251,12 @@ export function BeneficiaryScreen({ navigation })
                     Beneficiaries
                 </Text>
                 <ButtonInlineToggle control={[compactView, setCompactView]}>
-                    <Icon name="border-all" size={20} />
-                    <Icon name="list" size={20} />
+                    <Icon name="border-all" size={RDP(20)} />
+                    <Icon name="list" size={RDP(20)} />
                 </ButtonInlineToggle>
-                <Spacer horizontal value={10} />
+                <Spacer horizontal value={RDP(10)} />
                 <ButtonInlineText>
-                    <Icon name="plus-circle" size={20} />
+                    <Icon name="plus-circle" size={RDP(20)} />
                     Add
                 </ButtonInlineText>
             </View>
@@ -233,20 +269,21 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         flexDirection: 'column',
-        padding: spacing.screenPadding,
+        // padding: spacing.screenPadding,
         backgroundColor: colors.bgLight,
     },
     viewHeader: {
+        paddingHorizontal: spacing.screenPadding,
         flexDirection: 'row',
         width: '100%',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginBottom: 20,
+        marginBottom: RDP(20),
     },
     headerText: {
         fontWeight: 'bold',
         color: colors.textDark,
-        fontSize: 20,
+        fontSize: RDP(20),
         flex: 1,
     },
     cardGridScrollView: {},
