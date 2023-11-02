@@ -13,7 +13,10 @@ import {
 } from 'react-native';
 
 import styles from './../styles/screens/SignUpScreen.style'
-
+import { useContext } from 'react';
+import { ModeContext } from '../Context/ModeContext';
+import { darkColors } from '../styles/components/Modes/DarkColors';
+import { lightColors } from '../styles/components/Modes/LightColors';
 export const SignUpScreen = ({ navigation }) => {
 
   const [isDisabled, setIsDisabled] = useState(true);
@@ -21,6 +24,7 @@ export const SignUpScreen = ({ navigation }) => {
   const [border, setBorder] = useState(true)
   const maxLength = 14;
   const inputRef = useRef(null);
+  const {darkTheme, toggle} = useContext(ModeContext);
 
   
     useEffect(() => {
@@ -64,7 +68,7 @@ export const SignUpScreen = ({ navigation }) => {
 
         
 
-        <View style={styles.background}>
+        <View style={[styles.background,{backgroundColor:darkTheme?darkColors.darkBackgrd:lightColors.lightBackgrd}]}>
         {/* <StatusBar barStyle='dark-content' backgroundColor='#F1F3FB' /> */}
             <View style={styles.firstContainer}>
             <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
@@ -79,7 +83,7 @@ export const SignUpScreen = ({ navigation }) => {
             <View style={styles.secContainer}>
 
             <View>
-            <Text style={styles.mobileTxt1}>Mobile number</Text>
+            <Text style={[styles.mobileTxt1,{color:darkTheme?darkColors.darkText:lightColors.lightText}]}>Mobile number</Text>
             <Text style={styles.desText}>Enter the mobile number registred in the bank</Text>
             <View style={border? styles.mobInput : styles.mobInputFalse}>
 
