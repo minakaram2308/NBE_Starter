@@ -100,7 +100,7 @@ export function BeneficiaryScreen({ navigation })
                     actionsOnPress={{
                         edit: () =>
                             navigation.getParent().navigate('beneficiaryEdit', { data: item }),
-                        delete: () => deleteBeneficiary(key),
+                        delete: () => deleteBeneficiary(item.id),
                     }}>
                     <BeneficiaryCardLight
                         firstName={item.first_name}

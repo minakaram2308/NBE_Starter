@@ -95,7 +95,7 @@ const SwipeableCardWrapper = React.memo(function SwipeableCardWrapper({
               {
                 label: 'Delete',
                 color: '#E95858',
-                onPress: actionsOnPress?.delete,
+                onPress: () => {actionsOnPress?.delete; setShowLoading(true)},
               },
             ],
             progress,
@@ -116,7 +116,7 @@ const SwipeableCardWrapper = React.memo(function SwipeableCardWrapper({
         <Text style={styles.heavyText}>Deleting</Text>
         <ActivityIndicator
           size="large"
-          color="#007236"
+          color="#FFF"
           animating={showLoading}
           style={styles.spinner}
         />
