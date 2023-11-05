@@ -2,6 +2,7 @@ import React from 'react';
 import {Pressable, StyleSheet, Text, View} from 'react-native';
 import {colors} from '../../constants/Colors';
 import ButtonInlineBase from './ButtonInlineBase';
+import { RDP } from '../../utils/scaling';
 
 export default function ButtonInlineText({
   children,
@@ -40,16 +41,16 @@ const styles = StyleSheet.create({
     textWrapper: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingHorizontal: 10,
-        paddingVertical: 12
+        paddingHorizontal: RDP(10),
+        paddingVertical: RDP(12)
         // flex: 1
         // paddingLeft: 20,
         // paddingRight: 20,
     },
   text: {
-    fontSize: 16,
+    fontSize: RDP(16),
     color: colors.primary,
-    paddingHorizontal: 3,
+    paddingHorizontal: RDP(3),
     // paddingVertical: 10,
     fontWeight: '500'
   },

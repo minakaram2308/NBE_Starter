@@ -2,6 +2,7 @@ import React from 'react';
 import {Pressable, StyleSheet, Text, View} from 'react-native';
 import {colors} from '../../constants/Colors';
 import ButtonInlineBase from './ButtonInlineBase';
+import { RDP } from '../../utils/scaling';
 
 export default function ButtonInlineToggle({
   children,
@@ -47,8 +48,8 @@ export default function ButtonInlineToggle({
 
 const styles = StyleSheet.create({
   container:{
-    paddingHorizontal: 10,
-    paddingVertical: 5,
+    paddingHorizontal: RDP(10),
+    paddingVertical: RDP(5),
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
@@ -60,7 +61,7 @@ const styles = StyleSheet.create({
     aspectRatio: 1,
     // padding: 2,
     borderRadius: 100,
-    paddingHorizontal: 7
+    paddingHorizontal: RDP(7)
   },
   selected:{
     backgroundColor: colors.primary
