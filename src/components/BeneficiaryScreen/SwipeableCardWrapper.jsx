@@ -10,9 +10,8 @@ import
 import { RectButton, Swipeable } from 'react-native-gesture-handler';
 import { colors } from '../../constants/Colors';
 
-
 //===========
-export default function SwipeableCardWrapper({
+const SwipeableCardWrapper = React.memo(function SwipeableCardWrapper({
   children,
   actionsOnPress,
   onPress,
@@ -27,17 +26,69 @@ export default function SwipeableCardWrapper({
     if (showLoading) actionsOnPress.delete();
   }, [showLoading]);
 
+  ///////////////////////////////////////////
+  //// Local Components
+  ///////////////////////////////////////////
+
+  const ActionsWrapper = React.memo(function ActionsWrapper({
+    children,
+    direction,
+    progress,
+  })
+  {
+    direction = { right: -1, left: 1 }[direction] ?? 1;
+    const directionalPadding =
+      direction === 1 ? { paddingRight: 20 } : { paddingLeft: 20 };
+
+    const trans = progress.interpolate({
+      inputRange: [0, 1, 1.2],
+      outputRange: [0, 0, direction * 50],
+    });
+
+    return (
+      <Animated.View style={[directionalPadding]}>
+        <Animated.View
+          style={{ transform: [{ translateX: trans }], flexDirection: 'row' }}>
+          {children.map(function (item, i)
+          {
+            return <Action {...item} key={i} />;
+          })}
+        </Animated.View>
+      </Animated.View>
+    );
+  });
+
+  const Action = React.memo(function Action({ label, color, onPress })
+  {
+    return (
+      <RectButton
+        style={[
+          {
+            height: '100%',
+            justifyContent: 'center',
+            alignItems: 'center',
+            borderRadius: 10,
+            aspectRatio: 1,
+            backgroundColor: color,
+          },
+        ]}
+        onPress={onPress}>
+        <Text style={[{ color: colors.textDark, fontSize: 18 }]}>{label}</Text>
+      </RectButton>
+    );
+  });
+
   return (
-    <View style={[styles.container, {width: width, height: height}]}>
+    <View style={[styles.container, { width: width, height: height }]}>
       <Swipeable
-        renderLeftActions={(progress, dragX) =>
+        renderLeftActions={React.useCallback((progress, dragX) =>
           actionsRenderer(
             'left',
             [{ label: 'Edit', color: '#ECF56F', onPress: actionsOnPress?.edit }],
             progress,
-          )
-        }
-        renderRightActions={(progress, dragX) =>
+          ),
+        )}
+        renderRightActions={React.useCallback((progress, dragX) =>
           actionsRenderer(
             'right',
             [
@@ -48,15 +99,15 @@ export default function SwipeableCardWrapper({
               },
             ],
             progress,
-          )
-        }
+          ),
+        )}
         friction={1.8}
         dragOffsetFromLeftEdge={30}
         dragOffsetFromRightEdge={30}
         overshootFriction={8}>
-        <Animated.View style={{height: height}}>
+        <Animated.View style={{ height: height }}>
           <RectButton style={[styles.cardWrapper]} onPress={onPress}>
-            {children}
+            {React.useMemo(() => children, [])}
           </RectButton>
         </Animated.View>
       </Swipeable>
@@ -81,55 +132,9 @@ export default function SwipeableCardWrapper({
       </ActionsWrapper>
     );
   }
+});
 
-  ///////////////////////////////////////////
-  //// Local Components
-  ///////////////////////////////////////////
-
-  function ActionsWrapper({ children, direction, progress })
-  {
-    direction = { right: -1, left: 1 }[direction] ?? 1;
-    const directionalPadding =
-      direction === 1 ? { paddingRight: 20 } : { paddingLeft: 20 };
-
-    const trans = progress.interpolate({
-      inputRange: [0, 1, 1.2],
-      outputRange: [0, 0, direction * 50],
-    });
-
-    return (
-      <Animated.View style={[directionalPadding]}>
-        <Animated.View
-          style={{ transform: [{ translateX: trans }], flexDirection: 'row', }}>
-          {children.map(function (item, i)
-          {
-            return <Action {...item} key={i}/>;
-          })}
-        </Animated.View>
-      </Animated.View>
-    );
-  }
-
-  function Action({ label, color, onPress })
-  {
-    return (
-      <RectButton
-        style={[
-          {
-            height: '100%',
-            justifyContent: 'center',
-            alignItems: 'center',
-            borderRadius: 10,
-            aspectRatio: 1,
-            backgroundColor: color,
-          },
-        ]}
-        onPress={onPress}>
-        <Text style={[{ color: colors.textDark, fontSize: 18 }]}>{label}</Text>
-      </RectButton>
-    );
-  }
-}
+export default SwipeableCardWrapper;
 
 const styles = StyleSheet.create({
   container: {

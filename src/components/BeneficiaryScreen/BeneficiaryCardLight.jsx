@@ -1,54 +1,53 @@
 import React from 'react';
 import
-{
-    Dimensions,
-    Image,
-    StyleSheet,
-    Text,
-    View,
-    useWindowDimensions,
-} from 'react-native';
+    {
+        Image,
+        StyleSheet,
+        Text,
+        View
+    } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { colors } from '../../constants/Colors';
-import { Spacer } from '../commons/Spacer';
 import { RDP } from '../../utils/scaling';
 
-export default function BeneficiaryCardLight({
-    cardData,
-    cardsPerRow,
+const BeneficiaryCardLight = React.memo(function BeneficiaryCardLight({
+    firstName,
+    lastName,
+    phone = '+20',
+    email = '@.com',
     image,
-    compact = true,
-    blank = false,
     width = '100%',
     height = null,
 })
 {
-    // console.log('render', cardData.id)
-    //     const { width, height } = useWindowDimensions();
-
-    const {
-        first_name: firstName = 'firstname',
-        last_name: lastName = 'lastname',
-        phone = 'phone',
-        email = 'email',
-    } = cardData ?? {};
+    // const {
+    //     first_name: firstName = 'firstname',
+    //     last_name: lastName = 'lastname',
+    //     phone = 'phone',
+    //     email = 'email',
+    // } = cardData ?? {};
 
     let imageDOM;
-    if (image) imageDOM = (
-        <Image
-            source={image}
-            style={[styles.thumbnail, { width: height - RDP(16), height: height - RDP(16)}]}
-        />
-    )
-    else imageDOM = (
-        <View style={[styles.thumbnail, { width: height - RDP(16), height: height - RDP(16)}]}>
-            <Icon name="user" solid style={[styles.icon]} size={RDP(24)}/>
-        </View>
-    )
-
-    //     const padding = Math.trunc(
-    //         Math.min((width * 0.2) / cardsPerRow ** 2, 12 * cardsPerRow),
-    //     );
+    if (image)
+        imageDOM = (
+            <Image
+                source={image}
+                style={[
+                    styles.thumbnail,
+                    { width: height - RDP(16), height: height - RDP(16) },
+                ]}
+            />
+        );
+    else
+        imageDOM = (
+            <View
+                style={[
+                    styles.thumbnail,
+                    { width: height - RDP(16), height: height - RDP(16) },
+                ]}>
+                <Icon name="user" solid style={[styles.icon]} size={RDP(24)} />
+            </View>
+        );
 
     return (
         <View
@@ -61,7 +60,6 @@ export default function BeneficiaryCardLight({
             ]}>
             {imageDOM}
             <View style={[styles.body]}>
-                {/* <View style={[]}> */}
                 <Text style={styles.nameText} numberOfLines={1}>
                     {firstName} {lastName}
                 </Text>
@@ -84,11 +82,12 @@ export default function BeneficiaryCardLight({
                         {email}
                     </Text>
                 </View>
-                {/* </View> */}
             </View>
         </View>
     );
-}
+});
+
+export default BeneficiaryCardLight;
 
 const styles = StyleSheet.create({
     root: {
@@ -101,22 +100,22 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         elevation: 1,
     },
-    thumbnail:{
+    thumbnail: {
         backgroundColor: colors.surface.light95,
         borderRadius: 10,
         alignItems: 'center',
         justifyContent: 'center',
         borderWidth: 1,
-        borderColor: colors.border.base
+        borderColor: colors.border.base,
     },
     body: {
-        marginStart: RDP(10)
+        marginStart: RDP(10),
     },
     nameText: {
         fontWeight: 'bold',
         color: colors.text.dark,
         fontSize: RDP(14),
-    },    
+    },
     row: {
         flexDirection: 'row',
     },
@@ -135,6 +134,6 @@ const styles = StyleSheet.create({
     subText: {
         color: colors.text.muted,
         marginStart: RDP(10),
-        fontSize: RDP(12)
+        fontSize: RDP(12),
     },
 });
