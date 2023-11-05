@@ -57,61 +57,63 @@ export const App = () => {
         <SplashScreen onAnimationFinish={setLoading.bind(null, false)} />
       </Modal>
 
-      <NavigationContainer>
-        <View style={styles.app}>
-          {loginContext.loggedIn && (
-            <>
-              <StatusBar
-                barStyle={`${darkTheme ? 'light' : 'dark'}-content`}
-                backgroundColor="transparent"
-                translucent={true}
-              />
-              <Tab.Navigator
-                initialRouteName="home"
-                tabBar={prop => (
-                  <Navigator {...prop} screenOptions={{headerShown: false}} />
-                )}
-                screenOptions={{
-                  headerShown: false,
-                }}>
-                <Tab.Screen name="home" component={HomeScreen} />
-                <Tab.Screen name="transfer" component={CashTransferStack} />
-                <Tab.Screen name="beneficiaries" component={BenefDrawerScreen} />
-                <Tab.Screen name="map" component={MapDrawerScreen} />
-                <Tab.Screen name="AirPay" component={AirPayDrawerScreen} />
-                <Tab.Screen name="beneficiaryDetails" component={BeneficiarDetailsDrawer} />
-                <Tab.Screen name="beneficiaryEdit" component={AddBeneficiarScreen} />
-                <Tab.Group>
-                  <Tab.Screen name="accounts" component={AccountsScreen} />
-                  <Tab.Screen name="cards" component={CardsScreen} />
-                  <Tab.Screen name="utils" component={UtilsScreen} />
-                  <Tab.Screen name="history" component={HistoryScreen} />
-                </Tab.Group>
-              </Tab.Navigator>
-            </>
-          )}
+      {!loading && (
+        <NavigationContainer>
+          <View style={styles.app}>
+            {loginContext.loggedIn && (
+              <>
+                <StatusBar
+                  barStyle={`${darkTheme ? 'light' : 'dark'}-content`}
+                  backgroundColor="transparent"
+                  translucent={true}
+                />
+                <Tab.Navigator
+                  initialRouteName="home"
+                  tabBar={prop => (
+                    <Navigator {...prop} screenOptions={{headerShown: false}} />
+                  )}
+                  screenOptions={{
+                    headerShown: false,
+                  }}>
+                  <Tab.Screen name="home" component={HomeScreen} />
+                  <Tab.Screen name="transfer" component={CashTransferStack} />
+                  <Tab.Screen name="beneficiaries" component={BenefDrawerScreen} />
+                  <Tab.Screen name="map" component={MapDrawerScreen} />
+                  <Tab.Screen name="AirPay" component={AirPayDrawerScreen} />
+                  <Tab.Screen name="beneficiaryDetails" component={BeneficiarDetailsDrawer} />
+                  <Tab.Screen name="beneficiaryEdit" component={AddBeneficiarScreen} />
+                  <Tab.Group>
+                    <Tab.Screen name="accounts" component={AccountsScreen} />
+                    <Tab.Screen name="cards" component={CardsScreen} />
+                    <Tab.Screen name="utils" component={UtilsScreen} />
+                    <Tab.Screen name="history" component={HistoryScreen} />
+                  </Tab.Group>
+                </Tab.Navigator>
+              </>
+            )}
 
-          {!loginContext.loggedIn && (
-            <>
-              <StatusBar
-                barStyle="light-content"
-                backgroundColor="transparent"
-                translucent={true}
-              />
+            {!loginContext.loggedIn && (
+              <>
+                <StatusBar
+                  barStyle="light-content"
+                  backgroundColor="transparent"
+                  translucent={true}
+                />
 
-              <Stack.Navigator
-                initialRouteName="login"
-                screenOptions={{headerShown: false}}>
-                <Stack.Screen name="login" component={LoginScreen} />
-                <Stack.Screen name="signup" component={SignUpScreen} />
-                <Stack.Screen name="verification" component={VerificationScreen} />
-                <Stack.Screen name="password" component={PasswordScreen} />
-                <Stack.Screen name="congratulations" component={CongratulationsScreen} />
-              </Stack.Navigator>
-            </>
-          )}
-        </View>
-      </NavigationContainer>
+                <Stack.Navigator
+                  initialRouteName="login"
+                  screenOptions={{headerShown: false}}>
+                  <Stack.Screen name="login" component={LoginScreen} />
+                  <Stack.Screen name="signup" component={SignUpScreen} />
+                  <Stack.Screen name="verification" component={VerificationScreen} />
+                  <Stack.Screen name="password" component={PasswordScreen} />
+                  <Stack.Screen name="congratulations" component={CongratulationsScreen} />
+                </Stack.Navigator>
+              </>
+            )}
+          </View>
+        </NavigationContainer>
+      )}
     </>
   );
 };
