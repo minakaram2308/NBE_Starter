@@ -92,15 +92,23 @@ export function BeneficiaryScreen({ navigation })
                     height={cardDimensions.height}
                 />
             ) : (
-                <SwipeableCardWrapper width={cardDimensions.width} height={cardDimensions.height}>
-                    <BeneficiaryCardLight
-                    firstName={item.first_name}
-                    lastName={item.last_name}
-                    phone={item.phone}
-                    email={item.email}
-                    image={IMAGES[item.id]}
+                <SwipeableCardWrapper
                     width={cardDimensions.width}
                     height={cardDimensions.height}
+                    onPress={() => navigation.getParent().navigate('beneficiaryDetails')}
+                    actionsOnPress={{
+                        edit: () =>
+                            navigation.getParent().navigate('beneficiaryEdit', { data: item }),
+                        delete: () => deleteBeneficiary(key),
+                    }}>
+                    <BeneficiaryCardLight
+                        firstName={item.first_name}
+                        lastName={item.last_name}
+                        phone={item.phone}
+                        email={item.email}
+                        image={IMAGES[item.id]}
+                        width={cardDimensions.width}
+                        height={cardDimensions.height}
                     />
                 </SwipeableCardWrapper>
             );
@@ -135,8 +143,15 @@ export function BeneficiaryScreen({ navigation })
                     offset: cardDimensions.height * index,
                     index,
                 })}
-                
-                ListEmptyComponent={<NoBeneficiariesScreen />}
+                ListEmptyComponent={
+                    <NoBeneficiariesScreen
+                        stillFetching={beneficiariesData === undefined}
+                        onPressAdd={() =>
+                        {
+                            navigation.getParent().navigate('beneficiaryEdit', { data: null });
+                        }}
+                    />
+                }
                 ItemSeparatorComponent={args => <View style={{ height: RDP(5) }} />}
                 columnWrapperStyle={compactView && { justifyContent: 'space-between' }}
                 contentContainerStyle={{
@@ -182,7 +197,11 @@ export function BeneficiaryScreen({ navigation })
                     <Icon name="list" size={RDP(20)} />
                 </ButtonInlineToggle>
                 <Spacer horizontal value={RDP(10)} />
-                <ButtonInlineText>
+                <ButtonInlineText
+                    onPress={() =>
+                    {
+                        navigation.getParent().navigate('beneficiaryEdit', { data: null });
+                    }}>
                     <Icon name="plus-circle" size={RDP(20)} />
                     Add
                 </ButtonInlineText>
