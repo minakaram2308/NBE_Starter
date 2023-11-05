@@ -1,28 +1,76 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, useWindowDimensions } from 'react-native';
 import { colors } from '../../constants/Colors';
 import { Spacer } from '../commons/Spacer';
 import ButtonInlineText from '../commons/ButtonInlineText';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+// import AwesomeLoading from 'react-native-awesome-loading';
+// import { SkeletonContainer } from 'react-native-dynamic-skeletons';
 
-export function NoBeneficiariesScreen({ })
+import ContentLoader, { Rect, Circle, Path } from 'react-content-loader/native';
+import { spacing } from '../../constants/spacing';
+import { range } from '../../utils/utils';
+
+export function NoBeneficiariesScreen({ stillFetching = true, onPressAdd })
 {
-    return (
-        <View
-            style={{
-                flexDirection: 'column',
-                flex: 1,
-                alignItems: 'center',
-                width: '100%',
-                height: '100%',
-                justifyContent: 'center',
-            }}>
+    const { width, height } = useWindowDimensions();
+    const listWidth = width - spacing.screenPadding * 2;
+    const cardHeight = 55;
+    const cards = Math.ceil((height * 0.6) / cardHeight);
+    // console.log(cards)
+    const marginBottom = 20;
+
+    const loadingView = (
+        <ContentLoader
+            speed={2}
+            width={listWidth}
+            height={'100%'}
+            viewBox={`0 0 ${listWidth} 100%`}
+            backgroundColor="#E6E6E6"
+            foregroundColor="#F2F2F2"
+            // style={{alignSelf: ''}}
+        // {...props}
+        >
+            <Rect
+                x="0"
+                y="0"
+                rx="10"
+                ry="10"
+                width={listWidth}
+                height={cardHeight}
+            />
+            {range(1, cards).map(function (i)
+            {
+                console.log(i, marginBottom, i * cardHeight + marginBottom)
+                return (<Rect
+                key={i}
+                    x="0"
+                    y={i * (cardHeight + marginBottom)}
+                    rx="10"
+                    ry="10"
+                    width={listWidth}
+                    height={cardHeight}
+                />)
+            })}
+            <Rect
+                x="0"
+                y={(cardHeight + marginBottom) * (cards)}
+                rx="10"
+                ry="10"
+                width={listWidth}
+                height={cardHeight}
+            />
+        </ContentLoader>
+    );
+    const emptyView = (
+        <>
             <View
                 style={{
                     flexDirection: 'column',
                     backgroundColor: '#E3ECFA',
                     borderRadius: 10,
-                    width: '55%',
+                    // width: '55%',
+                    height: height,
                     paddingVertical: 20,
                     elevation: 1,
                     aspectRatio: 1,
@@ -53,14 +101,32 @@ export function NoBeneficiariesScreen({ })
                 <Text style={{ textAlign: 'center', fontSize: 16 }}>
                     You don’t have beneficiaries, add some so you can send money
                 </Text>
-                <Spacer vertical value={20}/>
-                <View style={{flexDirection: 'row', justifyContent: 'center'}}>
-                    <ButtonInlineText variant={'green'} onPress={() => console.log('press')}>
+                <Spacer vertical value={20} />
+                <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+                    <ButtonInlineText
+                        variant={'green'}
+                        onPress={onPressAdd}>
                         <Icon name="plus-circle" size={20} />
                         Add More
                     </ButtonInlineText>
                 </View>
             </View>
+        </>
+    );
+
+
+    return (
+        <View
+            style={{
+                flexDirection: 'column',
+                flex: 1,
+                alignItems: 'center',
+                // width: '100%',
+                // height: '100%',
+                justifyContent: 'center',
+                // backgroundColor: 'blue',
+            }}>
+            {stillFetching ? (loadingView) : (emptyView)}
         </View>
     );
 

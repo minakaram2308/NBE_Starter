@@ -2,12 +2,13 @@ import React from 'react';
 import
     {
         FlatList,
-        LayoutAnimation, StyleSheet,
+        LayoutAnimation,
+        StyleSheet,
         Text,
         ToastAndroid,
         UIManager,
         View,
-        useWindowDimensions
+        useWindowDimensions,
     } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/FontAwesome5';
@@ -20,22 +21,18 @@ import ButtonInlineText from '../components/commons/ButtonInlineText';
 import ButtonInlineToggle from '../components/commons/ButtonInlineToggle';
 import { Spacer } from '../components/commons/Spacer';
 import { colors } from '../constants/Colors';
-import
-    {
-        BENEFICIARY_TABLE, databaseAPI
-    } from '../constants/data';
+import { BENEFICIARY_TABLE, databaseAPI } from '../constants/data';
 import { IMAGES } from '../constants/images';
 import { spacing } from '../constants/spacing';
 import { darkColors } from '../styles/components/Modes/DarkColors';
 import { lightColors } from '../styles/components/Modes/LightColors';
 import { RDP, wScale } from '../utils/scaling';
 
-
 export function BeneficiaryScreen({ navigation })
 {
     const { darkTheme, toggle } = React.useContext(ModeContext);
-    const [beneficiariesData, setBeneficiariesData] = React.useState([]);
-    const [compactView, setCompactView] = React.useState(false);
+    const [beneficiariesData, setBeneficiariesData] = React.useState();
+    const [compactView, setCompactView] = React.useState();
 
     const flatlistAnimationConfig = {
         duration: 500,
@@ -64,7 +61,7 @@ export function BeneficiaryScreen({ navigation })
     {
         asyncGrab(
             BENEFICIARY_TABLE,
-            {},
+            { count: undefined },
             r => setBeneficiariesData(r),
             e => console.log('failed ', e),
         );
@@ -74,11 +71,15 @@ export function BeneficiaryScreen({ navigation })
     const { width, height } = useWindowDimensions();
     const listWidth = width - spacing.screenPadding * 2;
     const cardDimensions = {
-        width: compactView ? RDP(listWidth / 3, true, 10) - RDP(5, true, 0)*wScale**10: listWidth,
+        width: compactView
+            ? RDP(listWidth / 3, true, 10) - RDP(5, true, 0) * wScale ** 10
+            : listWidth,
         height: compactView ? RDP(160, true, 0) : RDP(80),
     };
 
-    const cardsPerWindow = Math.ceil(1/(cardDimensions.height / (height*0.8)))
+    const cardsPerWindow = Math.ceil(
+        1 / (cardDimensions.height / (height * 0.8)),
+    );
 
     const renderItem = React.useCallback(
         function ({ item, index, separators })
@@ -134,7 +135,6 @@ export function BeneficiaryScreen({ navigation })
                 horizontal={false}
                 numColumns={compactView ? 3 : 1}
                 keyExtractor={item => item.id}
-                
                 initialNumToRender={cardsPerWindow}
                 removeClippedSubviews={true}
                 windowSize={9}
@@ -158,11 +158,13 @@ export function BeneficiaryScreen({ navigation })
                     paddingVertical: RDP(5),
                     paddingHorizontal: spacing.screenPadding,
                     backgroundColor: null,
+                    flex: beneficiariesData ? null : 1,
+                    // height: '100%'
                 }}
 
                 renderItem={renderItem}
 
-            // debug={beneficiariesData.length}
+            // debug={beneficiariesData?.length}
             />
         </GestureHandlerRootView>
     );
