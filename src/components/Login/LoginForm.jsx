@@ -35,7 +35,7 @@ function LoginForm(props) {
     console.log(values);
     let authenticated = Math.random() < 0.75;
     if (authenticated) {
-      actions.resetForm();
+      /** actions.resetForm(); */
       // props.navigation.navigate('app');
       loginContext.login(values.username);
     } else {
