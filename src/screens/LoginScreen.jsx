@@ -64,11 +64,11 @@ export const LoginScreen = props => {
                     <TextButton style={styles.footerLinks} onPress={null}>
                       Contact Us
                     </TextButton>
-                    <RobotoText style={styles.footerLinks2}>-</RobotoText>
+                    <RobotoText style={styles.footerLinks2}> - </RobotoText>
                     <TextButton style={styles.footerLinks} onPress={null}>
                       FAQs
                     </TextButton>
-                    <RobotoText style={styles.footerLinks2}>-</RobotoText>
+                    <RobotoText style={styles.footerLinks2}> - </RobotoText>
                     <TextButton style={styles.footerLinks} onPress={null}>
                       Help
                     </TextButton>
