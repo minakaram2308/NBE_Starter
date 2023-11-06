@@ -34,6 +34,7 @@ function LoginForm(props) {
   const submitHandler = (values, actions) => {
     console.log(values);
     let authenticated = Math.random() < 0.75;
+    //FIXME - not working on release apk !!!
     if (authenticated) {
       actions.resetForm();
       // props.navigation.navigate('app');
