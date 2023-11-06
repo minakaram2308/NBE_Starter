@@ -23,8 +23,7 @@ import {PasswordScreen} from './screens/PasswordScreen';
 import {CongratulationsScreen} from './screens/CongratulationsScreen';
 
 import {NavigationContainer} from '@react-navigation/native';
-// import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {createNativeStackNavigator} from "react-native-screens/native-stack"
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {TopBar, Balance, Navigator} from './components';
 import LoginContext from './store/Authentication/login-context';
 import {colors} from './constants/Colors';
