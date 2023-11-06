@@ -95,7 +95,7 @@ export const App = () => {
             {!loginContext.loggedIn && (
               <>
                 <StatusBar
-                  barStyle="light-content"
+                  barStyle={`${darkTheme ? 'light' : 'dark'}-content`}
                   backgroundColor="transparent"
                   translucent={true}
                 />
