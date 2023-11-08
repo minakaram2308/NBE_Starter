@@ -9,14 +9,18 @@ import
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { colors } from '../../constants/Colors';
 import { RDP } from '../../utils/scaling';
-
+import { darkColors } from '../../styles/components/Modes/DarkColors';
+import { lightColors } from '../../styles/components/Modes/LightColors';
+import { ModeContext } from '../../Context/ModeContext';
 const BeneficiaryCardLight = React.memo(function BeneficiaryCardLight({
+
     firstName,
     lastName,
     image,
     width = '100%',
     height = null,
 })
+
 {
     let imageDOM;
     if (image)
@@ -39,6 +43,7 @@ const BeneficiaryCardLight = React.memo(function BeneficiaryCardLight({
                 <Icon name="user" solid style={[styles.icon]} size={RDP(24)} />
             </View>
         );
+    const { darkTheme, toggle } = React.useContext(ModeContext);
 
     return (
         <View
@@ -47,15 +52,15 @@ const BeneficiaryCardLight = React.memo(function BeneficiaryCardLight({
                 {
                     width: width,
                     height: height,
-                },
+                },{backgroundColor:darkTheme?darkColors.darkBackgrd:lightColors.lightBackgrd}
             ]}>
             {imageDOM}
 
             <View style={{ marginTop: RDP(5) }}>
-                <Text style={styles.nameText} numberOfLines={1}>
+                <Text style={[styles.nameText,{color:darkTheme?darkColors.darkText:lightColors.lightText}]} numberOfLines={1}>
                     {firstName}
                 </Text>
-                <Text style={styles.nameText} numberOfLines={1}>
+                <Text style={[styles.nameText,{color:darkTheme?darkColors.darkText:lightColors.lightText}]} numberOfLines={1}>
                     {lastName}
                 </Text>
             </View>
