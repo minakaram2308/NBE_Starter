@@ -27,12 +27,15 @@ import { spacing } from '../constants/spacing';
 import { darkColors } from '../styles/components/Modes/DarkColors';
 import { lightColors } from '../styles/components/Modes/LightColors';
 import { RDP, wScale } from '../utils/scaling';
+import { range } from '../utils/utils';
 
 export function BeneficiaryScreen({ navigation })
 {
     const { darkTheme, toggle } = React.useContext(ModeContext);
     const [beneficiariesData, setBeneficiariesData] = React.useState();
     const [compactView, setCompactView] = React.useState();
+    const [page, setPage] = React.useState(0);
+    const dataItemsPerPage = 20;
 
     const flatlistAnimationConfig = {
         duration: 500,
@@ -61,11 +64,11 @@ export function BeneficiaryScreen({ navigation })
     {
         asyncGrab(
             BENEFICIARY_TABLE,
-            { count: undefined },
+            { ids: range(0, (page+1) * dataItemsPerPage) },
             r => setBeneficiariesData(r),
             e => console.log('failed ', e),
         );
-    }, []);
+    }, [page]);
 
     // Flat list related
     const { width, height } = useWindowDimensions();
@@ -110,6 +113,7 @@ export function BeneficiaryScreen({ navigation })
                         image={IMAGES[item.id]}
                         width={cardDimensions.width}
                         height={cardDimensions.height}
+                        id={item.id}
                     />
                 </SwipeableCardWrapper>
             );
@@ -143,6 +147,8 @@ export function BeneficiaryScreen({ navigation })
                     offset: cardDimensions.height * index,
                     index,
                 })}
+                onEndReachedThreshold={0.1}
+                onEndReached={() => setPage((prev) => prev + 1)}
                 ListEmptyComponent={
                     <NoBeneficiariesScreen
                         stillFetching={beneficiariesData === undefined}

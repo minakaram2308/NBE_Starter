@@ -20,6 +20,7 @@ const BeneficiaryCardLight = React.memo(function BeneficiaryCardLight({
     image,
     width = '100%',
     height = null,
+    id,
 })
 {
     // const {
