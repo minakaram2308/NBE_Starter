@@ -22,6 +22,7 @@ export function databaseAPI(table, query)
       const count = query?.count;
       const ids = query?.ids;
       const columns = query?.columns;
+      console.log('count,', count)
       let tableArray;
       let result;
 
@@ -33,7 +34,7 @@ export function databaseAPI(table, query)
 
       result = tableArray;
       if (ids) result = tableArray.filter(row => ids.includes(row.id));
-      if (count) result = result.slice(0, count);
+      if (count >= 0) result = result.slice(0, count);
 
       simulateDelay(() => resolve(result));
     } catch (error)

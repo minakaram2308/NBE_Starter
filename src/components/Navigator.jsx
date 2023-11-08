@@ -9,6 +9,7 @@ import { lightColors } from '../styles/components/Modes/LightColors';
 import { darkColors } from '../styles/components/Modes/DarkColors';
 import { ModeContext } from '../Context/ModeContext';
 import { useKeyboardVisible } from '../hooks/useKeyboard';
+import { Directions, Gesture, GestureDetector, GestureHandlerRootView } from 'react-native-gesture-handler';
 export const Navigator = ({state, descriptors, navigation}) => {
   const {darkTheme, toggle} = useContext(ModeContext);
   let backgroundStyle=darkTheme?darkColors.greyBackgrd:lightColors.lightBackgrd
@@ -23,23 +24,59 @@ export const Navigator = ({state, descriptors, navigation}) => {
     return null
   }
 
+  const flingLeft = Gesture.Fling()
+    .direction(Directions.LEFT)
+    .runOnJS(true)
+    .onEnd(() => {
+      if (navigation.getState().index < 4) {
+        navigation.navigate(
+          navigation.getState().routes[navigation.getState().index + 1].name,
+        );
+      }
+    });
+  const flingRight = Gesture.Fling()
+    .direction(Directions.RIGHT)
+    .runOnJS(true)
+    .onEnd(() => {
+      if (navigation.getState().index > 0) {
+        navigation.navigate(
+          navigation.getState().routes[navigation.getState().index - 1].name,
+        );
+      }
+    });
+  const composed = Gesture.Race(flingLeft, flingRight);
+
   return (
-    <View style={[styles.navigator,{backgroundColor:backgroundStyle}]}>
-      <StatusBar barStyle={`${routeName === "map"? "dark": darkTheme? "light": "dark"}-content`} />
-      <TouchableWithoutFeedback
-      onPress={() => {
-        navigation.navigate('home');}}
-      >
-        <View
-          style={['home', "accounts", "cards", "utils", "history"].includes(routeName)? styles.activeNavBtn : styles.navBtn}>
-          <MaterialCommunityIcons
-            name="home"
-            style={['home', "accounts", "cards", "utils", "history"].includes(routeName)? styles.activeNavIcon : styles.navIcon}
-            size={25}
-          />
-          <Text style={styles.activeNavText}>Home</Text>
-        </View>
-      </TouchableWithoutFeedback>
+    <GestureHandlerRootView>
+      <GestureDetector gesture={composed}>
+        <View style={[styles.navigator, {backgroundColor: backgroundStyle}]}>
+          <StatusBar barStyle={`${routeName === 'map' ? 'dark' : darkTheme ? 'light' : 'dark'}-content`} />
+          <TouchableWithoutFeedback
+            onPress={() => {
+              navigation.navigate('home');
+            }}>
+            <View
+              style={
+                ['home', 'accounts', 'cards', 'utils', 'history'].includes(
+                  routeName,
+                )
+                  ? styles.activeNavBtn
+                  : styles.navBtn
+              }>
+              <MaterialCommunityIcons
+                name="home"
+                style={
+                  ['home', 'accounts', 'cards', 'utils', 'history'].includes(
+                    routeName,
+                  )
+                    ? styles.activeNavIcon
+                    : styles.navIcon
+                }
+                size={25}
+              />
+              <Text style={styles.activeNavText}>Home</Text>
+            </View>
+          </TouchableWithoutFeedback>
 
       <TouchableWithoutFeedback
        onPress={() => {
@@ -90,24 +127,26 @@ export const Navigator = ({state, descriptors, navigation}) => {
         </View>
       </TouchableWithoutFeedback>
 
-      <TouchableWithoutFeedback
-       onPress={() => {
-        navigation.navigate('AirPay');}}
-      >
-        <View
-          style={routeName === 'AirPay' ? styles.activeNavBtn : styles.navBtn}>
-          <MaterialCommunityIcons
-            name="cellphone-nfc"
-            style={
-              routeName === 'AirPay' ? styles.activeNavIcon : styles.navIcon
-            }
-            size={25}
-          />
-          <Text style={styles.navText}>Air Pay</Text>
+          <TouchableWithoutFeedback
+            onPress={() => {
+              navigation.navigate('AirPay');
+            }}>
+            <View
+              style={
+                routeName === 'AirPay' ? styles.activeNavBtn : styles.navBtn
+              }>
+              <MaterialCommunityIcons
+                name="cellphone-nfc"
+                style={
+                  routeName === 'AirPay' ? styles.activeNavIcon : styles.navIcon
+                }
+                size={25}
+              />
+              <Text style={styles.navText}>Air Pay</Text>
+            </View>
+          </TouchableWithoutFeedback>
         </View>
-      </TouchableWithoutFeedback>
-
-    </View>
-  )
-}
-
+      </GestureDetector>
+    </GestureHandlerRootView>
+  );
+};

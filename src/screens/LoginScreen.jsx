@@ -24,11 +24,11 @@ export const LoginScreen = props => {
 
   return (
     <>
-      {/* <StatusBar
+      <StatusBar
         barStyle="light-content"
         backgroundColor="transparent"
         translucent={true}
-      /> */}
+      />
       <Pressable style={{flex: 1}} onPress={Keyboard.dismiss}>
         <ImageBackground
           source={background}

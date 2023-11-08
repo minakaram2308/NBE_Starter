@@ -5,16 +5,18 @@ import
     Animated,
     StyleSheet,
     Text,
-    ToastAndroid,
     View,
   } from 'react-native';
 import { RectButton, Swipeable } from 'react-native-gesture-handler';
 import { colors } from '../../constants/Colors';
 
-export default function SwipeableCardWrapper({
+//===========
+const SwipeableCardWrapper = React.memo(function SwipeableCardWrapper({
   children,
   actionsOnPress,
   onPress,
+  width,
+  height,
 })
 {
   const [showLoading, setShowLoading] = React.useState(false);
@@ -24,66 +26,15 @@ export default function SwipeableCardWrapper({
     if (showLoading) actionsOnPress.delete();
   }, [showLoading]);
 
-  return (
-    <View style={styles.container}>
-      <Swipeable
-        renderLeftActions={(progress, dragX) =>
-          actionsRenderer(
-            'left',
-            [{ label: 'Edit', color: '#ECF56F', onPress: actionsOnPress.edit }],
-            progress,
-          )
-        }
-        renderRightActions={(progress, dragX) =>
-          actionsRenderer(
-            'right',
-            [
-              {
-                label: 'Delete',
-                color: '#E95858',
-                onPress: actionsOnPress.delete,
-              },
-            ],
-            progress,
-          )
-        }
-        friction={1.8}
-        dragOffsetFromLeftEdge={30}
-        dragOffsetFromRightEdge={30}
-        overshootFriction={8}>
-        <Animated.View>
-          <RectButton style={[styles.cardWrapper]} onPress={onPress}>
-            {children}
-          </RectButton>
-        </Animated.View>
-      </Swipeable>
-
-      <View style={[styles.loadingWrapper, showLoading && styles.show]}>
-        <Text style={styles.heavyText}>Deleting</Text>
-        <ActivityIndicator
-          size="large"
-          color="#007236"
-          animating={showLoading}
-          style={styles.spinner}
-        />
-      </View>
-    </View>
-  );
-
-  function actionsRenderer(direction, actionsData, progress)
-  {
-    return (
-      <ActionsWrapper direction={direction} progress={progress}>
-        {actionsData}
-      </ActionsWrapper>
-    );
-  }
-
   ///////////////////////////////////////////
   //// Local Components
   ///////////////////////////////////////////
 
-  function ActionsWrapper({ children, direction, progress })
+  const ActionsWrapper = React.memo(function ActionsWrapper({
+    children,
+    direction,
+    progress,
+  })
   {
     direction = { right: -1, left: 1 }[direction] ?? 1;
     const directionalPadding =
@@ -95,19 +46,19 @@ export default function SwipeableCardWrapper({
     });
 
     return (
-      <Animated.View style={[{ height: '100%' }, directionalPadding]}>
+      <Animated.View style={[directionalPadding]}>
         <Animated.View
           style={{ transform: [{ translateX: trans }], flexDirection: 'row' }}>
           {children.map(function (item, i)
           {
-            return <Action {...item} key={i}/>;
+            return <Action {...item} key={i} />;
           })}
         </Animated.View>
       </Animated.View>
     );
-  }
+  });
 
-  function Action({ label, color, onPress })
+  const Action = React.memo(function Action({ label, color, onPress })
   {
     return (
       <RectButton
@@ -125,8 +76,65 @@ export default function SwipeableCardWrapper({
         <Text style={[{ color: colors.textDark, fontSize: 18 }]}>{label}</Text>
       </RectButton>
     );
+  });
+
+  return (
+    <View style={[styles.container, { width: width, height: height }]}>
+      <Swipeable
+        renderLeftActions={React.useCallback((progress, dragX) =>
+          actionsRenderer(
+            'left',
+            [{ label: 'Edit', color: '#ECF56F', onPress: actionsOnPress?.edit }],
+            progress,
+          ),
+        )}
+        renderRightActions={React.useCallback((progress, dragX) =>
+          actionsRenderer(
+            'right',
+            [
+              {
+                label: 'Delete',
+                color: '#E95858',
+                onPress: () => {actionsOnPress?.delete; setShowLoading(true)},
+              },
+            ],
+            progress,
+          ),
+        )}
+        friction={1.8}
+        dragOffsetFromLeftEdge={30}
+        dragOffsetFromRightEdge={30}
+        overshootFriction={8}>
+        <Animated.View style={{ height: height }}>
+          <RectButton style={[styles.cardWrapper]} onPress={onPress}>
+            {React.useMemo(() => children, [])}
+          </RectButton>
+        </Animated.View>
+      </Swipeable>
+
+      <View style={[styles.loadingWrapper, showLoading && styles.show]}>
+        <Text style={styles.heavyText}>Deleting</Text>
+        <ActivityIndicator
+          size="large"
+          color="#FFF"
+          animating={showLoading}
+          style={styles.spinner}
+        />
+      </View>
+    </View>
+  );
+
+  function actionsRenderer(direction, actionsData, progress)
+  {
+    return (
+      <ActionsWrapper direction={direction} progress={progress}>
+        {actionsData}
+      </ActionsWrapper>
+    );
   }
-}
+});
+
+export default SwipeableCardWrapper;
 
 const styles = StyleSheet.create({
   container: {
