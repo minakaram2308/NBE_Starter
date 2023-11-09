@@ -94,6 +94,7 @@ export function BeneficiaryScreen({ navigation })
                     image={IMAGES[item.id]}
                     width={cardDimensions.width}
                     height={cardDimensions.height}
+                    onPress={() => navigation.getParent().navigate('beneficiaryEdit', { data: item })}
                 />
             ) : (
                 <SwipeableCardWrapper

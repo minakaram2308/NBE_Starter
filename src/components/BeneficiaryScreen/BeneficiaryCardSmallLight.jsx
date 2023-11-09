@@ -12,11 +12,13 @@ import { RDP } from '../../utils/scaling';
 import { darkColors } from '../../styles/components/Modes/DarkColors';
 import { lightColors } from '../../styles/components/Modes/LightColors';
 import { ModeContext } from '../../Context/ModeContext';
-const BeneficiaryCardLight = React.memo(function BeneficiaryCardLight({
+import { RectButton } from 'react-native-gesture-handler';
+const BeneficiaryCardSmallLight = React.memo(function BeneficiaryCardSmallLight({
 
     firstName,
     lastName,
     image,
+    onPress,
     width = '100%',
     height = null,
 })
@@ -46,7 +48,8 @@ const BeneficiaryCardLight = React.memo(function BeneficiaryCardLight({
     const { darkTheme, toggle } = React.useContext(ModeContext);
 
     return (
-        <View
+        <RectButton
+            onPress={onPress}
             style={[
                 styles.root,
                 {
@@ -64,11 +67,11 @@ const BeneficiaryCardLight = React.memo(function BeneficiaryCardLight({
                     {lastName}
                 </Text>
             </View>
-        </View>
+        </RectButton>
     );
 });
 
-export default BeneficiaryCardLight;
+export default BeneficiaryCardSmallLight;
 
 const styles = StyleSheet.create({
     root: {
