@@ -146,7 +146,7 @@ export const AirPayScreen = ({navigation}) => {
               alignSelf: 'center',
               left: '8%',
             }}>
-            <Pressable onPress={() => RNRestart.restart()}>
+            <Pressable onPress={() => navigation.getParent().navigate('home')}>
               <Drop mode={isDarkMode} choosedCard={activeDraggable} />
             </Pressable>
           </View>
