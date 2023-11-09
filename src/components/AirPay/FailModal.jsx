@@ -12,7 +12,7 @@ function FailModal(props){
             <Image source={require('../../../assets/media/airPay/failCard.png')}></Image>
             <Text style={allstyles.modalText1}>Ooops...</Text>
             <Text style={allstyles.modalText2}>Your payment didn’t go through</Text>
-            <Text style={[allstyles.modalText3,{color:props.mode?darkColors.darkText:lightColors.lightText}]}>$5,542.00</Text>
+            <Text style={[allstyles.modalText3,{color:props.mode?darkColors.darkText:lightColors.lightText}]}>${props.balance.balance}</Text>
             <View style={allstyles.buttonsContainer}>
                 <Pressable onPress={props.closeMe}>
                 <View style={{width:windowWidth*.95*.8*.35,borderRadius:12.5,borderColor:'#EB001B',borderWidth:1,marginEnd:10 }}>

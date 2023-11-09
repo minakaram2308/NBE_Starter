@@ -13,7 +13,7 @@ function SuccessModal(props){
             <Image source={require('../../../assets/media/airPay/successCard.png')}></Image>
             <Text style={[allstyles.modalText1,{color:props.mode?darkColors.darkText:lightColors.lightText}]}>Mission Complete</Text>
             <Text style={allstyles.modalText2}>Your payment to IKEA was successful</Text>
-            <Text style={[allstyles.modalText3,{color:props.mode?darkColors.darkText:lightColors.lightText}]}>$5,542.00</Text>
+            <Text style={[allstyles.modalText3,{color:props.mode?darkColors.darkText:lightColors.lightText}]}>${props.balance.balance}</Text>
             <Pressable onPress={props.closeMe}>
             <View style={{backgroundColor:'#007236', marginTop:20,width:windowWidth*.95*.8,borderRadius:12.5 }}>
                 <Text style={{color:'#FFFFFF',alignSelf:'center',fontWeight:'700',fontSize:16,padding:12}}>Done</Text>
