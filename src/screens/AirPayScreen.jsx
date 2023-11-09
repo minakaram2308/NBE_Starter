@@ -107,11 +107,6 @@ export const AirPayScreen = ({navigation}) => {
             ]}>
             Cards
           </Text>
-
-          {/* <ThemeProvider>
-    <Button title='Change' onPress={toggle}></Button>
-  </ThemeProvider> */}
-
           <ScrollView scrollEnabled={!enabled} horizontal={true}>
             <View style={{flexDirection: 'row'}}>
               {data.map(item => (

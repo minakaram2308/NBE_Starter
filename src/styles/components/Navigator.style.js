@@ -1,6 +1,8 @@
 import {
   StyleSheet
 } from 'react-native';
+import { colors } from '../../constants/Colors';
+import { shadeColor } from '../../util/Utilities';
 
 
 export default styles = StyleSheet.create({
@@ -47,11 +49,11 @@ export default styles = StyleSheet.create({
   },
 
   navIcon: {
-    color: '#B7B7B7',
+    color: shadeColor(colors.darkGray, 100),
   },
 
   navText: {
-    color: '#B7B7B7',
+    color: shadeColor(colors.darkGray, 100),
   },
 
 });
