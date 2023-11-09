@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useRef} from 'react';
 import styles from '../../styles/components/Login/LoginForm.style';
 import {
   Alert,
@@ -23,6 +23,7 @@ import RobotoText from '../RobotoText';
 import TextButton from '../Buttons/TextButton';
 import LoginInput from './LoginInput';
 import LoginContext from '../../store/Authentication/login-context';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 function LoginForm(props) {
   /**
@@ -31,6 +32,7 @@ function LoginForm(props) {
   */
   const loginContext = useContext(LoginContext);
   const initialValues = {username: '', password: ''};
+  const refs = useRef([]);
   const submitHandler = (values, actions) => {
     console.log(values);
     let authenticated = Math.random() < 0.75;
@@ -68,25 +70,39 @@ function LoginForm(props) {
           const usernameInvalid = errors.username && touched.username;
           const passwordInvalid = errors.password && touched.password;
         */
-        const formInputs = Object.keys(initialValues).map(inputValue => (
-          <LoginInput
-            key={inputValue}
-            label={inputValue}
-            invalid={errors[inputValue] && touched[inputValue]}
-            icon={<FontAwesome5 name="at" size={25} />}
-            value={values[inputValue]}
-            handleChange={handleChange.bind(null, inputValue)}
-            handleBlur={handleBlur.bind(null, inputValue)}
-            setFieldTouched={setFieldTouched.bind(null, inputValue)}
-            error={errors[inputValue]}
-            password={inputValue.toLowerCase() === 'password'}
-          />
-        ));
+        const formInputs = Object.keys(initialValues).map(
+          (inputValue, index) => (
+            <LoginInput
+              key={inputValue}
+              label={inputValue}
+              invalid={errors[inputValue] && touched[inputValue]}
+              icon={<FontAwesome5 name="at" size={25} />}
+              value={values[inputValue]}
+              handleChange={handleChange.bind(null, inputValue)}
+              handleBlur={handleBlur.bind(null, inputValue)}
+              setFieldTouched={setFieldTouched.bind(null, inputValue)}
+              error={errors[inputValue]}
+              password={inputValue.toLowerCase() === 'password'}
+              ref={element => (refs.current[index] = element)}
+            />
+          ),
+        );
+
+        for (let x = 0; x < formInputs.length - 1; x++) {
+          formInputs[x] = React.cloneElement(formInputs[x], {
+            focusNext: () => {
+              refs.current[x + 1].focus();
+            },
+          });
+        }
+
         return (
           <View style={styles.view}>
-            <ScrollView
+            <KeyboardAwareScrollView
               contentContainerStyle={styles.scroll}
-              keyboardShouldPersistTaps={'handled'}>
+              keyboardShouldPersistTaps={'handled'}
+              enableOnAndroid={true}
+              enableAutomaticScroll={true}>
               <View style={styles.titleView}>
                 <RobotoText style={styles.title}>
                   Welcome to The National Bank of Egypt
@@ -254,7 +270,7 @@ function LoginForm(props) {
                   <FingerprintButton style={styles.fingerprint} />
                 </View>
               </View>
-            </ScrollView>
+            </KeyboardAwareScrollView>
           </View>
         );
       }}
