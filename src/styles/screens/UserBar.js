@@ -5,7 +5,7 @@ export default styles = StyleSheet.create({
     flexDirection: 'row',
     // justifyContent: 'space-between',
     padding: 10,
-    width: 280,
+    width: "90%",
     backgroundColor: 'white',
     margin: 10,
     borderRadius: 24,
