@@ -5,7 +5,7 @@ const LoginSchema = yup.object({
     .string()
     .required('Username is required')
     .test({
-      test: value => RegExp('^[a-zA-Z][a-zA-Z0-9]*$').test(value),
+      test: value => RegExp('^[a-zA-Z][a-zA-Z0-9_.-]*$').test(value),
       message: 'Invalid Username',
     }),
   password: yup
