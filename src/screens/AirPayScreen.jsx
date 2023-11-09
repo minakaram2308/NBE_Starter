@@ -22,7 +22,7 @@ export const AirPayScreen = ({navigation}) => {
   const windowWidth = Dimensions.get('window').width;
   const [enabled, setEnabled] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
-  const [successPay, setSuccessPay] = useState(false);
+  const [successPay, setSuccessPay] = useState(true);
   const [activeDraggable, setActiveDraggable] = useState(false);
   const isDarkMode = darkTheme;
 
