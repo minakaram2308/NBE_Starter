@@ -20,7 +20,7 @@ export default styles = StyleSheet.create({
   },
 
   scrollArea: {
-    justifyContent: 'flex-start',
+    justifyContent: 'space-around',
     alignItems: 'center',
     flexDirection: 'row',
     flexWrap: 'wrap',

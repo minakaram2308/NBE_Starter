@@ -9,7 +9,9 @@ import
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { colors } from '../../constants/Colors';
 import { RDP } from '../../utils/scaling';
-
+import { darkColors } from '../../styles/components/Modes/DarkColors';
+import { lightColors } from '../../styles/components/Modes/LightColors';
+import { ModeContext } from '../../Context/ModeContext';
 const BeneficiaryCardLight = React.memo(function BeneficiaryCardLight({
     firstName,
     lastName,
@@ -18,6 +20,7 @@ const BeneficiaryCardLight = React.memo(function BeneficiaryCardLight({
     image,
     width = '100%',
     height = null,
+    id,
 })
 {
     // const {
@@ -26,6 +29,7 @@ const BeneficiaryCardLight = React.memo(function BeneficiaryCardLight({
     //     phone = 'phone',
     //     email = 'email',
     // } = cardData ?? {};
+    const { darkTheme, toggle } = React.useContext(ModeContext);
 
     let imageDOM;
     if (image)
@@ -56,11 +60,11 @@ const BeneficiaryCardLight = React.memo(function BeneficiaryCardLight({
                 {
                     width: width,
                     height: height,
-                },
+                },{backgroundColor:darkTheme?darkColors.darkBackgrd:lightColors.lightBackgrd}
             ]}>
             {imageDOM}
             <View style={[styles.body]}>
-                <Text style={styles.nameText} numberOfLines={1}>
+                <Text style={[styles.nameText,{color:darkTheme?darkColors.darkText:lightColors.lightText}]} numberOfLines={1}>
                     {firstName} {lastName}
                 </Text>
 

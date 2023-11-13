@@ -7,6 +7,7 @@ export const colors = {
     greenDisabled: '#004004c0',
     orange: '#F49322',
     gray: '#B7B7B7',
+    darkGray: "#333333",
     error: '#DC143C',
     errorLight: '#FFDCDC',
     textDark: hex('1C2347'),

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useImperativeHandle, useRef, useState} from 'react';
 import styles from '../../styles/components/Login/LoginInput.style';
 import {colors} from '../../constants/Colors';
 import {View} from 'react-native';
@@ -7,8 +7,15 @@ import RobotoText from '../RobotoText';
 import Feather from 'react-native-vector-icons/Feather';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-function LoginInput(props) {
+const LoginInput = React.forwardRef((props, ref) => {
   const [inputFocus, setInputFocus] = useState(false);
+  const inputRef = useRef();
+  useImperativeHandle(ref, () => ({
+    focus: () => {
+      inputRef.current.focus();
+    },
+  }));
+
   return (
     <View
       style={
@@ -97,6 +104,10 @@ function LoginInput(props) {
         }
         showPasswordContainerStyles={{paddingHorizontal: '5%'}}
         autoComplete="off"
+        ref={inputRef}
+        onSubmitEditing={() => {
+          props.focusNext?.();
+        }}
       />
       {props.invalid && (
         <View style={styles.errorView}>
@@ -105,6 +116,6 @@ function LoginInput(props) {
       )}
     </View>
   );
-}
+});
 
 export default LoginInput;

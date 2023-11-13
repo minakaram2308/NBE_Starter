@@ -8,9 +8,7 @@ import {
   Pressable,
   Alert,
   Modal,
-  Button,
 } from 'react-native';
-import RNRestart from 'react-native-restart';
 import Draggable from 'react-native-draggable';
 import Card from '../components/AirPay/Card';
 import Drop from '../components/AirPay/Drop';
@@ -31,7 +29,7 @@ export const AirPayScreen = ({navigation}) => {
   const cardData = [
     {
       id: 1,
-      balance: '12,252,2',
+      balance: '12,000.00',
       cardNumber: '9654',
       name: 'Ahmed Essam Eldin',
       cvv: '456',
@@ -40,7 +38,7 @@ export const AirPayScreen = ({navigation}) => {
     },
     {
       id: 2,
-      balance: '125,381,15',
+      balance: '125,381.15',
       cardNumber: '2126',
       name: 'Mohamed Ahmed ',
       cvv: '445',
@@ -49,7 +47,7 @@ export const AirPayScreen = ({navigation}) => {
     },
     {
       id: 3,
-      balance: '125,381,15',
+      balance: '1,000.00',
       cardNumber: '4158',
       name: 'Omar Emad',
       cvv: '257',
@@ -58,7 +56,7 @@ export const AirPayScreen = ({navigation}) => {
     },
     {
       id: 4,
-      balance: '125,381,15',
+      balance: '71,000.00',
       cardNumber: '1111',
       name: 'Ahmed Essam Eldin',
       cvv: '710',
@@ -92,9 +90,9 @@ export const AirPayScreen = ({navigation}) => {
         <View
           style={[allstyles.modalContainer, {backgroundColor: '#1C2437C4'}]}>
           {successPay ? (
-            <SuccessModal mode={isDarkMode} closeMe={closeModal} />
+            <SuccessModal balance={data.find((item)=>activeDraggable===item.id)} mode={isDarkMode} closeMe={closeModal} />
           ) : (
-            <FailModal mode={isDarkMode} closeMe={closeModal} />
+            <FailModal balance={data.find((item)=>activeDraggable===item.id)} mode={isDarkMode} closeMe={closeModal} />
           )}
         </View>
       </Modal>
@@ -107,11 +105,6 @@ export const AirPayScreen = ({navigation}) => {
             ]}>
             Cards
           </Text>
-
-          {/* <ThemeProvider>
-    <Button title='Change' onPress={toggle}></Button>
-  </ThemeProvider> */}
-
           <ScrollView scrollEnabled={!enabled} horizontal={true}>
             <View style={{flexDirection: 'row'}}>
               {data.map(item => (
@@ -151,7 +144,7 @@ export const AirPayScreen = ({navigation}) => {
               alignSelf: 'center',
               left: '8%',
             }}>
-            <Pressable onPress={() => RNRestart.restart()}>
+            <Pressable onPress={() => navigation.getParent().navigate('home')}>
               <Drop mode={isDarkMode} choosedCard={activeDraggable} />
             </Pressable>
           </View>

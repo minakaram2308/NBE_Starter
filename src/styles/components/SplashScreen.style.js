@@ -1,9 +1,9 @@
-import {StyleSheet} from 'react-native';
+import {Dimensions, StyleSheet} from 'react-native';
 
 export default styles = StyleSheet.create({
   splashContainer: {
-    width: '100%',
-    height: '100%',
+    width: Dimensions.get('screen').width,
+    height: Dimensions.get('screen').height,
     backgroundColor: '#F1F3FB',
   },
   splash: {

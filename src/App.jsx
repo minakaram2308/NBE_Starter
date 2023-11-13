@@ -79,7 +79,7 @@ export const App = () => {
                   <Tab.Screen name="transfer" component={CashTransferStack} />
                   <Tab.Screen name="beneficiaries" component={BenefDrawerScreen} />
                   <Tab.Screen name="map" component={MapDrawerScreen} />
-                  <Tab.Screen name="AirPay" component={AirPayDrawerScreen} />
+                  <Tab.Screen name="AirPay" component={AirPayDrawerScreen} options={{unmountOnBlur: true}}/>
                   <Tab.Screen name="beneficiaryDetails" component={BeneficiarDetailsDrawer} />
                   <Tab.Screen name="beneficiaryEdit" component={AddBeneficiarScreen} />
                   <Tab.Group>
